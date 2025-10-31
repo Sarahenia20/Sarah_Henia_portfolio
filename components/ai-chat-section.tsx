@@ -11,14 +11,14 @@ import Image from "next/image"
 const initialMessages = [
   {
     role: "assistant",
-    content: "👋 Hi there! I'm AI Ibro, your virtual assistant. Ask me about Ibrahim's work experience or skills!",
+    content: "👋 Hi there! I'm AI Ibro, your virtual assistant. Ask me about Sarah's work experience or skills!",
   },
 ]
 
 const experienceResponses = [
   {
     role: "assistant",
-    content: `Ibrahim has over 7 years of experience in AI and automation:
+    content: `Sarah has over 7 years of experience in AI and automation:
 
 **Lead AI Engineer** at TechInnovate (2021-Present)
 • Developed custom NLP solutions for enterprise clients
@@ -35,7 +35,7 @@ const experienceResponses = [
 const skillsResponses = [
   {
     role: "assistant",
-    content: `Ibrahim specializes in:
+    content: `Sarah specializes in:
 
 **AI Development** - Building intelligent systems with ML/DL
 **Process Automation** - Creating efficient workflows
@@ -43,14 +43,14 @@ const skillsResponses = [
 **Voice AI** - Developing natural voice interfaces
 **Chatbot Development** - Creating conversational experiences
 
-He's proficient with tools like N8N, Airtable, GPT, Gemini, ElevenLabs, and various cloud platforms.`,
+She's proficient with tools like N8N, Airtable, GPT, Gemini, ElevenLabs, and various cloud platforms.`,
   },
 ]
 
 const projectResponses = [
   {
     role: "assistant",
-    content: `Ibrahim has built several innovative projects:
+    content: `Sarah has built several innovative projects:
 
 **TaskFlow** - Productivity app with gamification
 **OneSoft** - All-in-one business platform
@@ -58,14 +58,14 @@ const projectResponses = [
 **Film Fan Finder** - AI movie recommendation system
 **AI Automation Consultant** - Intelligent workflow automation
 
-Each project demonstrates his expertise in creating user-friendly, AI-powered solutions.`,
+Each project demonstrates her expertise in creating user-friendly, AI-powered solutions.`,
   },
 ]
 
 const aiDevelopmentResponses = [
   {
     role: "assistant",
-    content: `Excellent choice! Ibrahim's AI development services include:
+    content: `Excellent choice! Sarah's AI development services include:
 
 **Machine Learning Models** - Custom ML solutions for your specific needs
 **Neural Networks** - Deep learning implementations for complex problems
@@ -86,7 +86,7 @@ Would you like to discuss a specific AI project for your business?`,
 const processAutomationResponses = [
   {
     role: "assistant",
-    content: `Perfect! Ibrahim's process automation solutions cover:
+    content: `Perfect! Sarah's process automation solutions cover:
 
 **RPA Implementation** - Robotic Process Automation for repetitive tasks
 **Workflow Optimization** - Streamlined business processes
@@ -107,7 +107,7 @@ What specific processes are you looking to automate?`,
 const dataAnalyticsResponses = [
   {
     role: "assistant",
-    content: `Great choice! Ibrahim's data analytics services include:
+    content: `Great choice! Sarah's data analytics services include:
 
 **Predictive Analytics** - Forecasting future trends and outcomes
 **Data Visualization** - Interactive dashboards and reports
@@ -128,7 +128,7 @@ What kind of data insights are you looking to gain?`,
 const chatbotResponses = [
   {
     role: "assistant",
-    content: `Great choice! Ibrahim's chatbot development services include:
+    content: `Great choice! Sarah's chatbot development services include:
 
 **Natural Language Processing** - Advanced NLP for human-like conversations
 **Multi-platform Integration** - Deploy across web, mobile, and messaging platforms
@@ -149,7 +149,7 @@ Would you like to discuss a specific chatbot project for your business?`,
 const customSoftwareResponses = [
   {
     role: "assistant",
-    content: `Excellent! Ibrahim's custom software development services include:
+    content: `Excellent! Sarah's custom software development services include:
 
 **Full-stack Development** - Complete web and mobile applications
 **API Development** - RESTful and GraphQL API creation
@@ -170,7 +170,7 @@ What type of custom software solution are you looking to build?`,
 const dataManagementResponses = [
   {
     role: "assistant",
-    content: `Excellent! Ibrahim's data management solutions cover:
+    content: `Excellent! Sarah's data management solutions cover:
 
 **Database Architecture** - Scalable and efficient database design
 **Data Pipeline Automation** - Streamlined data processing workflows
@@ -331,7 +331,7 @@ export default function AIChatSection() {
         response = {
           role: "assistant",
           content:
-            "I can tell you about Ibrahim's work experience, skills, projects, or specific services like AI development, process automation, data analytics, chatbot development, custom software, and data management. What would you like to know?",
+            "I can tell you about Sarah's work experience, skills, projects, or specific services like AI development, process automation, data analytics, chatbot development, custom software, and data management. What would you like to know?",
         }
       }
 
@@ -527,21 +527,21 @@ export default function AIChatSection() {
             <div className="p-3 border-t border-white/10 flex gap-2 overflow-x-auto hide-scrollbar">
               <button
                 type="button"
-                onClick={() => handleQuickQuestion("Tell me about Ibrahim's work experience")}
+                onClick={() => handleQuickQuestion("Tell me about Sarah's work experience")}
                 className="px-3 py-1 text-xs rounded-full bg-card/50 border border-white/10 whitespace-nowrap hover:bg-primary/20 transition-colors"
               >
                 Work experience
               </button>
               <button
                 type="button"
-                onClick={() => handleQuickQuestion("What are Ibrahim's skills?")}
+                onClick={() => handleQuickQuestion("What are Sarah's skills?")}
                 className="px-3 py-1 text-xs rounded-full bg-card/50 border border-white/10 whitespace-nowrap hover:bg-primary/20 transition-colors"
               >
                 Skills
               </button>
               <button
                 type="button"
-                onClick={() => handleQuickQuestion("Tell me about Ibrahim's projects")}
+                onClick={() => handleQuickQuestion("Tell me about Sarah's projects")}
                 className="px-3 py-1 text-xs rounded-full bg-card/50 border border-white/10 whitespace-nowrap hover:bg-primary/20 transition-colors"
               >
                 Projects
@@ -581,8 +581,8 @@ export default function AIChatSection() {
             <div className="relative">
               <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-primary/30 glow-effect">
                 <Image
-                  src="/images/ibrahim-avatar.jpg"
-                  alt="Ibrahim Mustafa"
+                  src="/images/sarah-avatar.jpg"
+                  alt="Sarah Henia"
                   width={96}
                   height={96}
                   className="w-full h-full object-cover"

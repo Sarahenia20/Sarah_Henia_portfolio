@@ -1,109 +1,81 @@
 "use client"
 
-import { useRef, useEffect } from "react"
-import { motion, useInView, useAnimation } from "framer-motion"
-import { Brain, Workflow, LineChart, Bot } from "lucide-react"
-import Image from "next/image"
-import anime from "animejs"
+import { useRef, useState, useEffect } from "react"
+import { motion, useInView } from "framer-motion"
+import { Badge } from "@/components/ui/badge"
+import { Card } from "@/components/ui/card"
+import { GraduationCap, Award } from "lucide-react"
 
-// Simplified skills list
-const skills = [
-  {
-    name: "AI Development",
-    icon: <Brain className="w-8 h-8 text-primary" />,
-    description: "Building intelligent systems with machine learning and deep learning",
-  },
-  {
-    name: "Process Automation",
-    icon: <Workflow className="w-8 h-8 text-secondary" />,
-    description: "Streamlining workflows and business processes with automation",
-  },
-  {
-    name: "Data Analysis",
-    icon: <LineChart className="w-8 h-8 text-accent" />,
-    description: "Extracting insights from complex datasets to drive decision-making",
-  },
-  {
-    name: "Chatbot Development",
-    icon: <Bot className="w-8 h-8 text-primary" />,
-    description: "Building conversational AI interfaces for customer engagement",
-  },
-]
+const technicalStack = {
+  Frontend: ["React", "Next.js", "Three.js", "Tailwind CSS", "TypeScript", "Figma"],
+  Backend: ["Django", "FastAPI", "NestJS", "Laravel", "Express.js", "Node.js"],
+  "AI & Machine Learning": [
+    "TensorFlow",
+    "Hugging Face",
+    "OpenAI",
+    "DALL-E",
+    "BERT",
+    "RAG",
+    "Deep Learning",
+    "PyTorch",
+  ],
+  "DevOps & Security": ["Docker", "Jenkins", "Nexus", "SonarQube", "Grafana", "Prometheus", "GitHub Actions", "CI/CD"],
+  "Big Data & Databases": [
+    "PostgreSQL",
+    "MongoDB",
+    "Neo4j",
+    "MySQL",
+    "Redis",
+    "Hadoop",
+    "Cloudera",
+    "HBase",
+    "GraphQL",
+  ],
+  Networking: ["CCNA", "Switching", "Routing", "Wireless Essentials"],
+}
 
-// Updated tech stack with requested changes
-const techStack = [
-  { name: "N8N", icon: "/icons/n8n.svg", category: "Automation" },
-  { name: "Supabase", icon: "/icons/supabase.svg", category: "Backend" },
+const certifications = [
   {
-    name: "Airtable",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/airtable/airtable-original.svg",
-    category: "Database",
+    category: "AI & Machine Learning",
+    items: [
+      "NVIDIA - Adversarial Machine Learning",
+      "NVIDIA - Building RAG Agents with LLMs",
+      "NVIDIA - Fundamentals of Deep Learning",
+      "NVIDIA - Applications of AI for Predictive Maintenance",
+    ],
   },
   {
-    name: "Slack",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg",
-    category: "Communication",
-  },
-  { name: "GPT", icon: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", category: "AI" },
-  { name: "Gemini", icon: "https://seeklogo.com/images/G/gemini-logo-6248E5A5B7-seeklogo.com.png", category: "AI" },
-  {
-    name: "ElevenLabs",
-    icon: "https://global-uploads.webflow.com/61d2416d1d63c7fdb4ddb4d4/6425a31143aac60a0a0ca5e8_elevenlabs-logo-white.svg",
-    category: "Voice AI",
+    category: "Cloud & Infrastructure",
+    items: ["AWS Cloud Practitioner Associate"],
   },
   {
-    name: "Docker",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-    category: "DevOps",
+    category: "Development & Tools",
+    items: ["Apollo GraphQL - Graph Developer Associate", "Hashgraph Developer Certification"],
   },
   {
-    name: "AWS",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
-    category: "Cloud",
+    category: "Networking",
+    items: ["Cisco CCNA - Switching, Routing, Wireless Essentials"],
   },
   {
-    name: "Firebase",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-    category: "Backend",
+    category: "Product Management",
+    items: ["HP LIFE - Agile Project Management Practitioner"],
   },
 ]
 
 export default function SkillsSection() {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: false, amount: 0.1, fallback: true })
-  const controls = useAnimation()
-  const skillsRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: false, amount: 0.1 })
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
-    if (isInView) {
-      controls.start("visible")
-
-      // Animate skill cards with anime.js
-      if (skillsRef.current) {
-        anime({
-          targets: skillsRef.current.querySelectorAll(".skill-card"),
-          scale: [0.9, 1],
-          opacity: [0, 1],
-          delay: anime.stagger(100),
-          easing: "easeOutExpo",
-          duration: 800,
-          complete: () => {
-            const elements = skillsRef.current?.querySelectorAll(".skill-card")
-            if (elements) {
-              elements.forEach((el) => {
-                ;(el as HTMLElement).style.opacity = "1"
-                ;(el as HTMLElement).style.transform = "scale(1)"
-              })
-            }
-          },
-        })
-      }
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
     }
-  }, [isInView, controls])
 
-  useEffect(() => {
-    controls.start("visible")
-  }, [controls])
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -111,7 +83,6 @@ export default function SkillsSection() {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.1,
       },
     },
   }
@@ -121,102 +92,132 @@ export default function SkillsSection() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.6 },
     },
   }
 
   return (
-    <section id="skills" className="py-20 md:py-32 relative bg-gradient-to-b from-background to-card/50">
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+    <section id="skills" className="py-20 md:py-32 relative">
+      <motion.div
+        className="fixed w-96 h-96 rounded-full pointer-events-none z-0 hidden lg:block"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(147, 51, 234, 0.1) 50%, transparent 70%)",
+          left: mousePosition.x - 192,
+          top: mousePosition.y - 192,
+        }}
+        animate={{
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+      />
+
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(147,51,234,0.15)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)]"></div>
       </div>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           initial="hidden"
-          animate={controls}
+          animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
           className="text-center mb-12"
-          style={{ opacity: 1 }}
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            My <span className="text-gradient">Skills</span>
+            Skills & <span className="text-blue-400">Qualifications</span>
           </motion.h2>
           <motion.div
             variants={itemVariants}
-            className="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-4"
+            className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-4"
           ></motion.div>
         </motion.div>
 
-        {/* Core Skills - Simplified for mobile */}
-        <div ref={skillsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              className="glass card-hover p-4 flex flex-col items-center text-center skill-card relative overflow-hidden group"
-              whileHover={{
-                y: -5,
-                boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
-                transition: { duration: 0.2 },
-              }}
-              style={{ opacity: 1 }}
-            >
-              <div className="mb-3 p-2 rounded-full bg-card/50 relative z-10">
-                <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                  className="absolute inset-0 rounded-full border border-primary/30 border-t-primary/80"
-                ></motion.div>
-                {skill.icon}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+          {/* LEFT SIDE - Technical Stack (60% / 3 columns) */}
+          <motion.div variants={itemVariants} className="lg:col-span-3 space-y-8">
+            <div className="glass card-hover p-6 rounded-2xl">
+              <h3 className="text-2xl font-heading font-bold mb-6 text-blue-400">Technical Stack</h3>
+
+              <div className="space-y-6">
+                {Object.entries(technicalStack).map(([category, skills]) => (
+                  <div key={category}>
+                    <h4 className="text-sm font-semibold text-blue-400 mb-3 uppercase tracking-wider">{category}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {skills.map((skill) => (
+                        <Badge
+                          key={skill}
+                          variant="secondary"
+                          className="px-3 py-1.5 text-sm bg-blue-950/30 hover:bg-blue-900/40 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-200"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* RIGHT SIDE - Education & Certifications (40% / 2 columns) */}
+          <motion.div variants={itemVariants} className="lg:col-span-2 space-y-6">
+            {/* Education Card */}
+            <Card className="glass card-hover p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <GraduationCap className="w-5 h-5 text-purple-400" />
+                <h3 className="text-xl font-heading font-bold">Education</h3>
               </div>
 
-              <h3 className="text-lg font-heading font-bold mb-1 relative z-10">{skill.name}</h3>
-              <p className="text-gray-400 text-xs md:text-sm relative z-10 line-clamp-2">{skill.description}</p>
-
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Tech Stack Section - Grid layout for better mobile display */}
-        <motion.div
-          className="mt-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          style={{ opacity: 1 }}
-        >
-          <h3 className="text-xl font-heading font-bold mb-6 text-center">
-            Tech <span className="text-gradient">Stack</span>
-          </h3>
-
-          <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
-            {techStack.map((tech, idx) => (
-              <motion.div
-                key={tech.name}
-                className="glass p-3 rounded-xl flex flex-col items-center justify-center group hover:bg-card/30 transition-all duration-300"
-                whileHover={{ y: -3, scale: 1.05 }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 + idx * 0.05 }}
-                style={{ opacity: 1 }}
-              >
-                <div className="w-8 h-8 mb-2 flex items-center justify-center">
-                  <Image
-                    src={tech.icon || "/placeholder.svg"}
-                    alt={tech.name}
-                    width={32}
-                    height={32}
-                    className="w-full h-full object-contain filter group-hover:brightness-110 transition-all duration-300"
-                  />
+              <div className="space-y-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="text-base font-semibold">Master's in Software Engineering</div>
+                    <Badge className="bg-primary/20 text-primary border-primary/30 text-xs">Current</Badge>
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    ESPRIT - Private School of Engineering & Technology
+                  </div>
                 </div>
-                <span className="text-xs font-medium text-center">{tech.name}</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+
+                <div>
+                  <div className="text-base font-semibold">Bachelor's in Business Intelligence</div>
+                  <div className="text-sm text-muted-foreground">ESSECT Tunis</div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Certifications Card */}
+            <Card className="glass card-hover p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Award className="w-5 h-5 text-blue-400" />
+                <h3 className="text-xl font-heading font-bold">Certifications</h3>
+              </div>
+
+              <div className="space-y-4">
+                {certifications.map((cert) => (
+                  <div key={cert.category}>
+                    <h4 className="text-sm font-semibold text-blue-400 mb-2 uppercase tracking-wider">
+                      {cert.category}
+                    </h4>
+                    <ul className="space-y-1.5">
+                      {cert.items.map((item) => (
+                        <li key={item} className="text-sm text-muted-foreground flex items-start">
+                          <span className="text-blue-400 mr-2">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

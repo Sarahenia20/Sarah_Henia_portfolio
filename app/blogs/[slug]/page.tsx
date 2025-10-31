@@ -38,7 +38,7 @@ const blogPosts: Record<string, BlogPost> = {
       "Exploring the groundbreaking methodology that enables AI models to master complex reasoning tasks without human intervention.",
     date: "December 2024",
     readTime: "8 min",
-    author: "Ibrahim Mustafa",
+    author: "Sarah Henia",
     category: {
       name: "AI Research",
       icon: <Brain className="w-3 h-3 mr-1" />,
@@ -201,7 +201,7 @@ const blogPosts: Record<string, BlogPost> = {
     excerpt: "The top emerging automation technologies that will transform businesses in the coming year.",
     date: "November 2024",
     readTime: "6 min",
-    author: "Ibrahim Mustafa",
+    author: "Sarah Henia",
     category: {
       name: "Automation",
       icon: <Zap className="w-3 h-3 mr-1" />,
@@ -260,7 +260,7 @@ const blogPosts: Record<string, BlogPost> = {
       "Examining the ethical implications and safety concerns of autonomous AI that can enhance its own capabilities.",
     date: "October 2024",
     readTime: "10 min",
-    author: "Ibrahim Mustafa",
+    author: "Sarah Henia",
     category: {
       name: "AI Safety",
       icon: <Shield className="w-3 h-3 mr-1" />,

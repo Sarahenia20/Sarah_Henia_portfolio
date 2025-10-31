@@ -1,14 +1,24 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
-import Image from "next/image"
-import { TrendingUp, Building, Coins, BarChart } from "lucide-react"
+import { Globe } from "lucide-react"
 
 export default function AboutSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: false, amount: 0.1, fallback: true })
   const controls = useAnimation()
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -45,12 +55,33 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-20 md:py-32 relative">
+      <motion.div
+        className="fixed w-96 h-96 rounded-full pointer-events-none z-0 hidden lg:block"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(147, 51, 234, 0.1) 50%, transparent 70%)",
+          left: mousePosition.x - 192,
+          top: mousePosition.y - 192,
+        }}
+        animate={{
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+      />
+
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,rgba(var(--primary),0.1),transparent_40%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(147,51,234,0.15)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)]"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.15),transparent_40%)]"></div>
+        <div className="absolute top-1/2 right-0 w-96 h-96 bg-gradient-to-l from-purple-500/15 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/15 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto" ref={ref}>
+        <div className="max-w-6xl mx-auto" ref={ref}>
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -58,164 +89,176 @@ export default function AboutSection() {
             className="text-center mb-16"
           >
             <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              About <span className="text-gradient">Me</span>
+              About{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Me</span>
             </motion.h2>
             <motion.div
               variants={itemVariants}
-              className="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto"
+              className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto"
             ></motion.div>
           </motion.div>
 
-          <div className="split-layout">
+          <div className="grid md:grid-cols-3 gap-8">
             <motion.div
-              className="glass card-hover p-6 md:p-8 h-full"
+              className="md:col-span-2 glass card-hover p-6 md:p-8 h-full border-2 border-blue-500/20 shadow-lg shadow-blue-500/10"
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-6">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-primary/30 flex-shrink-0">
-                  <Image
-                    src="/images/ibrahim-avatar.jpg"
-                    alt="Sarah Henia"
-                    width={96}
-                    height={96}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <motion.h3
-                    className="text-xl md:text-2xl font-heading font-bold mb-2"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                  >
-                    Who I Am
-                  </motion.h3>
-                  <motion.p
-                    className="text-gray-300"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                  >
-                    I'm Sarah Henia, an AI Automation Expert with a passion for creating innovative solutions that
-                    bridge the gap between human creativity and machine intelligence.
-                  </motion.p>
-                </div>
-              </div>
-
-              <motion.p
-                className="text-gray-300 mb-6"
+              <motion.h3
+                className="text-2xl md:text-3xl font-heading font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
               >
-                With expertise in AI, machine learning, and automation, I help businesses streamline their processes,
-                enhance productivity, and unlock new possibilities through cutting-edge technology.
-              </motion.p>
+                About Me
+              </motion.h3>
 
               <motion.div
-                className="mt-6 pt-6 border-t border-white/10"
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
+                className="space-y-4 text-gray-300 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <div className="flex flex-wrap gap-3">
-                  {["AI", "Machine Learning", "Automation", "Data Science"].map((skill, index) => (
-                    <motion.span
-                      key={skill}
-                      className={`px-3 py-1 text-xs rounded-full glass border ${
-                        index % 3 === 0
-                          ? "border-primary/20 bg-primary/10"
-                          : index % 3 === 1
-                            ? "border-secondary/20 bg-secondary/10"
-                            : "border-accent/20 bg-accent/10"
-                      }`}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
-                </div>
+                <p>
+                  I'm a Product Owner and Full-Stack Engineering Student passionate about building intelligent systems
+                  at the intersection of AI, security, and automation. I bridge the gap between technical execution and
+                  business strategy, translating complex requirements into scalable solutions.
+                </p>
+
+                <p>
+                  Currently working at{" "}
+                  <strong className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                    The SamurAI
+                  </strong>
+                  , a security product testing lab platform, where I'm supervising the development of two major
+                  projects:
+                </p>
+
+                <ul className="space-y-2 ml-4">
+                  <li className="flex items-start">
+                    <span className="text-blue-400 mr-2">•</span>
+                    <span>
+                      <strong className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                        The SamurAI Dojo
+                      </strong>{" "}
+                      - Next-generation automated product testing and security validation lab
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    <span>
+                      <strong className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+                        Arab Platform
+                      </strong>{" "}
+                      - Localized cybersecurity website for MENA region markets
+                    </span>
+                  </li>
+                </ul>
+
+                <p>
+                  I specialize in full-stack development (React, Next.js, Django, NestJS), AI/ML (LLMs, RAG, deep
+                  learning, BERT, TensorFlow, Hugging Face), DevOps infrastructure (Docker, Grafana, Prometheus,
+                  SonarQube), and threat detection systems. My work spans from architecting microservices to
+                  implementing real-time monitoring and security solutions.
+                </p>
+
+                <p>
+                  Fluent in English (C1), French (B2), and Arabic (native). Currently seeking an{" "}
+                  <strong className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    end of studies internship
+                  </strong>{" "}
+                  (6 months minimum) in Software Engineering, AI/ML, Product Management, or DevOps for 2026 in Europe
+                  and the United States.
+                </p>
               </motion.div>
             </motion.div>
 
             <motion.div
-              className="neomorphic p-6 md:p-8 h-full"
+              className="neomorphic p-6 md:p-8 h-full border-2 border-purple-500/20 shadow-lg shadow-purple-500/10"
               initial={{ opacity: 0, x: 50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <motion.h3
-                className="text-xl md:text-2xl font-heading font-bold mb-4"
+              <motion.div
+                className="flex items-center gap-2 mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                What is AI Automation
-              </motion.h3>
-              <ul className="space-y-4">
+                <Globe className="w-6 h-6 text-blue-400" />
+                <h3 className="text-xl md:text-2xl font-heading font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                  Languages
+                </h3>
+              </motion.div>
+
+              <ul className="space-y-6">
                 <motion.li
-                  className="flex items-start"
+                  className="flex items-center justify-between p-4 glass rounded-lg border border-blue-500/20"
                   custom={0}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   variants={listItemVariants}
                 >
-                  <span className="inline-block mr-3 mt-1">
-                    <TrendingUp className="w-4 h-4 text-primary" />
-                  </span>
-                  <span>
-                    <strong className="text-primary">Competitive Advantage:</strong> Companies leveraging AI automation
-                    are outperforming competitors by 3-5x in operational efficiency
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl">🇬🇧</span>
+                    <div>
+                      <div className="font-semibold text-white">English</div>
+                      <div className="text-sm text-gray-400">Professional</div>
+                    </div>
+                  </div>
+                  <span className="text-blue-400 font-bold">C1</span>
                 </motion.li>
+
                 <motion.li
-                  className="flex items-start"
+                  className="flex items-center justify-between p-4 glass rounded-lg border border-purple-500/20"
                   custom={1}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   variants={listItemVariants}
                 >
-                  <span className="inline-block mr-3 mt-1">
-                    <Building className="w-4 h-4 text-secondary" />
-                  </span>
-                  <span>
-                    <strong className="text-secondary">Growing Divide:</strong> A widening gap is forming between
-                    AI-powered organizations and those falling behind in adoption
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl">🇫🇷</span>
+                    <div>
+                      <div className="font-semibold text-white">French</div>
+                      <div className="text-sm text-gray-400">Upper Intermediate</div>
+                    </div>
+                  </div>
+                  <span className="text-purple-400 font-bold">B2</span>
                 </motion.li>
+
                 <motion.li
-                  className="flex items-start"
+                  className="flex items-center justify-between p-4 glass rounded-lg border border-blue-500/20"
                   custom={2}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   variants={listItemVariants}
                 >
-                  <span className="inline-block mr-3 mt-1">
-                    <Coins className="w-4 h-4 text-accent" />
-                  </span>
-                  <span>
-                    <strong className="text-accent">ROI Potential:</strong> Businesses implementing AI automation see
-                    average cost reductions of 40% and productivity gains of 50%
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl">🇪🇸</span>
+                    <div>
+                      <div className="font-semibold text-white">Spanish</div>
+                      <div className="text-sm text-gray-400">Elementary</div>
+                    </div>
+                  </div>
+                  <span className="text-blue-400 font-bold">A1</span>
                 </motion.li>
+
                 <motion.li
-                  className="flex items-start"
+                  className="flex items-center justify-between p-4 glass rounded-lg border border-purple-500/20"
                   custom={3}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   variants={listItemVariants}
                 >
-                  <span className="inline-block mr-3 mt-1">
-                    <BarChart className="w-4 h-4 text-primary" />
-                  </span>
-                  <span>
-                    <strong className="text-primary">Strategic Implementation:</strong> The key is not just adopting AI,
-                    but strategically implementing it to transform core business processes
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl">🇹🇳</span>
+                    <div>
+                      <div className="font-semibold text-white">Arabic</div>
+                      <div className="text-sm text-gray-400">Mother Tongue</div>
+                    </div>
+                  </div>
+                  <span className="text-purple-400 font-bold">Native</span>
                 </motion.li>
               </ul>
 
@@ -225,8 +268,8 @@ export default function AboutSection() {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5, delay: 1.0 }}
               >
-                <p className="text-center text-sm italic">
-                  "In today's market, AI automation isn't just an advantage—it's becoming the price of entry."
+                <p className="text-center text-sm italic text-gray-300">
+                  Working effectively across cultures and technical domains
                 </p>
               </motion.div>
             </motion.div>

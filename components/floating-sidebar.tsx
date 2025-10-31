@@ -15,14 +15,13 @@ const navItems = [
 ]
 
 export default function FloatingSidebar() {
-  const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      setScrolled(scrollPosition > 100)
+      setScrolled(window.scrollY > 100)
 
       // Update active section based on scroll position
       const sections = navItems.map((item) => item.href.substring(1))
@@ -46,144 +45,70 @@ export default function FloatingSidebar() {
 
   return (
     <>
-      {/* Desktop Navigation */}
-      <motion.div
-        className="hidden lg:block fixed z-50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <AnimatePresence mode="wait">
-          {!scrolled ? (
-            // Top Navigation Bar
-            <motion.nav
-              key="topnav"
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{
-                y: -50,
-                x: -200,
-                scale: 0.8,
-                opacity: 0,
-                transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
-              }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="fixed top-0 left-0 w-full glass backdrop-blur-xl border-b border-white/10"
-              style={{ background: "rgba(10, 10, 15, 0.8)" }}
+      {/* Desktop Navigation - Side Navigation Only (appears on scroll) */}
+      {scrolled && (
+        <motion.nav
+          className="hidden lg:block fixed left-6 glass backdrop-blur-xl rounded-2xl border border-white/10 p-4 z-50"
+          initial={{ x: -200, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          style={{
+            background: "rgba(10, 10, 15, 0.9)",
+            top: "35%",
+            transform: "translateY(50%)",
+          }}
+        >
+          <div className="flex flex-col space-y-4">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="text-center mb-2"
             >
-              <div className="container mx-auto px-6 py-4">
-                <div className="flex justify-between items-center">
-                  <Link href="#home" className="text-2xl font-heading font-bold">
-                    <span className="text-gradient">Ibrahim</span>
-                  </Link>
+              <Link href="#home" className="text-lg font-heading font-bold">
+                <span className="text-gradient">SH</span>
+              </Link>
+            </motion.div>
 
-                  <div className="flex items-center space-x-8">
-                    {navItems.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className={`text-sm font-medium transition-all duration-300 relative group ${
-                          activeSection === item.href.substring(1) ? "text-primary" : "text-gray-300 hover:text-white"
-                        }`}
-                      >
-                        {item.name}
-                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300"></span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.nav>
-          ) : (
-            // Side Navigation Bar - Fixed positioning for true center
-            <motion.nav
-              key="sidenav"
-              initial={{
-                x: -200,
-                y: -50,
-                scale: 0.8,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                y: 0,
-                scale: 1,
-                opacity: 1,
-              }}
-              exit={{
-                x: -200,
-                y: -50,
-                scale: 0.8,
-                opacity: 0,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: [0.4, 0, 0.2, 1],
-                type: "spring",
-                stiffness: 100,
-                damping: 20,
-              }}
-              className="fixed left-6 glass backdrop-blur-xl rounded-2xl border border-white/10 p-4"
-              style={{
-                background: "rgba(10, 10, 15, 0.9)",
-                top: "35%",
-                transform: "translateY(50%)",
-                zIndex: 50,
-              }}
-            >
-              <div className="flex flex-col space-y-4">
+            {navItems.map((item, index) => {
+              const Icon = item.icon
+              return (
                 <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                  className="text-center mb-2"
+                  key={item.name}
+                  className="relative group"
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.1 * index, duration: 0.4 }}
                 >
-                  <Link href="#home" className="text-lg font-heading font-bold">
-                    <span className="text-gradient">IM</span>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 relative ${
+                      activeSection === item.href.substring(1)
+                        ? "bg-primary/20 text-primary"
+                        : "text-gray-400 hover:text-white hover:bg-white/10"
+                    }`}
+                    title={item.name}
+                  >
+                    <Icon size={20} />
+                    {activeSection === item.href.substring(1) && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-xl border border-primary/30"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
                   </Link>
+
+                  {/* Tooltip */}
+                  <div className="absolute left-16 top-1/2 transform -translate-y-1/2 bg-card/90 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap border border-white/10 translate-x-2 group-hover:translate-x-0">
+                    {item.name}
+                  </div>
                 </motion.div>
-
-                {navItems.map((item, index) => {
-                  const Icon = item.icon
-                  return (
-                    <motion.div
-                      key={item.name}
-                      className="relative group"
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.1 * index, duration: 0.4 }}
-                    >
-                      <Link
-                        href={item.href}
-                        className={`flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 relative ${
-                          activeSection === item.href.substring(1)
-                            ? "bg-primary/20 text-primary"
-                            : "text-gray-400 hover:text-white hover:bg-white/10"
-                        }`}
-                        title={item.name}
-                      >
-                        <Icon size={20} />
-                        {activeSection === item.href.substring(1) && (
-                          <motion.div
-                            layoutId="activeIndicator"
-                            className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-xl border border-primary/30"
-                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                          />
-                        )}
-                      </Link>
-
-                      {/* Tooltip */}
-                      <div className="absolute left-16 top-1/2 transform -translate-y-1/2 bg-card/90 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap border border-white/10 translate-x-2 group-hover:translate-x-0">
-                        {item.name}
-                      </div>
-                    </motion.div>
-                  )
-                })}
-              </div>
-            </motion.nav>
-          )}
-        </AnimatePresence>
-      </motion.div>
+              )
+            })}
+          </div>
+        </motion.nav>
+      )}
 
       {/* Mobile Navigation */}
       <motion.div

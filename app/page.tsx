@@ -3,11 +3,9 @@
 import { useEffect, useState } from "react"
 import FloatingSidebar from "@/components/floating-sidebar"
 import HeroSectionNew from "@/components/hero-section-new"
-import ServicesSection from "@/components/services-section-visual"
+import SkillsSection from "@/components/skills-section"
 import AboutSection from "@/components/about-section"
 import ProjectsSection from "@/components/projects-section"
-import LatestBlogsSection from "@/components/latest-blogs-section"
-import AIChatSection from "@/components/ai-chat-section"
 import ContactSection from "@/components/contact-section"
 import Footer from "@/components/footer"
 import ScrollAnimations from "@/components/scroll-animations"
@@ -24,7 +22,7 @@ export default function Home() {
 
     // Preload the avatar image
     const avatarImage = new Image()
-    avatarImage.src = "/images/ibrahim-avatar.jpg"
+    avatarImage.src = "/images/sarah-avatar.jpg"
     avatarImage.onload = () => {
       console.log("Avatar image loaded")
     }
@@ -51,10 +49,8 @@ export default function Home() {
           <SectionIndicators />
           <HeroSectionNew />
           <AboutSection />
-          <ServicesSection />
+          <SkillsSection />
           <ProjectsSection />
-          <AIChatSection />
-          <LatestBlogsSection />
           <ContactSection />
           <Footer />
           <ScrollAnimations />

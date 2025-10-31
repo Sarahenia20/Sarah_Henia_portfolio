@@ -1,24 +1,24 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react"
+import { Github, Linkedin } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="py-8 relative">
+    <footer className="py-8 relative bg-[linear-gradient(rgba(59,130,246,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(147,51,234,0.15)_1px,transparent_1px)] bg-[size:50px_50px]">
       <div className="container mx-auto px-4">
         <div className="glass p-8 rounded-2xl">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-2xl font-heading font-bold mb-4 text-gradient">Ibrahim M.</h3>
-              <p className="text-gray-400 mb-4 max-w-xs">
-                AI Automation Expert transforming ideas into innovative solutions.
-              </p>
+              <h3 className="text-2xl font-heading font-bold mb-2 text-gradient">Sarah Henia</h3>
+              <p className="text-gray-400 mb-4">Product Owner & Full-Stack Engineering Student</p>
               <div className="flex space-x-4">
                 <motion.a
-                  href="#"
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-2 rounded-full bg-card/50 hover:bg-card transition-colors"
@@ -27,31 +27,15 @@ export default function Footer() {
                   <Github size={20} />
                 </motion.a>
                 <motion.a
-                  href="#"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-2 rounded-full bg-card/50 hover:bg-card transition-colors"
-                  aria-label="Twitter"
-                >
-                  <Twitter size={20} />
-                </motion.a>
-                <motion.a
-                  href="#"
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-2 rounded-full bg-card/50 hover:bg-card transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={20} />
-                </motion.a>
-                <motion.a
-                  href="#"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-2 rounded-full bg-card/50 hover:bg-card transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram size={20} />
                 </motion.a>
               </div>
             </div>
@@ -80,26 +64,10 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="#experience" className="text-gray-400 hover:text-white transition-colors">
-                    Experience
-                  </a>
-                </li>
-                <li>
                   <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
                     Contact
                   </a>
                 </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4">Services</h3>
-              <ul className="space-y-2">
-                <li className="text-gray-400">AI Development</li>
-                <li className="text-gray-400">Process Automation</li>
-                <li className="text-gray-400">Data Analysis</li>
-                <li className="text-gray-400">Software Development</li>
-                <li className="text-gray-400">Chatbot Development</li>
               </ul>
             </div>
           </div>
