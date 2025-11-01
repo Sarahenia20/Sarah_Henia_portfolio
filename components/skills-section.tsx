@@ -8,7 +8,25 @@ import { GraduationCap, Award } from "lucide-react"
 
 const technicalStack = {
   Frontend: ["React", "Next.js", "Three.js", "Tailwind CSS", "TypeScript", "Figma"],
-  Backend: ["Django", "FastAPI", "NestJS", "Laravel", "Express.js", "Node.js"],
+  "Backend & APIs": [
+    "Django",
+    "FastAPI",
+    "NestJS",
+    "Laravel",
+    "Express.js",
+    "Node.js",
+    "Spring Boot",
+    "Java",
+    "REST APIs",
+  ],
+  "Microservices & Architecture": [
+    "Docker",
+    "Eureka Server",
+    "API Gateway",
+    "Service Discovery",
+    "Microservices Design",
+    "Event-Driven Architecture",
+  ],
   "AI & Machine Learning": [
     "TensorFlow",
     "Hugging Face",
@@ -19,7 +37,16 @@ const technicalStack = {
     "Deep Learning",
     "PyTorch",
   ],
-  "DevOps & Security": ["Docker", "Jenkins", "Nexus", "SonarQube", "Grafana", "Prometheus", "GitHub Actions", "CI/CD"],
+  "Business Intelligence & Data": [
+    "Power BI",
+    "Talend",
+    "Data Warehousing",
+    "ETL Pipelines",
+    "Data Lakes",
+    "SQL",
+    "Analytics",
+  ],
+  "DevOps & Security": ["Jenkins", "Nexus", "SonarQube", "Grafana", "Prometheus", "GitHub Actions", "CI/CD"],
   "Big Data & Databases": [
     "PostgreSQL",
     "MongoDB",
@@ -129,8 +156,14 @@ export default function SkillsSection() {
           className="text-center mb-12"
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Skills & <span className="text-blue-400">Qualifications</span>
+            Skills &{" "}
+            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              Qualifications
+            </span>
           </motion.h2>
+          <motion.p variants={itemVariants} className="text-gray-300 max-w-2xl mx-auto">
+            Technical expertise across full-stack development, AI/ML, DevOps, and data engineering
+          </motion.p>
           <motion.div
             variants={itemVariants}
             className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-4"

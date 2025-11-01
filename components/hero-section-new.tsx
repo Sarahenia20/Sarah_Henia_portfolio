@@ -229,7 +229,7 @@ export default function HeroSectionNew() {
                     {/* Status Indicator */}
                     <div className="flex items-center justify-center gap-2 mb-6">
                       <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-sm text-gray-300">Open for 2026 Internships</span>
+                      <span className="text-sm text-gray-300">Available Early 2026</span>
                     </div>
                   </div>
                 </div>

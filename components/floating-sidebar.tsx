@@ -2,15 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Home, User, Code, Briefcase, MessageCircle, Menu, X, BookOpen } from "lucide-react"
+import { Home, User, Code, Briefcase, MessageCircle, Menu, X } from "lucide-react"
 import Link from "next/link"
 
 const navItems = [
   { name: "Home", href: "#home", icon: Home },
   { name: "About", href: "#about", icon: User },
-  { name: "Services", href: "#services", icon: Code },
+  { name: "Skills", href: "#skills", icon: Code },
   { name: "Projects", href: "#projects", icon: Briefcase },
-  { name: "Blog", href: "#blog", icon: BookOpen },
   { name: "Contact", href: "#contact", icon: MessageCircle },
 ]
 
@@ -48,7 +47,7 @@ export default function FloatingSidebar() {
       {/* Desktop Navigation - Side Navigation Only (appears on scroll) */}
       {scrolled && (
         <motion.nav
-          className="hidden lg:block fixed left-6 glass backdrop-blur-xl rounded-2xl border border-white/10 p-4 z-50"
+          className="hidden lg:block fixed left-6 glass backdrop-blur-xl rounded-2xl border border-white/10 p-3 z-50"
           initial={{ x: -200, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
@@ -58,7 +57,7 @@ export default function FloatingSidebar() {
             transform: "translateY(50%)",
           }}
         >
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-3">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -82,14 +81,14 @@ export default function FloatingSidebar() {
                 >
                   <Link
                     href={item.href}
-                    className={`flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 relative ${
+                    className={`flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 relative ${
                       activeSection === item.href.substring(1)
                         ? "bg-primary/20 text-primary"
                         : "text-gray-400 hover:text-white hover:bg-white/10"
                     }`}
                     title={item.name}
                   >
-                    <Icon size={20} />
+                    <Icon size={18} />
                     {activeSection === item.href.substring(1) && (
                       <motion.div
                         layoutId="activeIndicator"

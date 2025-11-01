@@ -92,9 +92,12 @@ export default function AboutSection() {
               About{" "}
               <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Me</span>
             </motion.h2>
+            <motion.p variants={itemVariants} className="text-gray-300 max-w-2xl mx-auto">
+              Building intelligent systems at the intersection of AI, security, and automation
+            </motion.p>
             <motion.div
               variants={itemVariants}
-              className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto"
+              className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mt-4"
             ></motion.div>
           </motion.div>
 
@@ -131,8 +134,8 @@ export default function AboutSection() {
                   <strong className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                     The SamurAI
                   </strong>
-                  , a security product testing lab platform, where I'm supervising the development of two major
-                  projects:
+                  ,A promising US-based cyber security & Consulting solutions company where I'm supervising the
+                  development of two major projects:
                 </p>
 
                 <ul className="space-y-2 ml-4">
@@ -164,12 +167,12 @@ export default function AboutSection() {
                 </p>
 
                 <p>
-                  Fluent in English (C1), French (B2), and Arabic (native). Currently seeking an{" "}
+                  Fluent in English (C1), French (B2), and Arabic (native) - working effectively across cultures and
+                  technical domains. Open to &nbsp;
                   <strong className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                    end of studies internship
+                    6-month internship & and research thesis
                   </strong>{" "}
-                  (6 months minimum) in Software Engineering, AI/ML, Product Management, or DevOps for 2026 in Europe
-                  and the United States.
+                  opportunities in Software Engineering, AI/ML, Product Management, and DevSecOps starting Early 2026
                 </p>
               </motion.div>
             </motion.div>
