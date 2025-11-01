@@ -20,8 +20,7 @@
     "react-native": "latest",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
-    "three": "latest",
-    "tw-animate-css": "latest"
+    "three": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
