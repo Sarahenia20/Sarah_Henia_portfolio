@@ -46,8 +46,8 @@ const projects = [
       "Full-stack generative art platform combining dual AI providers (Gemini 2.5 Flash + GPT-4o) with algorithmic art generation. Features async processing with Celery + Redis, smart galleries with collections and tagging.",
     longDescription:
       "Full-stack generative art platform combining dual AI providers (Gemini 2.5 Flash + GPT-4o) with algorithmic art generation (fractals, flow fields, L-systems). Features async processing with Celery + Redis, smart galleries with collections and tagging, analytics dashboard for style evolution tracking, and personalized user profiles that learn art preferences.",
-    tags: ["Django 5", "Next.js", "Celery", "Redis", "Gemini 2.5", "GPT-4o", "PostgreSQL"],
-    images: ["/images/projects/pentaart-generation.png", "/images/projects/pentaart-gallery.png"],
+    tags: ["Django 5", "Next.js", "Celery", "Redis", "Gemini 2.5", "DALL·E 3", "PostgreSQL"],
+    images: ["/images/projects/pentaart-landing.png", "/images/projects/pentaart-gallery.png"],
     links: {
       demo: "#",
       github: "https://github.com/Sarahenia20/Pentagos_Django",
@@ -69,7 +69,7 @@ const projects = [
     longDescription:
       "Comprehensive MERN stack task and project management platform with AI-powered prioritization using Google Gemini. Features real-time collaboration with Socket.io, advanced analytics dashboard, resource allocation monitoring, and complete CI/CD pipeline with Docker and GitHub Actions. Built following Agile methodology across 5 sprints with full test coverage and API documentation.",
     tags: ["React", "Node.js", "Express", "MongoDB", "Gemini AI", "Socket.io", "Docker", "Jest"],
-    images: ["/images/projects/taskify-dashboard.png", "/images/projects/taskify-analytics.png"],
+    images: ["/images/projects/taskify-signup.png", "/images/projects/taskify-dashboard.png"],
     links: {
       demo: "https://taskify-phi-mauve.vercel.app/auth/SignIn",
       github: "https://github.com/Sarahenia20/Apollo_FS_Taskify",
@@ -91,7 +91,7 @@ const projects = [
     longDescription:
       "Full-stack platform combining interactive 3D t-shirt customization with Three.js, complete survey management system with analytics dashboard, and AI-powered Instagram automation using Gemini AI. Features real-time 3D design with React Three Fiber, multi-account social media management, and automated content generation and posting workflows.",
     tags: ["React", "Three.js", "Laravel", "Express.js", "MongoDB", "Gemini AI", "Puppeteer"],
-    images: ["/images/projects/brando-3d.png", "/images/projects/brando-dashboard.png"],
+    images: ["/images/projects/brando-landing.png", "/images/projects/brando-dashboard.png"],
     links: {
       demo: "#",
       github: "https://github.com/Sarahenia20/BranDo-2.0",
@@ -113,7 +113,7 @@ const projects = [
     longDescription:
       "Semantic AI platform for eco-impact tracking and intelligent waste management. Uses advanced semantic search and AI-driven categorization to optimize recycling routes and track environmental impact at scale. Built with Django and FastAPI backend with Next.js frontend for real-time sustainability metrics and waste categorization.",
     tags: ["Django", "FastAPI", "Next.js", "AI Semantics", "PostgreSQL"],
-    images: ["/images/projects/ecolink-dashboard.png", "/images/projects/ecolink-routing.png"],
+    images: ["/images/projects/ecolink-landing.png", "/images/projects/ecolink-dashboard.png"],
     links: {
       demo: "#",
       github: "https://github.com/Sarahenia20/Ecolink-Semantics",
@@ -135,7 +135,7 @@ const projects = [
     longDescription:
       "Comprehensive Laravel-based platform for e-waste management and community sustainability. Connects users to declare waste materials, discover DIY recycling projects with step-by-step tutorials, and participate in environmental events and workshops. Features multi-module architecture with waste tracking, project sharing, event management, participant registration system, and gamification with CO2 savings tracking.",
     tags: ["Laravel 12", "PHP 8.2", "MySQL", "Blade Templates", "REST API"],
-    images: ["/images/projects/waste2product-dashboard.png", "/images/projects/waste2product-projects.png"],
+    images: ["/images/projects/waste2product-tutorials.png", "/images/projects/waste2product-projects.png"],
     links: {
       demo: "#",
       github: "https://github.com/Sarahenia20/waste2product",
@@ -447,7 +447,7 @@ export default function ProjectsSection() {
                                   setCurrentImageIndex((prev) => ({ ...prev, [activeIndex]: imgIdx }))
                                 }}
                                 className={`w-2 h-2 rounded-full transition-all ${
-                                  imgIdx === currentImgIndex ? "bg-white w-4" : "bg-white/50"
+                                  imgIdx === currentImageIndex ? "bg-white w-4" : "bg-white/50"
                                 }`}
                                 aria-label={`View image ${imgIdx + 1}`}
                               />
@@ -483,27 +483,6 @@ export default function ProjectsSection() {
           <div className="lg:hidden text-center mt-4">
             <p className="text-sm text-gray-400">Swipe left or right to navigate projects</p>
           </div>
-        </div>
-
-        <div className="lg:hidden flex justify-center mt-6 gap-4">
-          <motion.button
-            onClick={prevProject}
-            className="p-3 rounded-full glass hover:bg-card/50 transition-colors"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Previous project"
-          >
-            <ChevronLeft size={20} />
-          </motion.button>
-          <motion.button
-            onClick={nextProject}
-            className="p-3 rounded-full glass hover:bg-card/50 transition-colors"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Next project"
-          >
-            <ChevronRight size={20} />
-          </motion.button>
         </div>
 
         <motion.div
