@@ -172,7 +172,8 @@ export default function AboutSection() {
                   <strong className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                     6-month internship & and research thesis
                   </strong>{" "}
-                  opportunities in Software Engineering, AI/ML, Product Management, and DevSecOps starting Early 2026
+                  opportunities in Software Engineering, AI/ML, Product Management, Data Engineering, and DevSecOps
+                  starting Early 2026
                 </p>
               </motion.div>
             </motion.div>

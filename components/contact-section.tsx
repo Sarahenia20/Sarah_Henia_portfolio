@@ -42,12 +42,10 @@ export default function ContactSection() {
             starting Early 2026
           </p>
 
-         
-
           <p className="text-gray-400 text-sm mb-8">
-            Focus: Software Engineering • AI/ML • Product Management • DevSecOps • Research
+            Focus: Software Engineering • AI/ML • Product Management • Data Engineering • DevSecOps • Research
           </p>
- <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-2"></div>
+          <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-2"></div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <motion.a
               href="https://www.linkedin.com/in/sarah-henia20/"
