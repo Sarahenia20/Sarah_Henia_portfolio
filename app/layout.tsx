@@ -9,8 +9,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" })
 
 export const metadata: Metadata = {
-  title: "Sarah Henia | AI Automation Expert",
-  description: "Portfolio of Sarah Henia, AI Automation Expert",
+  title: "Sarah Henia Portfolio",
+  description: "Portfolio of Sarah Henia",
     generator: 'v0.app'
 }
 
