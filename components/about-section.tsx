@@ -134,8 +134,8 @@ export default function AboutSection() {
                   <strong className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                     The SamurAI
                   </strong>
-                  ,A promising US-based cyber security & Consulting solutions company where I'm supervising the
-                  development of two major projects:
+                  , a US-based cybersecurity & consulting solutions company where I'm supervising the development of two
+                  AI-driven cybersecurity projects focused on vulnerability detection and threat intelligence:
                 </p>
 
                 <ul className="space-y-2 ml-4">
@@ -143,9 +143,9 @@ export default function AboutSection() {
                     <span className="text-blue-400 mr-2">•</span>
                     <span>
                       <strong className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-                        The SamurAI Dojo
+                        The Dojo
                       </strong>{" "}
-                      - Next-generation automated product testing and security validation lab
+                      - AI-powered security testing and vulnerability detection platform
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -154,26 +154,32 @@ export default function AboutSection() {
                       <strong className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
                         Arab Platform
                       </strong>{" "}
-                      - Localized cybersecurity website for MENA region markets
+                      - Localized cybersecurity intelligence platform for MENA region
                     </span>
                   </li>
                 </ul>
 
                 <p>
-                  I specialize in full-stack development (React, Next.js, Django, NestJS), AI/ML (LLMs, RAG, deep
-                  learning, BERT, TensorFlow, Hugging Face), DevOps infrastructure (Docker, Grafana, Prometheus,
-                  SonarQube), and threat detection systems. My work spans from architecting microservices to
-                  implementing real-time monitoring and security solutions.
+                  I specialize in full-stack development (React, Next.js, Django, Spring Boot, Node.js, .NET), AI/ML
+                  (OpenAI LLMs, TensorFlow, Hugging Face, RAG, BERT, Neural Networks, XGBoost), data engineering
+                  (Hadoop, Apache Spark, HBase, ETL pipelines), and DevSecOps (Docker, Kubernetes, Trivy, Semgrep,
+                  Gitleaks, SonarQube, OWASP ZAP).
+                </p>
+
+                <p>
+                  Previously interned at MediaNet where I developed MERN stack applications with RESTful API design and
+                  database integration. I define product roadmaps, lead sprint planning, and collaborate with
+                  cross-functional teams to deliver security solutions aligned with business objectives.
                 </p>
 
                 <p>
                   Fluent in English (C1), French (B2), and Arabic (native) - working effectively across cultures and
                   technical domains. Open to &nbsp;
                   <strong className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                    6-month internship & and research thesis
+                    6-month end-of-studies internship
                   </strong>{" "}
-                  opportunities in Software Engineering, AI/ML, Product Management, Data Engineering, and DevSecOps
-                  starting Early 2026
+                  opportunities in Software Engineering, DevOps, Data Science/ML, and Data Engineering starting Early
+                  2026
                 </p>
               </motion.div>
             </motion.div>

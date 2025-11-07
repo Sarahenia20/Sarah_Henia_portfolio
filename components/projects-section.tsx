@@ -21,10 +21,10 @@ const projects = [
     title: "SentinelHub",
     tagline: "DevSecOps Intelligence Platform",
     description:
-      "AI-powered vulnerability detection platform with multi-source code scanning, real-time monitoring via WebSockets, and GPT-4 security explanations. Built with microservices architecture using Neo4j for code dependency mapping.",
+      "DevSecOps intelligence platform integrating multiple security scanning tools (Trivy, Semgrep, Gitleaks, SonarQube, OWASP ZAP) for comprehensive vulnerability detection, multi-source security scanning, and real-time monitoring. Built with microservices architecture for scalability and modularity.",
     longDescription:
-      "AI-powered vulnerability detection platform with multi-source code scanning (GitHub, S3, uploads), real-time monitoring via WebSockets, and GPT-4 security explanations. Built with microservices architecture using Neo4j for code dependency mapping and Grafana dashboards for comprehensive monitoring.",
-    tags: ["Next.js", "NestJS", "OpenAI GPT-4", "SonarQube", "Neo4j", "Grafana", "Docker", "Redis"],
+      "DevSecOps intelligence platform integrating multiple security scanning tools (Trivy, Semgrep, Gitleaks, SonarQube, OWASP ZAP) for comprehensive vulnerability detection, multi-source security scanning, and real-time monitoring. Built with microservices architecture for scalability and modularity. Implements automated security workflows and comprehensive threat analysis dashboards.",
+    tags: ["Next.js", "Express", "GoLang", "Docker", "Grafana", "Trivy", "Semgrep", "SonarQube"],
     images: ["/images/projects/sentinelhub-dashboard.png", "/images/projects/sentinelhub-scan.png"],
     links: {
       demo: "#",
@@ -32,8 +32,8 @@ const projects = [
     },
     features: [
       "Multi-source security scanning",
-      "AI-powered vulnerability analysis",
-      "Real-time WebSocket monitoring",
+      "Vulnerability detection (Trivy, Semgrep, Gitleaks)",
+      "Real-time monitoring with Grafana",
       "Microservices architecture",
     ],
     color: "from-red-500/20 to-orange-500/20",

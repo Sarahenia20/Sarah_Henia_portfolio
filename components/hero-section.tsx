@@ -89,15 +89,15 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <AnimatedText
-                text="AI Automation Expert"
+                text="Software Engineer & Product Owner"
                 className="text-xl md:text-2xl font-medium text-secondary mb-4"
                 delay={300}
               />
 
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold overflow-hidden">
-                <AnimatedText text="Ibrahim" className="inline-block" delay={500} />
+                <AnimatedText text="Sarah" className="inline-block" delay={500} />
                 <br />
-                <AnimatedText text="Mustafa" className="inline-block" delay={800} />
+                <AnimatedText text="Henia" className="inline-block" delay={800} />
               </h1>
 
               <motion.p
@@ -106,8 +106,8 @@ export default function HeroSection() {
                 transition={{ duration: 0.8, delay: 1.2 }}
                 className="text-lg md:text-xl text-gray-300 max-w-lg mt-6"
               >
-                Transforming ideas into innovative solutions. Elevating your vision with expert design and development
-                services.
+                Building AI-driven DevSecOps platforms and full-stack applications. AWS Certified Cloud Practitioner and
+                NVIDIA AI specialist.
               </motion.p>
 
               <div className="flex flex-wrap gap-4 mt-8">

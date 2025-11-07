@@ -43,7 +43,7 @@ export default function ContactSection() {
           </p>
 
           <p className="text-gray-400 text-sm mb-8">
-            Focus: Software Engineering • AI/ML • Product Management • Data Engineering • DevSecOps • Research
+            Focus: Software Engineering • DevOps • AI/ML • Data Science • Data Engineering • DevSecOps
           </p>
           <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-2"></div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
