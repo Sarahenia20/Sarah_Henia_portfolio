@@ -27,7 +27,7 @@ const projects = [
     tags: ["Next.js", "Express", "GoLang", "Docker", "Grafana", "Trivy", "Semgrep", "SonarQube"],
     images: ["/images/projects/sentinelhub-dashboard.png", "/images/projects/sentinelhub-scan.png"],
     links: {
-      demo: "#",
+      demo: "https://esprittncom-my.sharepoint.com/:v:/g/personal/sarah_henia_esprit_tn/EZEjjMA65pRKmImsnMtkwyQBK08FjrT7KpdHfY_Vr5tUMw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Wc2W31",
       github: "https://github.com/Sarahenia20/SentinelHub",
     },
     features: [

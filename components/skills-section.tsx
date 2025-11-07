@@ -22,6 +22,7 @@ const technicalStack = {
   ],
   "AI & Machine Learning": [
     "OpenAI LLM",
+    "LangChain",
     "TensorFlow",
     "Hugging Face",
     "RAG",
