@@ -46,7 +46,7 @@ const projects = [
       "Full-stack generative art platform combining dual AI providers (Gemini 2.5 Flash + GPT-4o) with algorithmic art generation. Features async processing with Celery + Redis, smart galleries with collections and tagging.",
     longDescription:
       "Full-stack generative art platform combining dual AI providers (Gemini 2.5 Flash + GPT-4o) with algorithmic art generation (fractals, flow fields, L-systems). Features async processing with Celery + Redis, smart galleries with collections and tagging, analytics dashboard for style evolution tracking, and personalized user profiles that learn art preferences.",
-    tags: ["Django 5", "Next.js", "Celery", "Redis", "Gemini 2.5", "DALL·E 3", "PostgreSQL"],
+    tags: ["Django 5", "Next.js", "Celery", "Redis", "Gemini 2.5", "DALL·E 3", "PostgreSQL", "Cloudinary"],
     images: ["/images/projects/pentaart-landing.png", "/images/projects/pentaart-gallery.png"],
     links: {
       demo: "#",
@@ -68,7 +68,7 @@ const projects = [
       "Comprehensive MERN stack task and project management platform with AI-powered prioritization using Google Gemini. Features real-time collaboration with Socket.io, advanced analytics dashboard, and complete CI/CD pipeline.",
     longDescription:
       "Comprehensive MERN stack task and project management platform with AI-powered prioritization using Google Gemini. Features real-time collaboration with Socket.io, advanced analytics dashboard, resource allocation monitoring, and complete CI/CD pipeline with Docker and GitHub Actions. Built following Agile methodology across 5 sprints with full test coverage and API documentation.",
-    tags: ["React", "Node.js", "Express", "MongoDB", "Gemini AI", "Socket.io", "Docker", "Jest"],
+    tags: ["React", "Node.js", "Express", "MongoDB", "Gemini AI", "Socket.io", "Docker", "Jest", "Cloudinary"],
     images: ["/images/projects/taskify-signup.png", "/images/projects/taskify-dashboard.png"],
     links: {
       demo: "https://taskify-phi-mauve.vercel.app/auth/SignIn",
