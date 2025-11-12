@@ -41,6 +41,7 @@ const technicalStack = {
     "Docker",
     "Kubernetes",
     "CI/CD",
+    "nginx",
     "Trivy",
     "Semgrep",
     "Gitleaks",
