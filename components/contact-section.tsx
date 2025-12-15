@@ -2,10 +2,12 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Linkedin, Github } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function ContactSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
+  const { language } = useLanguage()
 
   return (
     <section
@@ -26,24 +28,44 @@ export default function ContactSection() {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Let's{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Connect</span>
+            {language === "fr" ? "Restons en " : "Let's "}
+            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              {language === "fr" ? "Contact" : "Connect"}
+            </span>
           </h2>
 
           <p className="text-gray-300 max-w-2xl mx-auto mb-2">
-            Available for{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-semibold">
-              6-month internships
-            </span>{" "}
-            and{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-semibold">
-              research thesis opportunities
-            </span>{" "}
-            starting Early 2026
+            {language === "fr" ? (
+              <>
+                Disponible pour{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-semibold">
+                  stages de 6 mois
+                </span>{" "}
+                et{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-semibold">
+                  opportunités de recherche
+                </span>{" "}
+                à partir de début 2026
+              </>
+            ) : (
+              <>
+                Available for{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-semibold">
+                  6-month internships
+                </span>{" "}
+                and{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-semibold">
+                  research thesis opportunities
+                </span>{" "}
+                starting Early 2026
+              </>
+            )}
           </p>
 
           <p className="text-gray-400 text-sm mb-8">
-            Focus: Software Engineering • DevOps • AI/ML • Data Science • Data Engineering • DevSecOps
+            {language === "fr"
+              ? "Domaines : Ingénierie Logicielle • DevOps • IA/ML • Data Science • Ingénierie des Données • DevSecOps"
+              : "Focus: Software Engineering • DevOps • AI/ML • Data Science • Data Engineering • DevSecOps"}
           </p>
           <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-2"></div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -56,7 +78,9 @@ export default function ContactSection() {
               whileTap={{ scale: 0.95 }}
             >
               <Linkedin className="w-5 h-5" />
-              <span className="font-medium">Connect on LinkedIn</span>
+              <span className="font-medium">
+                {language === "fr" ? "Connecter sur LinkedIn" : "Connect on LinkedIn"}
+              </span>
             </motion.a>
 
             <motion.a
@@ -68,7 +92,7 @@ export default function ContactSection() {
               whileTap={{ scale: 0.95 }}
             >
               <Github className="w-5 h-5" />
-              <span className="font-medium">View GitHub</span>
+              <span className="font-medium">{language === "fr" ? "Voir GitHub" : "View GitHub"}</span>
             </motion.a>
           </div>
         </motion.div>

@@ -3,8 +3,11 @@
 import { useRef, useState, useEffect } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
 import { Globe } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function AboutSection() {
+  const { t } = useLanguage()
+
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: false, amount: 0.1, fallback: true })
   const controls = useAnimation()
@@ -89,11 +92,13 @@ export default function AboutSection() {
             className="text-center mb-16"
           >
             <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              About{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Me</span>
+              {t.about.title.split(" ")[0]}{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                {t.about.title.split(" ")[1]}
+              </span>
             </motion.h2>
             <motion.p variants={itemVariants} className="text-gray-300 max-w-2xl mx-auto">
-              Building intelligent systems at the intersection of AI, security, and automation
+              {t.about.intro}
             </motion.p>
             <motion.div
               variants={itemVariants}
@@ -114,7 +119,7 @@ export default function AboutSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                About Me
+                {t.about.title}
               </motion.h3>
 
               <motion.div
@@ -124,7 +129,7 @@ export default function AboutSection() {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <p>
-                  I'm a Product Owner and Full-Stack Engineering Student passionate about building intelligent systems
+                  I'm a Product Manager and Full-Stack Engineering Student passionate about building intelligent systems
                   at the intersection of AI, security, and automation. I bridge the gap between technical execution and
                   business strategy, translating complex requirements into scalable solutions.
                 </p>

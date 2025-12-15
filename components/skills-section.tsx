@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { GraduationCap, Award } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 const technicalStack = {
   Frontend: ["React", "Next.js", "Three.js", "Tailwind CSS", "TypeScript", "Figma"],
@@ -99,6 +100,7 @@ const certifications = [
 export default function SkillsSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: false, amount: 0.1 })
+  const { language, t } = useLanguage()
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
@@ -163,13 +165,15 @@ export default function SkillsSection() {
           className="text-center mb-12"
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Skills &{" "}
+            {language === "fr" ? "Compétences & " : "Skills & "}
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Qualifications
+              {language === "fr" ? "Qualifications" : "Qualifications"}
             </span>
           </motion.h2>
           <motion.p variants={itemVariants} className="text-gray-300 max-w-2xl mx-auto">
-            Technical expertise across full-stack development, AI/ML, DevOps, and data engineering
+            {language === "fr"
+              ? "Expertise technique en développement full-stack, IA/ML, DevOps et ingénierie des données"
+              : "Technical expertise across full-stack development, AI/ML, DevOps, and data engineering"}
           </motion.p>
           <motion.div
             variants={itemVariants}
@@ -181,12 +185,34 @@ export default function SkillsSection() {
           {/* LEFT SIDE - Technical Stack (60% / 3 columns) */}
           <motion.div variants={itemVariants} className="lg:col-span-3 space-y-8">
             <div className="glass card-hover p-6 rounded-2xl">
-              <h3 className="text-2xl font-heading font-bold mb-6 text-blue-400">Technical Stack</h3>
+              <h3 className="text-2xl font-heading font-bold mb-6 text-blue-400">
+                {language === "fr" ? "Stack Technique" : "Technical Stack"}
+              </h3>
 
               <div className="space-y-6">
                 {Object.entries(technicalStack).map(([category, skills]) => (
                   <div key={category}>
-                    <h4 className="text-sm font-semibold text-blue-400 mb-3 uppercase tracking-wider">{category}</h4>
+                    <h4 className="text-sm font-semibold text-blue-400 mb-3 uppercase tracking-wider">
+                      {language === "fr"
+                        ? category === "Frontend"
+                          ? "Frontend"
+                          : category === "Backend & APIs"
+                            ? "Backend & APIs"
+                            : category === "AI & Machine Learning"
+                              ? "IA & Machine Learning"
+                              : category === "Data Engineering"
+                                ? "Ingénierie des Données"
+                                : category === "Databases"
+                                  ? "Bases de Données"
+                                  : category === "DevOps & Security"
+                                    ? "DevOps & Sécurité"
+                                    : category === "Microservices & Cloud"
+                                      ? "Microservices & Cloud"
+                                      : category === "Networking"
+                                        ? "Réseaux"
+                                        : category
+                        : category}
+                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {skills.map((skill) => (
                         <Badge
@@ -210,22 +236,30 @@ export default function SkillsSection() {
             <Card className="glass card-hover p-6">
               <div className="flex items-center gap-2 mb-4">
                 <GraduationCap className="w-5 h-5 text-purple-400" />
-                <h3 className="text-xl font-heading font-bold">Education</h3>
+                <h3 className="text-xl font-heading font-bold">{language === "fr" ? "Formation" : "Education"}</h3>
               </div>
 
               <div className="space-y-4">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <div className="text-base font-semibold">Master's in Software Engineering</div>
-                    <Badge className="bg-primary/20 text-primary border-primary/30 text-xs">Current</Badge>
+                    <div className="text-base font-semibold">
+                      {language === "fr" ? "Master en Génie Logiciel" : "Master's in Software Engineering"}
+                    </div>
+                    <Badge className="bg-primary/20 text-primary border-primary/30 text-xs">
+                      {language === "fr" ? "En cours" : "Current"}
+                    </Badge>
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    ESPRIT - Private School of Engineering & Technology
+                    {language === "fr"
+                      ? "ESPRIT - École Privée d'Ingénierie & Technologie"
+                      : "ESPRIT - Private School of Engineering & Technology"}
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-base font-semibold">Bachelor's in Business Intelligence</div>
+                  <div className="text-base font-semibold">
+                    {language === "fr" ? "Licence en Business Intelligence" : "Bachelor's in Business Intelligence"}
+                  </div>
                   <div className="text-sm text-muted-foreground">ESSECT Tunis</div>
                 </div>
               </div>
@@ -235,14 +269,28 @@ export default function SkillsSection() {
             <Card className="glass card-hover p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Award className="w-5 h-5 text-blue-400" />
-                <h3 className="text-xl font-heading font-bold">Certifications</h3>
+                <h3 className="text-xl font-heading font-bold">
+                  {language === "fr" ? "Certifications" : "Certifications"}
+                </h3>
               </div>
 
               <div className="space-y-4">
                 {certifications.map((cert) => (
                   <div key={cert.category}>
                     <h4 className="text-sm font-semibold text-blue-400 mb-2 uppercase tracking-wider">
-                      {cert.category}
+                      {language === "fr"
+                        ? cert.category === "AI & Machine Learning"
+                          ? "IA & Machine Learning"
+                          : cert.category === "Cloud & Infrastructure"
+                            ? "Cloud & Infrastructure"
+                            : cert.category === "Development & Tools"
+                              ? "Développement & Outils"
+                              : cert.category === "Networking"
+                                ? "Réseaux"
+                                : cert.category === "Product Management"
+                                  ? "Gestion de Produit"
+                                  : cert.category
+                        : cert.category}
                     </h4>
                     <ul className="space-y-1.5">
                       {cert.items.map((item) => (

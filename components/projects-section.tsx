@@ -7,7 +7,6 @@ import {
   Github,
   ChevronLeft,
   ChevronRight,
-  Shield,
   Palette,
   CheckSquare,
   Shirt,
@@ -15,29 +14,30 @@ import {
   Recycle,
 } from "lucide-react"
 import Image from "next/image"
+import { useLanguage } from "@/contexts/language-context"
 
 const projects = [
   {
     title: "SentinelHub",
-    tagline: "DevSecOps Intelligence Platform",
+    tagline: "AI-Powered Security Intelligence Platform",
     description:
-      "DevSecOps intelligence platform integrating multiple security scanning tools (Trivy, Semgrep, Gitleaks, SonarQube, OWASP ZAP) for comprehensive vulnerability detection, multi-source security scanning, and real-time monitoring. Built with microservices architecture for scalability and modularity.",
+      "Comprehensive DevSecOps platform with autonomous threat detection. Integrates multiple security scanning tools (Trivy, Semgrep, Gitleaks, SonarQube, OWASP ZAP) for vulnerability analysis and real-time monitoring.",
     longDescription:
-      "DevSecOps intelligence platform integrating multiple security scanning tools (Trivy, Semgrep, Gitleaks, SonarQube, OWASP ZAP) for comprehensive vulnerability detection, multi-source security scanning, and real-time monitoring. Built with microservices architecture for scalability and modularity. Implements automated security workflows and comprehensive threat analysis dashboards.",
-    tags: ["Next.js", "Express", "GoLang", "Docker", "Grafana", "Trivy", "Semgrep", "SonarQube"],
+      "Comprehensive DevSecOps platform with autonomous threat detection and AI-powered vulnerability prioritization. Integrates multiple security scanning tools including Trivy for container scanning, Semgrep for static analysis, Gitleaks for secret detection, SonarQube for code quality, and OWASP ZAP for web security testing. Features distributed microservices architecture, real-time monitoring with Grafana, intelligent threat detection, and automated security recommendations powered by ML models.",
+    tags: ["Next.js", "Express", "GoLang", "Docker", "Grafana"],
     images: ["/images/projects/sentinelhub-dashboard.png", "/images/projects/sentinelhub-scan.png"],
     links: {
-      demo: "https://esprittncom-my.sharepoint.com/:v:/g/personal/sarah_henia_esprit_tn/EZEjjMA65pRKmImsnMtkwyQBK08FjrT7KpdHfY_Vr5tUMw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Wc2W31",
+      demo: "https://esprittn.sharepoint.com/:v:/s/msteams_93e69e/EZEjjMA65pRKmImsnMtkwyQBK08FjrT7KpdHfY_Vr5tUMw",
       github: "https://github.com/Sarahenia20/SentinelHub",
     },
     features: [
-      "Multi-source security scanning",
-      "Vulnerability detection (Trivy, Semgrep, Gitleaks)",
-      "Real-time monitoring with Grafana",
-      "Microservices architecture",
+      "Multi-engine security scanning (Trivy, Semgrep, Gitleaks, SonarQube, OWASP ZAP)",
+      "Real-time vulnerability monitoring with Grafana",
+      "AI-powered threat prioritization",
+      "Distributed microservices architecture",
     ],
     color: "from-red-500/20 to-orange-500/20",
-    icon: Shield,
+    icon: CheckSquare,
   },
   {
     title: "PentaArt",
@@ -137,14 +137,14 @@ const projects = [
     tags: ["Laravel 12", "PHP 8.2", "MySQL", "Blade Templates", "REST API"],
     images: ["/images/projects/waste2product-tutorials.png", "/images/projects/waste2product-projects.png"],
     links: {
-      demo: "#",
+      demo: "https://waste2product.up.railway.app/",
       github: "https://github.com/Sarahenia20/waste2product",
     },
     features: [
       "Waste declaration & reservation",
       "DIY project tutorials",
-      "Environmental events management",
-      "CO2 savings gamification",
+      "Event management & registration",
+      "CO2 savings tracking & gamification",
     ],
     color: "from-teal-500/20 to-cyan-500/20",
     icon: Recycle,
@@ -155,6 +155,7 @@ export default function ProjectsSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: false, amount: 0.1, fallback: true })
   const controls = useAnimation()
+  const { language } = useLanguage()
   const [activeIndex, setActiveIndex] = useState(0)
   const [isExpanded, setIsExpanded] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: number]: number }>({})
@@ -253,11 +254,15 @@ export default function ProjectsSection() {
           style={{ opacity: 1 }}
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Featured{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Projects</span>
+            {language === "fr" ? "Projets " : "Featured "}
+            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              {language === "fr" ? "Phares" : "Projects"}
+            </span>
           </motion.h2>
           <motion.p variants={itemVariants} className="text-gray-300 max-w-2xl mx-auto">
-            From DevSecOps platforms to generative art - exploring where AI meets engineering
+            {language === "fr"
+              ? "De plateformes DevSecOps à l'art génératif - explorer où l'IA rencontre l'ingénierie"
+              : "From DevSecOps platforms to generative art - exploring where AI meets engineering"}
           </motion.p>
           <motion.div
             variants={itemVariants}
@@ -334,7 +339,13 @@ export default function ProjectsSection() {
                     className="text-sm text-primary hover:text-secondary transition-colors"
                     whileHover={{ x: 5 }}
                   >
-                    {isExpanded ? "Show less" : "Read more"}
+                    {isExpanded
+                      ? language === "fr"
+                        ? "Voir moins"
+                        : "Show less"
+                      : language === "fr"
+                        ? "Lire plus"
+                        : "Read more"}
                   </motion.button>
 
                   <div className="flex flex-wrap gap-2">
@@ -350,7 +361,9 @@ export default function ProjectsSection() {
                   </div>
 
                   <div className="space-y-3 pt-4 border-t border-white/10">
-                    <h4 className="text-lg font-medium">Key Features</h4>
+                    <h4 className="text-lg font-medium">
+                      {language === "fr" ? "Fonctionnalités Clés" : "Key Features"}
+                    </h4>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       {currentProject.features.map((feature, idx) => (
                         <motion.li
@@ -377,7 +390,7 @@ export default function ProjectsSection() {
                       rel="noopener noreferrer"
                     >
                       <ExternalLink size={16} />
-                      Live Demo
+                      {language === "fr" ? "Démo Live" : "Live Demo"}
                     </motion.a>
                     <motion.a
                       href={currentProject.links.github}
@@ -388,7 +401,7 @@ export default function ProjectsSection() {
                       rel="noopener noreferrer"
                     >
                       <Github size={16} />
-                      Source Code
+                      {language === "fr" ? "Code Source" : "Source Code"}
                     </motion.a>
                   </div>
                 </motion.div>

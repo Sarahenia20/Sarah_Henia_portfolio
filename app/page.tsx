@@ -11,6 +11,7 @@ import Footer from "@/components/footer"
 import ScrollAnimations from "@/components/scroll-animations"
 import GlobalBackground from "@/components/global-background"
 import SectionIndicators from "@/components/section-indicators"
+import LanguageToggle from "@/components/language-toggle"
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -45,6 +46,7 @@ export default function Home() {
       <GlobalBackground />
       {isLoaded && (
         <>
+          <LanguageToggle />
           <FloatingSidebar />
           <SectionIndicators />
           <HeroSectionNew />

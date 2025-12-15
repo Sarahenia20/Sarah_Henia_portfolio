@@ -6,8 +6,11 @@ import { ArrowDown } from "lucide-react"
 import AnimatedText from "./animated-text"
 import AnimatedAvatar from "./animated-avatar"
 import { useResponsive } from "@/hooks/use-responsive"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function HeroSection() {
+  const { t } = useLanguage()
+
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -89,7 +92,7 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <AnimatedText
-                text="Software Engineer & Product Owner"
+                text={t.hero.role}
                 className="text-xl md:text-2xl font-medium text-secondary mb-4"
                 delay={300}
               />
@@ -106,8 +109,7 @@ export default function HeroSection() {
                 transition={{ duration: 0.8, delay: 1.2 }}
                 className="text-lg md:text-xl text-gray-300 max-w-lg mt-6"
               >
-                Building AI-driven DevSecOps platforms and full-stack applications. AWS Certified Cloud Practitioner and
-                NVIDIA AI specialist.
+                {t.hero.description}
               </motion.p>
 
               <div className="flex flex-wrap gap-4 mt-8">
@@ -123,7 +125,7 @@ export default function HeroSection() {
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  View Projects
+                  {t.hero.cta}
                 </motion.a>
                 <motion.a
                   href="#contact"
@@ -137,7 +139,7 @@ export default function HeroSection() {
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Contact Me
+                  {t.nav.contact}
                 </motion.a>
               </div>
             </motion.div>
