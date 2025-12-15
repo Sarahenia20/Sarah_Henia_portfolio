@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-2xl font-heading font-bold mb-2 text-gradient">Sarah Henia</h3>
-              <p className="text-gray-400 mb-4">Product Owner & Full-Stack Engineering Student</p>
+              <p className="text-gray-400 mb-4">Product Manager & Full-Stack Engineering Student</p>
               <div className="flex space-x-4">
                 <motion.a
                   href="https://github.com"

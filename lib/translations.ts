@@ -8,7 +8,7 @@ export const translations = {
       contact: "Contact",
     },
     hero: {
-      title1: "PRODUCT OWNER &",
+      title1: "PRODUCT MANAGER &",
       title2: "FULL-STACK",
       title3: "ENGINEER",
       description:
@@ -58,7 +58,7 @@ export const translations = {
       contact: "Contact",
     },
     hero: {
-      title1: "PRODUCT OWNER &",
+      title1: "PRODUCT MANAGER &",
       title2: "INGÉNIEURE",
       title3: "FULL-STACK",
       description:

@@ -92,7 +92,7 @@ export default function HeroSectionNew() {
             className="text-2xl sm:text-3xl font-heading font-bold leading-tight"
           >
             <span className="block bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-              PRODUCT OWNER &
+              PRODUCT MANAGER &
             </span>
             <span className="block bg-gradient-to-r from-blue-500/40 to-purple-500/40 px-2 text-white border-2 border-blue-400/50 rounded shadow-lg shadow-blue-500/20">
               FULL-STACK
@@ -142,7 +142,7 @@ export default function HeroSectionNew() {
               <div className="text-center">
                 <h3 className="text-base font-bold mb-1">Sarah Henia</h3>
                 <p className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium text-xs mb-2">
-                  Product Owner & Full-Stack Engineer
+                  Product Manager & Full-Stack Engineer
                 </p>
                 <div className="flex items-center justify-center gap-1">
                   <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
@@ -164,7 +164,7 @@ export default function HeroSectionNew() {
             >
               <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight">
                 <span className="block bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-                  PRODUCT OWNER &
+                  PRODUCT MANAGER &
                 </span>
                 <span className="block bg-gradient-to-r from-blue-500/40 to-purple-500/40 px-4 text-white border-2 border-blue-400/50 rounded shadow-lg shadow-blue-500/30">
                   FULL-STACK
@@ -223,7 +223,7 @@ export default function HeroSectionNew() {
                   <div className="text-center">
                     <h3 className="text-2xl font-bold mb-2">Sarah Henia</h3>
                     <p className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium mb-4 text-lg">
-                      Product Owner & Full-Stack Engineer
+                      Product Manager & Full-Stack Engineer
                     </p>
 
                     {/* Status Indicator */}
