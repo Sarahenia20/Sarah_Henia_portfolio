@@ -57,9 +57,9 @@ export default function Journey({ t }: { t: Dictionary }) {
         {/* Wide: track */}
         <div className="mt-12 hidden md:block">
           <div className="relative">
-            <div className="absolute inset-x-[7%] top-7 h-px bg-line" aria-hidden />
+            <div className="absolute inset-x-[7%] top-[42px] h-px bg-line" aria-hidden />
             <div
-              className="absolute start-[7%] top-7 h-px bg-gradient-to-r from-blue via-violet to-pink transition-[width] duration-700 ease-out"
+              className="absolute start-[7%] top-[42px] h-px bg-gradient-to-r from-blue via-violet to-pink transition-[width] duration-700 ease-out"
               style={{ width: `${(index / (journeyMarks.length - 1)) * 86}%` }}
               aria-hidden
             />
@@ -74,7 +74,7 @@ export default function Journey({ t }: { t: Dictionary }) {
                       aria-selected={selected}
                       onClick={() => pick(i)}
                       className={cn(
-                        "flex h-14 w-14 items-center justify-center rounded-full border bg-bg transition-all duration-300",
+                        "flex h-[84px] w-[84px] items-center justify-center rounded-full border bg-bg transition-all duration-300",
                         selected ? "scale-110 border-blue shadow-[0_0_0_6px_var(--tint),0_0_30px_-4px_var(--blue)]" : passed ? "border-blue/50" : "border-line",
                         "hover:border-blue",
                       )}
@@ -82,8 +82,8 @@ export default function Journey({ t }: { t: Dictionary }) {
                     >
                       <Mark logo={m.logo} kind={m.kind} />
                     </button>
-                    <span className={cn("mt-3 text-xs font-semibold", selected ? "text-fg" : "text-muted")}>{m.year}</span>
-                    <span className="mt-1 max-w-[12ch] text-center text-xs leading-tight text-muted">{shortTitle(t, m.key)}</span>
+                    <span className={cn("mt-3 text-sm font-semibold", selected ? "text-fg" : "text-muted")}>{m.year}</span>
+                    <span className="mt-1 max-w-[13ch] text-center text-[13px] leading-tight text-muted">{shortTitle(t, m.key)}</span>
                   </li>
                 )
               })}
@@ -120,9 +120,9 @@ export default function Journey({ t }: { t: Dictionary }) {
 }
 
 function Mark({ logo, kind }: { logo: string | null; kind: "study" | "cert" | "work" }) {
-  if (logo) return <Image src={logo} alt="" width={40} height={14} className="logo-white h-3.5 w-auto" />
-  if (kind === "cert") return <Award size={20} className="text-violet" />
-  return <GraduationCap size={20} className="text-blue" />
+  if (logo) return <Image src={logo} alt="" width={60} height={21} className="logo-white h-[21px] w-auto" />
+  if (kind === "cert") return <Award size={30} className="text-violet" />
+  return <GraduationCap size={30} className="text-blue" />
 }
 
 // Two or three words under each point so the track reads without clicking.

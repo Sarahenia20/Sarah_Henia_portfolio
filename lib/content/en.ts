@@ -134,7 +134,7 @@ export const en = {
       certs: {
         title: "Cisco CCNA, AWS Cloud Practitioner, NVIDIA DLI",
         org: "2024 to 2025",
-        text: "Networks, cloud fundamentals, and four NVIDIA courses including Building RAG Agents with LLMs and Adversarial ML.",
+        text: "Cisco CCNA for networks, AWS Cloud Practitioner for the cloud, and four NVIDIA Deep Learning Institute courses: Adversarial Machine Learning, Building RAG Agents with LLMs, Fundamentals of Deep Learning, and Applications of AI for Predictive Maintenance.",
       },
       pm: {
         title: "Product Manager, Dojo",
@@ -175,17 +175,18 @@ export const en = {
   },
   about: {
     eyebrow: "About",
-    heading: "Engineer first, translator second",
+    heading: "Software engineer. AI solution integrator.",
     paragraphs: [
-      "I like systems where the AI part is small and the engineering around it is careful: a model that proposes, a person who decides, a database that remembers why. That is the shape of everything I have shipped so far.",
-      "I came to software through data. A business-intelligence degree taught me to ask what a number means before computing it, and an engineering degree taught me to build the thing that computes it. Today I spend most of my time between the two: designing the architecture, writing the code, and explaining both to people who do not write code.",
-      "I present in English, French and Arabic, which matters when the client is in the Gulf, the team is in Tunis and the company is in the United States.",
+      "I design and build systems where a model proposes, a person decides and a database remembers why. Right now that is Dawn, in production since March 2026, and the market-intelligence system in pilot. Before that it was Collaboris, delivered in three releases at CED Tunisia.",
+      "I came to software through data: a business-intelligence degree first, then software engineering at ESPRIT. It shows in how I work. I care about what a number means as much as about the code that produces it, and I write the architecture document before the first commit.",
+      "I work across the stack: Python and FastAPI, C# and .NET, Angular and TypeScript, SurrealDB, Redis and SQL Server, deployed on AWS and Azure. I present in Arabic, English and French, to engineers and to executives.",
     ],
     facts: {
       location: ["Based in", "Tunis, Tunisia · open to relocation"],
       languages: ["Languages", "Arabic (native) · English (C1) · French (B2)"],
-      education: ["Education", "Engineering degree in Software Engineering, ESPRIT · Bachelor's in Business Intelligence, ESSECT"],
-      certs: ["Certifications", "Cisco CCNA (2024) · AWS Certified Cloud Practitioner (2025) · NVIDIA DLI, 4 courses (2025)"],
+      education: ["Education", "Engineering degree in Software Engineering, ESPRIT (2026) · Bachelor's in Business Intelligence, ESSECT (2023)"],
+      certs: ["Certifications", "Cisco CCNA (2024) · AWS Certified Cloud Practitioner (2025)"],
+      nvidia: ["NVIDIA Deep Learning Institute (2025)", "Adversarial Machine Learning · Building RAG Agents with LLMs · Fundamentals of Deep Learning · Applications of AI for Predictive Maintenance"],
     },
   },
   contact: {

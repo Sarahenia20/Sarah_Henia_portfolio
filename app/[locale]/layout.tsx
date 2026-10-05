@@ -106,7 +106,7 @@ export default function LocaleLayout({ children, params }: { children: React.Rea
       className={`${display.variable} ${sans.variable} ${arabic.variable} ${mono.variable} ${serif.variable}`}
     >
       <body className="min-h-screen flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-sm"

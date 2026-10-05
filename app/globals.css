@@ -121,6 +121,7 @@
     pointer-events: none;
   }
   .light .glow { opacity: 0.22; }
+  .light .glass { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 16px 40px -24px rgba(14, 20, 48, 0.25); }
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-md border border-line px-2 py-0.5 text-xs text-muted;
   }

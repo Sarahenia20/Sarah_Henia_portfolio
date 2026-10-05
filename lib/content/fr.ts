@@ -133,7 +133,7 @@ export const fr: Dictionary = {
       certs: {
         title: "Cisco CCNA, AWS Cloud Practitioner, NVIDIA DLI",
         org: "2024 à 2025",
-        text: "Réseaux, fondamentaux du cloud, et quatre formations NVIDIA dont Building RAG Agents with LLMs et Adversarial ML.",
+        text: "Cisco CCNA pour les réseaux, AWS Cloud Practitioner pour le cloud, et quatre formations du NVIDIA Deep Learning Institute : Adversarial Machine Learning, Building RAG Agents with LLMs, Fundamentals of Deep Learning et Applications of AI for Predictive Maintenance.",
       },
       pm: {
         title: "Product Manager, Dojo",
@@ -174,17 +174,18 @@ export const fr: Dictionary = {
   },
   about: {
     eyebrow: "À propos",
-    heading: "Ingénieure d'abord, traductrice ensuite",
+    heading: "Ingénieure logiciel. Intégratrice de solutions IA.",
     paragraphs: [
-      "J'aime les systèmes où la part d'IA est petite et l'ingénierie autour est soignée : un modèle qui propose, une personne qui décide, une base qui se souvient pourquoi. C'est la forme de tout ce que j'ai livré jusqu'ici.",
-      "Je suis venue au logiciel par les données. Une licence en business intelligence m'a appris à demander ce qu'un chiffre veut dire avant de le calculer, et un diplôme d'ingénieur m'a appris à construire ce qui le calcule. Aujourd'hui je passe l'essentiel de mon temps entre les deux : concevoir l'architecture, écrire le code, et expliquer les deux à des gens qui ne codent pas.",
-      "Je présente en français, en anglais et en arabe, ce qui compte quand le client est dans le Golfe, l'équipe à Tunis et l'entreprise aux États-Unis.",
+      "Je conçois et construis des systèmes où un modèle propose, une personne décide et une base de données se souvient pourquoi. Aujourd'hui, c'est Dawn, en production depuis mars 2026, et le système de veille marché en pilote. Avant, c'était Collaboris, livré en trois releases chez CED Tunisia.",
+      "Je suis venue au logiciel par les données : une licence en business intelligence d'abord, puis le génie logiciel à ESPRIT. Ça se voit dans ma façon de travailler. Ce qu'un chiffre veut dire compte autant pour moi que le code qui le produit, et j'écris le document d'architecture avant le premier commit.",
+      "Je travaille sur toute la pile : Python et FastAPI, C# et .NET, Angular et TypeScript, SurrealDB, Redis et SQL Server, déployés sur AWS et Azure. Je présente en arabe, en anglais et en français, aux ingénieurs comme aux dirigeants.",
     ],
     facts: {
       location: ["Basée à", "Tunis, Tunisie · mobilité internationale"],
       languages: ["Langues", "Arabe (langue maternelle) · Anglais (C1) · Français (B2)"],
-      education: ["Formation", "Diplôme d'ingénieur en génie logiciel, ESPRIT · Licence en business intelligence, ESSECT"],
-      certs: ["Certifications", "Cisco CCNA (2024) · AWS Certified Cloud Practitioner (2025) · NVIDIA DLI, 4 formations (2025)"],
+      education: ["Formation", "Diplôme d'ingénieur en génie logiciel, ESPRIT (2026) · Licence en business intelligence, ESSECT (2023)"],
+      certs: ["Certifications", "Cisco CCNA (2024) · AWS Certified Cloud Practitioner (2025)"],
+      nvidia: ["NVIDIA Deep Learning Institute (2025)", "Adversarial Machine Learning · Building RAG Agents with LLMs · Fundamentals of Deep Learning · Applications of AI for Predictive Maintenance"],
     },
   },
   contact: {

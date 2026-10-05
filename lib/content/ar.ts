@@ -132,7 +132,7 @@ export const ar: Dictionary = {
       certs: {
         title: "Cisco CCNA، AWS Cloud Practitioner، NVIDIA DLI",
         org: "2024 إلى 2025",
-        text: "الشبكات، أساسيات السحابة، وأربع دورات من NVIDIA منها Building RAG Agents with LLMs وAdversarial ML.",
+        text: "Cisco CCNA للشبكات، وAWS Cloud Practitioner للسحابة، وأربع دورات من NVIDIA Deep Learning Institute: Adversarial Machine Learning، Building RAG Agents with LLMs، Fundamentals of Deep Learning، وApplications of AI for Predictive Maintenance.",
       },
       pm: {
         title: "مديرة منتج، Dojo",
@@ -173,17 +173,18 @@ export const ar: Dictionary = {
   },
   about: {
     eyebrow: "نبذة",
-    heading: "مهندسة أولاً، مترجمة ثانياً",
+    heading: "مهندسة برمجيات. مُدمِجة حلول ذكاء اصطناعي.",
     paragraphs: [
-      "أحب الأنظمة التي يكون فيها جزء الذكاء الاصطناعي صغيراً والهندسة حوله متقنة: نموذج يقترح، شخص يقرر، وقاعدة بيانات تتذكر السبب. هذا شكل كل ما أطلقته حتى الآن.",
-      "جئت إلى البرمجيات من البيانات. علّمتني إجازة ذكاء الأعمال أن أسأل ماذا يعني الرقم قبل حسابه، وعلّمتني شهادة الهندسة أن أبني ما يحسبه. اليوم أقضي معظم وقتي بين الاثنين: تصميم المعمارية، كتابة الكود، وشرح كليهما لمن لا يكتبون كوداً.",
-      "أقدّم بالعربية والإنجليزية والفرنسية، وهذا مهم حين يكون العميل في الخليج، والفريق في تونس، والشركة في الولايات المتحدة.",
+      "أصمم وأبني أنظمة يقترح فيها النموذج، ويقرر فيها إنسان، وتتذكر فيها قاعدة البيانات السبب. اليوم هذا هو Dawn، في الإنتاج منذ مارس 2026، ونظام استخبارات السوق في مرحلته التجريبية. وقبل ذلك كان Collaboris، المسلَّم في ثلاثة إصدارات لدى CED Tunisia.",
+      "جئت إلى البرمجيات من البيانات: إجازة في ذكاء الأعمال أولاً، ثم هندسة البرمجيات في ESPRIT. ويظهر ذلك في طريقة عملي. يهمني معنى الرقم بقدر ما يهمني الكود الذي ينتجه، وأكتب وثيقة المعمارية قبل أول commit.",
+      "أعمل على كامل المكدس: Python وFastAPI، C# و.NET، Angular وTypeScript، SurrealDB وRedis وSQL Server، منشورة على AWS وAzure. وأقدّم بالعربية والإنجليزية والفرنسية، للمهندسين وللمديرين التنفيذيين.",
     ],
     facts: {
       location: ["المقر", "تونس، تونس · مستعدة للانتقال"],
       languages: ["اللغات", "العربية (الأم) · الإنجليزية (C1) · الفرنسية (B2)"],
-      education: ["التعليم", "شهادة مهندس في هندسة البرمجيات، ESPRIT · إجازة في ذكاء الأعمال، ESSECT"],
-      certs: ["الشهادات", "Cisco CCNA (2024) · AWS Certified Cloud Practitioner (2025) · NVIDIA DLI، 4 دورات (2025)"],
+      education: ["التعليم", "شهادة مهندس في هندسة البرمجيات، ESPRIT (2026) · إجازة في ذكاء الأعمال، ESSECT (2023)"],
+      certs: ["الشهادات", "Cisco CCNA (2024) · AWS Certified Cloud Practitioner (2025)"],
+      nvidia: ["NVIDIA Deep Learning Institute (2025)", "Adversarial Machine Learning · Building RAG Agents with LLMs · Fundamentals of Deep Learning · Applications of AI for Predictive Maintenance"],
     },
   },
   contact: {
