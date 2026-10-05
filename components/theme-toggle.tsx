@@ -4,13 +4,13 @@ import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import { Moon, Sun } from "lucide-react"
 
-// Dark is the default. The button flips to light and back; next-themes remembers the choice.
+// Light is the default. The button flips to dark and back; next-themes remembers the choice.
 export default function ThemeToggle({ label }: { label: string }) {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
 
-  const isDark = !mounted || resolvedTheme === "dark"
+  const isDark = mounted && resolvedTheme === "dark"
   return (
     <button
       type="button"
