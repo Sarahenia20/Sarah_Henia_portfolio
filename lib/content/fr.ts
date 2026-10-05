@@ -26,7 +26,7 @@ export const fr: Dictionary = {
   },
   lens: {
     label: "Lire cette page en tant que",
-    hint: "Mêmes faits, accent différent. Le bouton CV suit votre choix.",
+    hint: "Mêmes faits, accent différent.",
     options: {
       sol: {
         label: "Solutions & gouvernance",
@@ -80,7 +80,7 @@ export const fr: Dictionary = {
           "Mémoire en graphe SurrealDB avec RAG hybride et cache de contexte Redis.",
           "Validation humaine par e-mail avant toute écriture dans Microsoft Planner.",
         ],
-        flow: ["Réunion", "Extraction", "Mémoire graphe", "Validation humaine", "Planner"],
+        flow: [["Réunions", "transcriptions enregistrées"], ["Mémoire graphe", "RAG + CAG Redis"], ["Extraction LLM", "responsable · priorité · échéance"], ["Validation humaine", "chaque tâche"], ["Microsoft Planner", "via l'API Graph"]],
         gate: 3,
       },
       "market-intelligence": {
@@ -92,7 +92,7 @@ export const fr: Dictionary = {
           "Un seul graphe de connaissances : chaque affirmation remonte à son document source.",
           "Une passerelle IA pour chaque appel de modèle ; revue humaine avant toute écriture CRM.",
         ],
-        flow: ["Sources", "Ingestion", "Extraction", "Graphe", "Revue humaine", "CRM"],
+        flow: [["Sources", "liste blanche, EN / AR"], ["Ingestion", "collecte · nettoyage · stockage"], ["Classification + extraction", "LLM à schéma imposé"], ["Graphe de connaissances", "une entreprise, un nœud"], ["Revue humaine", "avant toute écriture CRM"]],
         gate: 4,
       },
       collaboris: {
@@ -104,15 +104,21 @@ export const fr: Dictionary = {
           "Présence jusqu'au dialogue, onglet ou étape ouverts, sur tous les onglets du navigateur.",
           "PresenceAI : un journal conforme RGPD dès la conception, interrogé par un assistant IA gouverné via MCP.",
         ],
-        flow: ["Onglets", "SharedWorker", "SignalR + Redis", "Journal CDC", "IA gouvernée"],
+        flow: [["Onglets", "vue par MutationObserver"], ["SharedWorker", "un socket par navigateur"], ["SignalR + Redis", "présence en direct"], ["Journal CDC", "OLTP vers OLAP · Cosmos"], ["IA gouvernée", "Azure OpenAI via MCP"]],
         gate: 4,
       },
     },
   },
+  stack: {
+    eyebrow: "Technologies",
+    heading: "Ce avec quoi je construis",
+    intro: "Le même mur que sur mon profil GitHub. Chaque page système liste le sien.",
+    groups: { ai: "IA", build: "Build", front: "Front", data: "Données", cloud: "Cloud" },
+  },
   journey: {
     eyebrow: "Parcours",
     heading: "De la business intelligence à l'IA gouvernée en production",
-    intro: "Cliquez sur un point pour le lire.",
+    intro: "Il avance tout seul. Cliquez sur un point pour vous arrêter.",
     steps: {
       essect: {
         title: "Licence en Business Intelligence",
@@ -199,10 +205,11 @@ export const fr: Dictionary = {
     period: "Période",
     status: "Statut",
     stack: "Technologies",
+    resume: "Sur le CV",
     problem: "Le problème",
     built: "Ce que j'ai construit",
     architecture: "Comment ça marche",
-    architectureHint: "Cliquez sur une étape.",
+    architectureHint: "Défile tout seul. Cliquez sur une étape pour faire pause.",
     decisions: "Décisions et compromis",
     governance: "Gouvernance",
     learned: "Ce que j'ai appris",
@@ -216,6 +223,12 @@ export const fr: Dictionary = {
       role: "Conception et développement de l'ensemble du système",
       period: "2026, en production depuis mars",
       status: "live",
+      resume: [
+        "Conçu et développé Dawn, un agent IA autonome de gestion de projet, mis en production en mars 2026 : transforme les réunions enregistrées en tâches (responsable, priorité, échéance), avec validation humaine avant toute écriture dans Microsoft Planner.",
+        "Conçu sa mémoire en graphe : un graphe de connaissances SurrealDB avec RAG hybride (recherche vectorielle et pondération temporelle) et cache de contexte Redis (CAG), intégré à l'API Microsoft Graph.",
+        "Conçu sa couche de gouvernance et de sécurité : contrôle d'identité, politiques par agent, messages entrants vérifiés par HMAC, journal d'audit, seuil de confiance et données sensibles routées vers un modèle Llama local.",
+        "Développé un routage multi-modèles via OpenRouter avec repli automatique ; déployé sur AWS EC2 sécurisé avec CI/CD GitHub Actions et observabilité via Logfire et Langfuse.",
+      ],
       problem: [
         "Une petite équipe de conseil enregistre beaucoup de réunions. Les engagements pris ne se transformaient pas de façon fiable en travail suivi : quelqu'un devait lire la transcription, décider qui fait quoi, et le saisir dans Microsoft Planner. Le suivi dépendait de la mémoire.",
         "La demande n'était pas « automatiser la gestion de projet ». Elle était plus étroite et plus dure : faire entrer les bonnes tâches dans Planner, avec le bon responsable et la bonne date, sans jamais laisser une IA écrire quelque chose que personne n'a vérifié.",
@@ -265,6 +278,10 @@ export const fr: Dictionary = {
       role: "Architecture, conception de la gouvernance et implémentation",
       period: "2026, pilote en cours",
       status: "pilot",
+      resume: [
+        "Conception et développement d'un système multi-agents de veille marché pour un client cybersécurité au Moyen-Orient : ingestion de données bilingue (anglais/arabe), classification et extraction LLM à schéma imposé vers un graphe de connaissances SurrealDB, avec revue humaine avant toute écriture CRM.",
+        "Conception de sa gouvernance IA : une passerelle IA pour chaque appel de modèle ou d'outil (identité, budget, trace), contrôles alignés sur le NIST AI RMF et l'ISO/IEC 42001, et métriques d'évaluation sur un jeu annoté à chaque changement.",
+      ],
       problem: [
         "Le client vend des services de cybersécurité et d'assurance IA dans le Golfe. Chaque jour des régulateurs agissent, des entreprises sont attaquées, des appels d'offres s'ouvrent. Personne ne peut tout lire, et la question est étroite : quelles entreprises de notre territoire viennent de faire quelque chose qui signifie qu'elles ont besoin de nous, et pourquoi ?",
         "Un scraper échoue parce qu'il produit des pages, pas des décisions. Un chatbot échoue parce qu'il peut inventer, ne s'audite pas, et pousserait des affirmations non vérifiées dans le CRM. Trois modes d'échec ont guidé la conception : un modèle qui invente, une entreprise présente deux fois dans les données, et des contrôles qui ne vivent que dans un prompt.",
@@ -313,6 +330,16 @@ export const fr: Dictionary = {
       role: "De bout en bout : architecture, implémentation, packaging, déploiement, présentation aux dirigeants",
       period: "Février à août 2026, trois releases",
       status: "shipped",
+      resume: [
+        "Développé Collaboris, une bibliothèque de présence temps réel pour applications web d'entreprise, livrée en deux paquets : une bibliothèque Angular 19 (npm) et un SDK ASP.NET Core 8 (NuGet) sur SignalR et Redis. Trois releases sous revue technique du chef de département.",
+        "Présenté l'architecture, la gouvernance et l'intérêt métier au chef de département et aux dirigeants de CED.",
+        "Conçu une cascade d'identification à cinq niveaux qui reconnaît l'utilisateur depuis la session existante de l'application hôte, sans double connexion.",
+        "Conçu un résolveur de vue en couches : un MutationObserver DOM ciblé et temporisé qui situe chaque utilisateur jusqu'au dialogue, onglet ou étape ouverts, pour une co-présence exacte.",
+        "Détecté l'activité réelle en interceptant fetch et XMLHttpRequest (méthodes d'écriture uniquement, liste d'exclusion, fenêtre de déduplication) et mutualisé tous les onglets sur un seul WebSocket via un SharedWorker.",
+        "Développé PresenceAI, la couche données et IA : capture de changements des signaux Redis vers un journal Cosmos DB (OLTP vers OLAP, Python/FastAPI), interrogé en langage naturel via un assistant Azure OpenAI gouverné, exposé en MCP.",
+        "Mis en œuvre la conformité RGPD dès la conception (minimisation, consentement, rétention de 30 jours par TTL, accès fermé par défaut, plafonds de coût) et couvert la couche IA par des tests unitaires.",
+        "Déployé l'ensemble sur Azure (App Service, SQL Server, Azure Cache for Redis) via les pipelines build et release Azure DevOps, avec migration de la couche de données de l'API de PostgreSQL vers SQL Server.",
+      ],
       problem: [
         "Deux gestionnaires de sinistres ouvrent le même dossier dans une application interne au même moment. Aucun ne sait que l'autre est là. Le premier enregistre. Le second, à partir de ce qu'il voyait un instant plus tôt, enregistre aussi et écrase silencieusement le premier. Pas d'alerte, pas de conflit. Le dernier enregistrement gagne, et personne ne le remarque avant un client.",
         "Les applications web d'entreprise sont aveugles à leurs propres utilisateurs. La question : rendre n'importe quelle application interne consciente de qui s'y trouve et de ce qui change, sans la reconstruire, et sans que ces données deviennent un outil de surveillance.",

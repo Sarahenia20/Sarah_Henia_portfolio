@@ -14,7 +14,7 @@ export default function SiteHeader({ locale, t }: { locale: Locale; t: Dictionar
     [t.nav.contact, `${home}#contact`],
   ]
   return (
-    <header className="sticky top-0 z-40 border-b border-line/70 bg-bg/85 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line/60 bg-bg/70 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between gap-4">
         <Link href={home} className="font-display text-lg font-bold tracking-tight">
           Sarah Henia<span className="text-blue">.</span>
@@ -27,7 +27,7 @@ export default function SiteHeader({ locale, t }: { locale: Locale; t: Dictionar
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href={resumeHref("sol", locale)} className="btn hidden h-9 py-0 sm:inline-flex" target="_blank" rel="noopener">
+          <a href={resumeHref(locale)} className="btn btn-primary hidden h-9 py-0 sm:inline-flex" target="_blank" rel="noopener">
             {t.nav.resume}
           </a>
           <LanguageSwitcher current={locale} label={t.a11y.language} />

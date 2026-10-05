@@ -43,7 +43,7 @@
 }
 /* Letter-spacing breaks the joins between Arabic letters, and Arabic has no italic:
    the accent word becomes bold instead of slanted. */
-[dir="rtl"] .eyebrow { letter-spacing: 0; text-transform: none; }
+[dir="rtl"] .eyebrow { letter-spacing: 0; text-transform: none; font-weight: 600; }
 [dir="rtl"] .accent-word { font-style: normal; font-weight: 700; }
 
 @layer base {
@@ -78,21 +78,51 @@
 }
 
 @layer components {
+  /* Small section label, same treatment as on the GitHub cards: bold, blue, spaced. */
   .eyebrow {
-    @apply font-mono text-xs uppercase tracking-[0.12em] text-muted;
+    @apply text-xs font-bold uppercase tracking-[0.14em] text-blue;
   }
   .accent-word {
     @apply font-serif italic font-normal;
     font-size: 1.08em;
     letter-spacing: -0.01em;
   }
-  /* Hairline between sections, fades at both ends. */
+  /* Headline gradient from the GitHub banner: violet to pink. */
+  .text-gradient {
+    background: linear-gradient(90deg, var(--blue), var(--violet) 55%, var(--pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Hairline between sections: blue to pink, like the bar under the GitHub banner. */
   .rule {
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--line) 15%, var(--line) 85%, transparent);
+    background: linear-gradient(90deg, transparent, var(--blue) 20%, var(--violet) 55%, var(--pink) 80%, transparent);
+    opacity: 0.7;
   }
+  /* Frosted panel: translucent card over the page glow, with a thin light edge on top. */
+  .glass {
+    position: relative;
+    background: color-mix(in srgb, var(--card) 72%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--fg) 8%, transparent), 0 20px 60px -30px rgba(0, 0, 0, 0.6);
+  }
+  .glass-strong {
+    background: color-mix(in srgb, var(--card) 88%, transparent);
+  }
+  /* Soft coloured light placed behind a glass panel. */
+  .glow {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .light .glow { opacity: 0.22; }
   .chip {
-    @apply inline-flex items-center rounded-md border border-line px-2 py-0.5 font-mono text-[11px] text-muted;
+    @apply inline-flex items-center gap-1.5 rounded-md border border-line px-2 py-0.5 text-xs text-muted;
   }
   .btn {
     @apply inline-flex items-center gap-2 rounded-lg border border-line px-4 py-2 text-sm font-medium text-fg transition-colors;
@@ -119,3 +149,24 @@
   50% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
 }
 .gate-pulse { animation: gate-pulse 2.4s ease-out infinite; }
+
+/* A dot that travels along a pipeline connector. It moves during the first fifth of the
+   cycle and hides for the rest, so with staggered delays one dot seems to run down the chain. */
+@keyframes travel {
+  0% { inset-inline-start: 0; opacity: 0; }
+  2% { opacity: 1; }
+  18% { opacity: 1; }
+  20% { inset-inline-start: calc(100% - 6px); opacity: 0; }
+  100% { inset-inline-start: calc(100% - 6px); opacity: 0; }
+}
+.travel { animation: travel 5.5s linear infinite; }
+
+/* Hero constellation: a slow drift, nothing more. */
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -6px, 0); }
+}
+.drift { animation: drift 9s ease-in-out infinite; }
+
+/* Autoplay progress bar under the active step. */
+@keyframes grow { from { width: 0; } to { width: 100%; } }

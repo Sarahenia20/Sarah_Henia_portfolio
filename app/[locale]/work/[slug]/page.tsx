@@ -7,8 +7,12 @@ import { dirFor, isLocale, locales, siteUrl } from "@/lib/i18n/config"
 import { getDictionary } from "@/lib/content"
 import { systemFacts, systems, type SystemSlug } from "@/lib/content/shared"
 import ArchitectureFlow from "@/components/architecture-flow"
+import { StackItem } from "@/components/stack-icon"
 
 type Params = { locale: string; slug: string }
+
+const glowBg = { blue: "bg-blue", violet: "bg-violet", pink: "bg-pink" } as const
+const accentText = { blue: "text-blue", violet: "text-violet", pink: "text-pink" } as const
 
 function isSlug(value: string): value is SystemSlug {
   return (systems as readonly string[]).includes(value)
@@ -42,25 +46,25 @@ export default function CaseStudyPage({ params }: { params: Params }) {
   const c = t.cases[slug]
   const L = t.caseLabels
   const facts = systemFacts[slug]
-  const status = t.work.status[c.status as keyof typeof t.work.status]
   const nextSlug = systems[(systems.indexOf(slug) + 1) % systems.length]
   const Back = locale === "ar" ? ArrowRight : ArrowLeft
   const Fwd = locale === "ar" ? ArrowLeft : ArrowRight
 
   return (
-    <article className="container py-12 md:py-16">
+    <article className="container relative overflow-x-clip py-12 md:py-16">
       <Link href={`/${locale}#work`} className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-fg">
         <Back size={15} /> {L.back}
       </Link>
 
       {/* Title block */}
-      <header className="mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+      <header className="relative mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+        <span className={`glow -top-24 -start-24 h-80 w-80 ${glowBg[facts.accent]}`} />
         <div>
           <div className="flex flex-wrap items-center gap-3">
             {facts.logo && (
               <Image src={facts.logo} alt={facts.org} width={96} height={28} className={facts.logo.endsWith(".svg") ? "logo-white h-6 w-auto" : "h-8 w-8 object-contain"} />
             )}
-            <p className="eyebrow">{t.work.cards[slug].kicker}</p>
+            <p className={`eyebrow ${accentText[facts.accent]}`}>{t.work.cards[slug].kicker}</p>
           </div>
           <h1 className="mt-5 text-4xl font-extrabold tracking-[-0.03em] md:text-6xl">{c.title}</h1>
           <p className="mt-5 max-w-[30ch] font-serif text-2xl italic leading-snug text-fg/90 md:text-[2rem]">{c.subtitle}</p>
@@ -68,20 +72,28 @@ export default function CaseStudyPage({ params }: { params: Params }) {
         <dl className="grid content-start gap-4 text-sm lg:pt-12">
           <Fact label={L.role} value={c.role} />
           <Fact label={L.period} value={c.period} />
-          <div className="border-s border-line ps-4">
-            <dt className="eyebrow">{L.status}</dt>
-            <dd className="mt-1.5"><span className="chip border-green/50 text-green">{status}</span></dd>
-          </div>
-          <div className="border-s border-line ps-4">
-            <dt className="eyebrow">{L.stack}</dt>
-            <dd className="mt-2 flex flex-wrap gap-1.5">
-              {facts.stack.map((s) => <span key={s} className="chip">{s}</span>)}
-            </dd>
-          </div>
         </dl>
       </header>
 
       <div className="rule my-14" />
+
+      <section>
+        <h2 className="text-2xl font-bold tracking-tight md:text-3xl">{L.stack}</h2>
+        <ul className="mt-6 flex flex-wrap gap-2">
+          {facts.stack.map((s) => <StackItem key={s} name={s} size={30} layout="row" />)}
+        </ul>
+      </section>
+
+      <Section title={L.resume}>
+        <ul className="glass grid gap-3 rounded-2xl p-6 md:p-8">
+          {c.resume.map((line) => (
+            <li key={line.slice(0, 40)} className="flex gap-3 text-[15px] leading-relaxed">
+              <span className={`mt-[10px] h-1.5 w-1.5 flex-none rounded-full ${glowBg[facts.accent]}`} aria-hidden />
+              <span>{line}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
       <Section title={L.problem}>
         <Prose paragraphs={c.problem} />
@@ -101,7 +113,7 @@ export default function CaseStudyPage({ params }: { params: Params }) {
       <Section title={L.decisions}>
         <dl className="grid gap-5 md:grid-cols-2 md:[&>*:last-child:nth-child(odd)]:col-span-2">
           {c.decisions.map(([head, body]) => (
-            <div key={head} className="rounded-xl border border-line bg-card p-5">
+            <div key={head} className="glass rounded-xl p-5">
               <dt className="font-semibold leading-snug">{head}</dt>
               <dd className="mt-2 text-sm leading-relaxed text-muted">{body}</dd>
             </div>
@@ -135,7 +147,7 @@ export default function CaseStudyPage({ params }: { params: Params }) {
 
       <div className="rule my-12" />
 
-      <Link href={`/${locale}/work/${nextSlug}`} className="group flex items-center justify-between rounded-2xl border border-line bg-card p-6 transition-colors hover:border-fg/30 md:p-8">
+      <Link href={`/${locale}/work/${nextSlug}`} className="glass group flex items-center justify-between rounded-2xl p-6 transition-colors hover:border-fg/30 md:p-8">
         <div>
           <p className="eyebrow">{L.next}</p>
           <p className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">{t.cases[nextSlug].title}</p>

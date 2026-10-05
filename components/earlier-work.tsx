@@ -10,7 +10,7 @@ export default function EarlierWork({ t }: { t: Dictionary }) {
       <SectionHeading eyebrow={t.earlier.eyebrow} heading={t.earlier.heading} intro={t.earlier.intro} />
       <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {earlierProjects.map((p) => (
-          <li key={p.key} className="flex flex-col overflow-hidden rounded-xl border border-line bg-card">
+          <li key={p.key} className="glass flex flex-col overflow-hidden rounded-xl">
             <div className="relative aspect-[16/10] border-b border-line bg-bg">
               <Image
                 src={p.image}

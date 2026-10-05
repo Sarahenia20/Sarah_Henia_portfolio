@@ -7,51 +7,54 @@ export const links = {
   github: "https://github.com/Sarahenia20",
 }
 
-// The three angles of the resume. The lens switcher on the home page uses the same keys.
+// The three angles of the resume. The lens switcher on the home page uses the same keys
+// to change emphasis; the downloadable resume is always the Software Engineer one.
 export const focuses = ["sol", "ai", "swe"] as const
 export type Focus = (typeof focuses)[number]
 
-const resumeFile: Record<Focus, string> = {
-  sol: "AI_Solutions_Governance",
-  ai: "AI_Engineer",
-  swe: "Software_Engineer",
+// One resume on the site. French visitors get the French version; everyone else the English one.
+export function resumeHref(locale: Locale) {
+  return locale === "fr"
+    ? "/resume/Sarah_Henia_Software_Engineer_FR_Photo.pdf"
+    : "/resume/Sarah_Henia_Software_Engineer_EN_NoPhoto.pdf"
 }
 
-// Which PDF to hand out: no photo for English-speaking markets, photo for France and the Middle East.
-export function resumeHref(focus: Focus, locale: Locale) {
-  const variant = locale === "fr" ? "FR_Photo" : locale === "ar" ? "EN_Photo" : "EN_NoPhoto"
-  return `/resume/Sarah_Henia_${resumeFile[focus]}_${variant}.pdf`
-}
-
-export const systems = ["dawn", "market-intelligence", "collaboris"] as const
+// Order on the home page and in the "next case study" links.
+export const systems = ["collaboris", "market-intelligence", "dawn"] as const
 export type SystemSlug = (typeof systems)[number]
 
 export const systemFacts: Record<
   SystemSlug,
-  { org: string; period: string; stack: string[]; logo?: string; accent: "blue" | "violet" | "pink" }
+  { org: string; stack: string[]; logo: string; accent: "blue" | "violet" | "pink" }
 > = {
-  dawn: {
-    org: "The SamurAI",
-    period: "2026",
-    stack: ["Python", "SurrealDB", "Redis", "OpenRouter", "Microsoft Graph", "AWS EC2", "GitHub Actions", "Logfire", "Langfuse"],
-    logo: "/logos/samurai-white.svg",
-    accent: "blue",
-  },
-  "market-intelligence": {
-    org: "The SamurAI",
-    period: "2026",
-    stack: ["Python", "SurrealDB", "LLM gateway", "Pydantic", "Docker", "Evals", "NIST AI RMF", "ISO/IEC 42001"],
-    logo: "/logos/samurai-white.svg",
-    accent: "violet",
-  },
   collaboris: {
     org: "CED Tunisia",
-    period: "Feb - Aug 2026",
-    stack: ["Angular 19", "ASP.NET Core 8", "SignalR", "Redis", "Cosmos DB", "SQL Server", "FastAPI", "Azure OpenAI", "MCP", "Azure DevOps"],
+    stack: ["Angular", "TypeScript", "C#", ".NET", "SignalR", "Redis", "SQL Server", "Cosmos DB", "Python", "FastAPI", "Azure OpenAI", "MCP", "Azure", "Azure DevOps", "npm", "NuGet"],
     logo: "/logos/collaboris.png",
     accent: "pink",
   },
+  "market-intelligence": {
+    org: "The SamurAI",
+    stack: ["Python", "Pydantic", "SurrealDB", "LLM gateway", "OpenAI", "Claude", "MCP", "Docker", "GitHub Actions", "Evals", "NIST AI RMF", "ISO 42001"],
+    logo: "/logos/samurai-white.svg",
+    accent: "violet",
+  },
+  dawn: {
+    org: "The SamurAI",
+    stack: ["Python", "SurrealDB", "Redis", "OpenRouter", "Llama", "Microsoft Graph", "AWS", "Linux", "GitHub Actions", "Logfire", "Langfuse"],
+    logo: "/logos/samurai-white.svg",
+    accent: "blue",
+  },
 }
+
+// Site-wide stack, same rows as the GitHub profile.
+export const stackGroups = {
+  ai: ["Claude", "OpenAI", "MCP", "LangChain", "Hugging Face", "Pydantic"],
+  build: ["Python", "TypeScript", "C#", ".NET", "FastAPI", "Node.js", "GraphQL"],
+  front: ["Angular", "React", "Next.js"],
+  data: ["SurrealDB", "PostgreSQL", "SQL Server", "MongoDB", "Redis", "Neo4j"],
+  cloud: ["AWS", "Azure", "Azure DevOps", "Docker", "GitHub Actions", "Nginx", "Linux"],
+} as const
 
 export const earlierProjects = [
   {
@@ -72,7 +75,7 @@ export const earlierProjects = [
   {
     key: "pentaart",
     title: "PentaArt",
-    stack: ["Django 5", "Next.js", "Celery", "Redis", "PostgreSQL"],
+    stack: ["Django", "Next.js", "Celery", "Redis", "PostgreSQL"],
     image: "/images/projects/pentaart-gallery.png",
     github: "https://github.com/Sarahenia20/Pentagos_Django",
   },
@@ -93,7 +96,7 @@ export const earlierProjects = [
   {
     key: "waste2product",
     title: "waste2product",
-    stack: ["Laravel 12", "PHP 8.2", "MySQL"],
+    stack: ["Laravel", "PHP", "MySQL"],
     image: "/images/projects/waste2product-projects.png",
     github: "https://github.com/Sarahenia20/waste2product",
     demo: "https://waste2product.up.railway.app/",

@@ -4,7 +4,9 @@ import SectionHeading from "./section-heading"
 export default function About({ t }: { t: Dictionary }) {
   const facts = Object.values(t.about.facts)
   return (
-    <section id="about" className="scroll-mt-20 border-y border-line/70 bg-card/40 py-16 md:py-24">
+    <section id="about" className="relative scroll-mt-20 overflow-hidden py-16 md:py-24">
+      <div className="rule absolute inset-x-0 top-0" />
+      <span className="glow -end-24 top-10 h-80 w-80 bg-pink" />
       <div className="container grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
         <div>
           <SectionHeading eyebrow={t.about.eyebrow} heading={t.about.heading} />
@@ -14,9 +16,9 @@ export default function About({ t }: { t: Dictionary }) {
             ))}
           </div>
         </div>
-        <dl className="grid content-start gap-5 lg:pt-14">
+        <dl className="glass grid content-start gap-5 rounded-2xl p-6 lg:mt-14">
           {facts.map(([label, value]) => (
-            <div key={label} className="border-s border-line ps-4">
+            <div key={label} className="border-s-2 border-blue/50 ps-4">
               <dt className="eyebrow">{label}</dt>
               <dd className="mt-1.5 text-sm leading-relaxed">{value}</dd>
             </div>

@@ -27,7 +27,7 @@ export const en = {
   },
   lens: {
     label: "Read this page as a",
-    hint: "Same facts, different emphasis. The resume button follows your choice.",
+    hint: "Same facts, different emphasis.",
     options: {
       sol: {
         label: "Solutions & governance",
@@ -81,7 +81,7 @@ export const en = {
           "Graph memory in SurrealDB with hybrid RAG and a Redis context cache.",
           "Human approval by email before any write to Microsoft Planner.",
         ],
-        flow: ["Meeting", "Extraction", "Graph memory", "Human approval", "Planner"],
+        flow: [["Meetings", "recorded transcripts"], ["Graph memory", "RAG + Redis CAG"], ["LLM extraction", "owner · priority · due"], ["Human approval", "every task"], ["Microsoft Planner", "via Graph API"]],
         gate: 3,
       },
       "market-intelligence": {
@@ -93,7 +93,7 @@ export const en = {
           "One knowledge graph: every claim traces back to its source document.",
           "One AI gateway for every model call; human review before any CRM write.",
         ],
-        flow: ["Sources", "Ingest", "Extract", "Knowledge graph", "Human review", "CRM"],
+        flow: [["Sources", "allow-listed, EN / AR"], ["Ingest", "fetch · clean · store"], ["Classify + extract", "schema-enforced LLM"], ["Knowledge graph", "one company, one node"], ["Human review", "before any CRM write"]],
         gate: 4,
       },
       collaboris: {
@@ -105,15 +105,21 @@ export const en = {
           "Presence down to the open dialog, tab or wizard step, across all browser tabs.",
           "PresenceAI: a GDPR-by-design journal queried by a governed AI assistant over MCP.",
         ],
-        flow: ["Browser tabs", "SharedWorker", "SignalR + Redis", "CDC journal", "Governed AI"],
+        flow: [["Browser tabs", "MutationObserver view"], ["SharedWorker", "one socket per browser"], ["SignalR + Redis", "live presence"], ["CDC journal", "OLTP to OLAP · Cosmos"], ["Governed AI", "Azure OpenAI over MCP"]],
         gate: 4,
       },
     },
   },
+  stack: {
+    eyebrow: "Stack",
+    heading: "What I build with",
+    intro: "The same wall as on my GitHub profile. Each system page lists its own.",
+    groups: { ai: "AI", build: "Build", front: "Front", data: "Data", cloud: "Cloud" },
+  },
   journey: {
     eyebrow: "Journey",
     heading: "From business intelligence to shipping governed AI",
-    intro: "Click a point to read it.",
+    intro: "It walks on its own. Click a point to stop and read.",
     steps: {
       essect: {
         title: "Bachelor's degree, Business Intelligence",
@@ -201,10 +207,11 @@ export const en = {
     period: "Period",
     status: "Status",
     stack: "Stack",
+    resume: "On the resume",
     problem: "The problem",
     built: "What I built",
     architecture: "How it works",
-    architectureHint: "Click a step.",
+    architectureHint: "Plays on its own. Click a step to pause.",
     decisions: "Decisions and trade-offs",
     governance: "Governance",
     learned: "What I learned",
@@ -218,6 +225,12 @@ export const en = {
       role: "Designed and built the whole system",
       period: "2026, in production since March",
       status: "live",
+      resume: [
+        "Designed and built Dawn, an autonomous AI agent for project management, live in production from March 2026: turns recorded meetings into tasks with owner, priority and due date, with human-in-the-loop approval before any write to Microsoft Planner.",
+        "Engineered its graph memory: a SurrealDB knowledge graph with hybrid RAG (vector search plus recency boost) and a Redis context cache (CAG), integrated with the Microsoft Graph API.",
+        "Designed its governance and security layer: identity gate, per-agent policies, HMAC-verified inbound messages, audit log, confidence gating, and sensitive data routed to a local Llama model.",
+        "Built multi-model routing through OpenRouter with automatic fallback; deployed on hardened AWS EC2 with GitHub Actions CI/CD and observability in Logfire and Langfuse.",
+      ],
       problem: [
         "A small consulting team records a lot of meetings. The commitments made in them were not reliably turning into tracked work: someone had to read the transcript, decide who owns what, and type it into Microsoft Planner. Follow-up depended on memory.",
         "The brief was not \"automate project management\". It was narrower and harder: get the right tasks into Planner, with the right owner and date, without ever letting an AI write something nobody checked.",
@@ -267,6 +280,10 @@ export const en = {
       role: "Architecture, governance design and implementation",
       period: "2026, pilot in progress",
       status: "pilot",
+      resume: [
+        "Designing and building a multi-agent market-intelligence system for a Middle East cybersecurity client: bilingual (English/Arabic) data ingestion, classification and schema-enforced LLM extraction into a SurrealDB knowledge graph, with human review before any CRM write.",
+        "Designing its AI governance: an AI gateway for every model and tool call (credential, budget, trace), controls mapped to NIST AI RMF and ISO/IEC 42001, and evaluation metrics on a labelled set run on every change.",
+      ],
       problem: [
         "The client sells cybersecurity and AI assurance services in the Gulf. Every day regulators act, companies get breached, tenders open, laws get deadlines. Nobody can read all of it, and the question is narrow: which companies in our territory just did something that means they need us, and why?",
         "A scraper fails because it produces pages, not decisions. A chatbot fails because it can invent, cannot be audited, and would push unverified claims into the CRM. Three failure modes shaped the design: a model that invents, one company that exists twice in the data, and controls that live only in a prompt.",
@@ -315,6 +332,16 @@ export const en = {
       role: "End to end: architecture, implementation, packaging, deployment, executive presentation",
       period: "February to August 2026, three releases",
       status: "shipped",
+      resume: [
+        "Built Collaboris, a real-time user-presence library for enterprise web apps, shipped as two installable packages: an Angular 19 library (npm) and an ASP.NET Core 8 SDK (NuGet) over SignalR and Redis. Delivered in three releases under department-head review.",
+        "Presented the architecture, governance and business case to the department head and CED executives.",
+        "Designed a five-layer identity cascade that recognises users from the host app's existing session, so nobody signs in twice.",
+        "Built a layered view resolver: a scoped, debounced DOM MutationObserver that locates each user down to the open dialog, tab or wizard step, so co-presence is exact rather than per-route.",
+        "Detected real user activity by wrapping the browser's fetch and XMLHttpRequest (write methods only, exclusion list, deduplication window) and multiplexed every tab onto one WebSocket with a SharedWorker.",
+        "Built PresenceAI, the data and AI layer: change-data capture streaming live Redis signals into a Cosmos DB journal (OLTP to OLAP, Python/FastAPI), queried in natural language through a governed Azure OpenAI assistant over MCP.",
+        "Implemented GDPR compliance by design (data minimisation, consent, 30-day TTL retention, fail-closed access, cost caps) and covered the AI layer with unit tests.",
+        "Deployed the full stack to Azure (App Service, SQL Server, Azure Cache for Redis) through Azure DevOps build and release pipelines, migrating the API's data layer from PostgreSQL to SQL Server.",
+      ],
       problem: [
         "Two claims handlers open the same record in an internal app at the same time. Neither knows the other is there. The first saves. The second, working from what they saw a moment ago, saves too, and silently overwrites the first. No warning, no conflict. The last save wins, and nobody notices until a client does.",
         "Enterprise web apps are blind to their own users. The question was how to make any internal application aware of who is in it and what is changing, without rebuilding it, and without the presence data becoming a surveillance tool.",

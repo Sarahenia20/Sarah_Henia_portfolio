@@ -1,10 +1,10 @@
 "use client"
 
-import { useState, type ComponentType } from "react"
+import { useEffect, useRef, useState, type ComponentType } from "react"
 import {
   Activity, Bell, Bot, BookOpen, Building2, CheckCircle2, ChevronLeft, ChevronRight, Database, Download, FileText,
-  Gauge, LayoutGrid, Languages, ListChecks, Network, Radio, Repeat, Rss, Save, Send, Share2, Shield, Sparkles,
-  UserCheck, type LucideProps,
+  Gauge, LayoutGrid, Languages, ListChecks, Network, Pause, Play, Radio, Repeat, Rss, Save, Send, Share2, Shield,
+  Sparkles, UserCheck, type LucideProps,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -22,6 +22,8 @@ const icons: Record<string, ComponentType<LucideProps>> = {
 const W = 1000
 const NODE = 30 // circle radius
 const ROW_H = 160
+const AUTO_MS = 3200 // time on each step while playing
+const PAUSE_AFTER_CLICK_MS = 12000
 
 // Positions the steps on one row, or two rows joined like a snake when there are many.
 function layout(n: number, rtl: boolean) {
@@ -41,52 +43,95 @@ function layout(n: number, rtl: boolean) {
   }
 }
 
-function connector(a: { x: number; y: number; row: number }, b: { x: number; y: number; row: number }) {
+type P = { x: number; y: number; row: number }
+
+function connector(a: P, b: P) {
   if (a.row === b.row) {
     const dir = Math.sign(b.x - a.x)
-    const x1 = a.x + dir * (NODE + 6)
-    const x2 = b.x - dir * (NODE + 6)
-    return `M ${x1} ${a.y} L ${x2} ${b.y}`
+    return `M ${a.x + dir * (NODE + 6)} ${a.y} L ${b.x - dir * (NODE + 6)} ${b.y}`
   }
   // Row change: drop down and come back on the other side with a soft curve.
-  const y1 = a.y + NODE + 6
-  const y2 = b.y - NODE - 6
   const midY = (a.y + b.y) / 2
-  return `M ${a.x} ${y1} C ${a.x} ${midY}, ${b.x} ${midY}, ${b.x} ${y2}`
+  return `M ${a.x} ${a.y + NODE + 6} C ${a.x} ${midY}, ${b.x} ${midY}, ${b.x} ${b.y - NODE - 6}`
 }
 
 export default function ArchitectureFlow({ steps, hint, rtl = false }: { steps: FlowStep[]; hint: string; rtl?: boolean }) {
   const [active, setActive] = useState(0)
+  const [playing, setPlaying] = useState(true)
+  const resumeTimer = useRef<ReturnType<typeof setTimeout>>()
   const { points, height } = layout(steps.length, rtl)
   const step = steps[active]
   const Prev = rtl ? ChevronRight : ChevronLeft
   const Next = rtl ? ChevronLeft : ChevronRight
 
+  // Autoplay: advance one step at a time, looping. Stops while the tab is hidden.
+  useEffect(() => {
+    if (!playing) return
+    const id = setInterval(() => {
+      if (document.visibilityState === "visible") setActive((a) => (a + 1) % steps.length)
+    }, AUTO_MS)
+    return () => clearInterval(id)
+  }, [playing, steps.length])
+
+  // Reading a step by hand pauses the autoplay for a while, then it picks up again.
+  function pick(i: number) {
+    setActive(i)
+    setPlaying(false)
+    clearTimeout(resumeTimer.current)
+    resumeTimer.current = setTimeout(() => setPlaying(true), PAUSE_AFTER_CLICK_MS)
+  }
+  useEffect(() => () => clearTimeout(resumeTimer.current), [])
+
   return (
     <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-      <div className="rounded-2xl border border-line bg-card p-4 md:p-6">
-        <p className="eyebrow mb-2">{hint}</p>
-        <svg viewBox={`0 0 ${W} ${height}`} className="hidden w-full md:block" role="list" aria-label={hint}>
-          {points.map((p, i) =>
-            i < points.length - 1 ? (
+      <div className="glass relative overflow-hidden rounded-2xl p-4 md:p-6">
+        <span className="glow -top-24 start-1/3 h-64 w-64 bg-violet" />
+        <div className="relative mb-2 flex items-center justify-between">
+          <p className="eyebrow">{hint}</p>
+          <button
+            type="button"
+            onClick={() => {
+              clearTimeout(resumeTimer.current)
+              setPlaying((p) => !p)
+            }}
+            className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-line text-muted hover:text-fg"
+            aria-label={playing ? "Pause" : "Play"}
+            aria-pressed={playing}
+          >
+            {playing ? <Pause size={14} /> : <Play size={14} />}
+          </button>
+        </div>
+
+        <svg viewBox={`0 0 ${W} ${height}`} className="relative hidden w-full md:block" role="list" aria-label={hint}>
+          <defs>
+            <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" />
+            </filter>
+          </defs>
+          {points.map((p, i) => {
+            if (i >= points.length - 1) return null
+            const d = connector(p, points[i + 1])
+            const done = i < active
+            const current = i === active - 1
+            return (
               <g key={`c${i}`} aria-hidden>
                 <path
-                  d={connector(p, points[i + 1])}
+                  d={d}
                   fill="none"
-                  stroke={i < active ? "var(--blue)" : "var(--line)"}
+                  stroke={done ? "var(--blue)" : "var(--line)"}
                   strokeWidth="1.5"
                   strokeDasharray={steps[i + 1].gate ? "4 5" : undefined}
-                  className="transition-colors duration-300"
+                  className="transition-colors duration-500"
                 />
-                <circle
-                  cx={points[i + 1].row === p.row ? points[i + 1].x - Math.sign(points[i + 1].x - p.x) * (NODE + 6) : points[i + 1].x}
-                  cy={points[i + 1].row === p.row ? p.y : points[i + 1].y - NODE - 6}
-                  r="3"
-                  fill={i < active ? "var(--blue)" : "var(--line)"}
-                />
+                {/* The pulse rides the connector that was just crossed. */}
+                {current && (
+                  <circle r="4" fill={steps[i + 1].gate ? "var(--green)" : "var(--blue)"}>
+                    <animateMotion dur="0.9s" fill="freeze" path={d} />
+                  </circle>
+                )}
               </g>
-            ) : null,
-          )}
+            )
+          })}
           {points.map((p, i) => {
             const s = steps[i]
             const Icon = icons[s.id]
@@ -99,11 +144,11 @@ export default function ArchitectureFlow({ steps, hint, rtl = false }: { steps: 
                 tabIndex={0}
                 aria-label={s.label}
                 aria-current={selected ? "step" : undefined}
-                onClick={() => setActive(i)}
-                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActive(i)}
+                onClick={() => pick(i)}
+                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && pick(i)}
                 className="cursor-pointer outline-none"
               >
-                {selected && <circle cx={p.x} cy={p.y} r={NODE + 8} fill={color} opacity="0.14" />}
+                {selected && <circle cx={p.x} cy={p.y} r={NODE + 14} fill={color} opacity="0.35" filter="url(#soft)" />}
                 <circle
                   cx={p.x}
                   cy={p.y}
@@ -114,7 +159,7 @@ export default function ArchitectureFlow({ steps, hint, rtl = false }: { steps: 
                   className="transition-all duration-300"
                 />
                 {Icon ? (
-                  <Icon x={p.x - 10} y={p.y - 10} width={20} height={20} strokeWidth={1.75} color={s.gate ? "var(--green)" : selected ? "var(--blue)" : "var(--fg)"} />
+                  <Icon x={p.x - 11} y={p.y - 11} width={22} height={22} strokeWidth={1.75} color={s.gate ? "var(--green)" : selected ? "var(--blue)" : "var(--fg)"} />
                 ) : (
                   <circle cx={p.x} cy={p.y} r="4" fill={color} />
                 )}
@@ -130,7 +175,7 @@ export default function ArchitectureFlow({ steps, hint, rtl = false }: { steps: 
                   {s.label}
                 </text>
                 {s.gate && (
-                  <text x={p.x} y={p.y + NODE + 38} textAnchor="middle" fontSize="10" fill="var(--green)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.08em" }}>
+                  <text x={p.x} y={p.y + NODE + 38} textAnchor="middle" fontSize="10" fontWeight="700" fill="var(--green)" style={{ fontFamily: "var(--font-sans)", letterSpacing: "0.1em" }}>
                     HUMAN
                   </text>
                 )}
@@ -140,16 +185,16 @@ export default function ArchitectureFlow({ steps, hint, rtl = false }: { steps: 
         </svg>
 
         {/* Phones: a vertical chain of buttons. */}
-        <ol className="grid gap-1 md:hidden">
+        <ol className="relative grid gap-1 md:hidden">
           {steps.map((s, i) => {
             const Icon = icons[s.id]
             return (
               <li key={s.id}>
                 <button
-                  onClick={() => setActive(i)}
+                  onClick={() => pick(i)}
                   aria-current={i === active ? "step" : undefined}
                   className={cn(
-                    "flex w-full items-center gap-3 rounded-lg border px-3 py-2 text-start text-sm",
+                    "flex w-full items-center gap-3 rounded-lg border px-3 py-2 text-start text-sm transition-colors",
                     i === active ? "border-blue bg-tint" : "border-transparent",
                     s.gate && "text-green",
                   )}
@@ -165,28 +210,22 @@ export default function ArchitectureFlow({ steps, hint, rtl = false }: { steps: 
         </ol>
       </div>
 
-      <aside key={step.id} className="flex flex-col rounded-2xl border border-line bg-card p-5 motion-safe:animate-[fade_.3s_ease-out] md:p-6" aria-live="polite">
+      <aside key={step.id} className="glass glass-strong flex flex-col rounded-2xl p-5 motion-safe:animate-[fade_.3s_ease-out] md:p-6" aria-live="polite">
         <p className={cn("eyebrow", step.gate && "text-green")}>
           {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
           {step.gate ? " · human gate" : ""}
         </p>
         <h3 className="mt-2 text-xl font-bold tracking-tight">{step.label}</h3>
         <p className="mt-3 flex-1 text-sm leading-relaxed text-muted md:text-[15px]">{step.detail}</p>
-        <div className="mt-5 flex gap-2">
-          <button
-            onClick={() => setActive((a) => Math.max(0, a - 1))}
-            disabled={active === 0}
-            className="btn h-9 py-0 disabled:opacity-40"
-            aria-label="Previous step"
-          >
+        {/* Progress bar for the autoplay, restarts on every step. */}
+        <div className="mt-4 h-0.5 overflow-hidden rounded bg-line" aria-hidden>
+          {playing && <div key={active} className="h-full bg-blue" style={{ animation: `grow ${AUTO_MS}ms linear forwards` }} />}
+        </div>
+        <div className="mt-4 flex gap-2">
+          <button onClick={() => pick((active - 1 + steps.length) % steps.length)} className="btn h-9 py-0" aria-label="Previous step">
             <Prev size={16} />
           </button>
-          <button
-            onClick={() => setActive((a) => Math.min(steps.length - 1, a + 1))}
-            disabled={active === steps.length - 1}
-            className="btn h-9 py-0 disabled:opacity-40"
-            aria-label="Next step"
-          >
+          <button onClick={() => pick((active + 1) % steps.length)} className="btn h-9 py-0" aria-label="Next step">
             <Next size={16} />
           </button>
         </div>
