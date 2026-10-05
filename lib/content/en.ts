@@ -1,0 +1,364 @@
+// English copy. Source of truth: Resume/_source/content.py, the GitHub profile and the case-study briefs in _notes/.
+// House rule: no em dashes.
+
+export const en = {
+  meta: {
+    title: "Sarah Henia, AI Solutions & Software Engineer",
+    description:
+      "Sarah Henia builds AI systems that run in production, with a human approving every step that matters and the governance to prove it. Case studies: Dawn, a market-intelligence system, Collaboris.",
+  },
+  nav: { work: "Work", journey: "Journey", about: "About", contact: "Contact", resume: "Resume" },
+  a11y: { skip: "Skip to content", theme: "Switch theme", language: "Language", menu: "Menu" },
+  hero: {
+    status: "Available · Tunis · open to relocation",
+    name: "Sarah Henia",
+    role: "AI Solutions & Software Engineer",
+    // The accent word is set in italic serif.
+    pitch: {
+      before: "I build AI systems that run in production, with a ",
+      accent: "human",
+      after: " approving every step that matters, and the governance to prove it.",
+    },
+    resume: "Resume (PDF)",
+    linkedin: "LinkedIn",
+    github: "GitHub",
+    email: "Email",
+    photoAlt: "Portrait of Sarah Henia",
+  },
+  lens: {
+    label: "Read this page as a",
+    hint: "Same facts, different emphasis. The resume button follows your choice.",
+    options: {
+      sol: {
+        label: "Solutions & governance",
+        summary:
+          "AI solutions engineer who turns business needs into governed AI systems that run in production, and can explain them to engineers and executives alike. Designed the governance of three real agentic systems (GDPR, NIST AI RMF, ISO/IEC 42001), managed a product roadmap, and presents in English, French and Arabic.",
+        skills: [
+          ["Solutions & product", "Solution architecture, requirements and specifications, roadmap and backlog, Agile/Scrum, stakeholder management, technical documentation, executive presentations"],
+          ["AI governance", "AI gateway, guardrails, human-in-the-loop, audit logging, LLM evaluation and metrics, GDPR, NIST AI RMF, ISO/IEC 42001"],
+          ["AI & data", "Agentic AI, multi-agent systems, LLMs, RAG, CAG, graph memory, knowledge graphs, MCP, ETL, change-data capture; Azure OpenAI, OpenRouter; SurrealDB, SQL Server, PostgreSQL, Redis, Cosmos DB"],
+          ["Build & cloud", "Python, FastAPI, C#, ASP.NET Core, TypeScript, Angular, REST, API gateway, Microsoft Graph API; AWS, Azure, Docker, CI/CD, observability (Logfire, Langfuse)"],
+        ],
+      },
+      ai: {
+        label: "AI engineering",
+        summary:
+          "AI engineer who designs and ships agentic systems that run in production: LLM pipelines where a human approves every write, graph memory and hybrid retrieval over real company data, and the data pipelines and cloud infrastructure under them on AWS and Azure, built with governance in mind.",
+        skills: [
+          ["AI", "Agentic and multi-agent systems, LLMs, RAG, CAG, graph memory, knowledge graphs, MCP, AI gateway, LLM evaluation, human-in-the-loop, LangChain, Azure OpenAI, OpenRouter"],
+          ["Data", "Data modeling, ETL, change-data capture, OLTP/OLAP, medallion architecture; SurrealDB, PostgreSQL, SQL Server, MongoDB, Redis, Cosmos DB, Neo4j"],
+          ["Build", "Python, FastAPI, C#, ASP.NET Core, Node.js, TypeScript, Angular, React, REST, GraphQL, WebSockets, Microsoft Graph API"],
+          ["Cloud & quality", "AWS, Azure, Docker, GitHub Actions, CI/CD, Linux, observability (Logfire, Langfuse), pytest; GDPR, NIST AI RMF, ISO/IEC 42001"],
+        ],
+      },
+      swe: {
+        label: "Software engineering",
+        summary:
+          "Software engineer who started in full-stack JavaScript (MERN) and now builds production systems in C#/.NET, Angular and Python: an enterprise real-time presence library, data pipelines, and AI agents deployed on AWS and Azure. Cares about code that other teams can install, test, trust and maintain.",
+        skills: [
+          ["Backend", "C#, ASP.NET Core, SignalR, Python, FastAPI, Node.js, Express, Django, REST, GraphQL, WebSockets, JWT, API gateway"],
+          ["Frontend", "TypeScript, JavaScript, Angular, React, Next.js, Tailwind CSS, browser APIs (MutationObserver, SharedWorker), UI/UX, Figma"],
+          ["Data", "SQL Server, PostgreSQL, MongoDB, MySQL, Redis, Cosmos DB, SurrealDB; ETL, change-data capture"],
+          ["Cloud & DevOps", "Azure (App Service, DevOps pipelines), AWS EC2, Docker, GitHub Actions, CI/CD, Nginx, Linux, npm and NuGet packaging"],
+        ],
+      },
+    },
+  },
+  work: {
+    eyebrow: "Systems I built",
+    heading: "Three systems, each with a human in the loop",
+    intro:
+      "They run inside private company repositories, so the code is not public. The stories are: problem, architecture, decisions, governance and what each one taught me.",
+    read: "Read the case study",
+    status: { live: "In production", pilot: "Pilot, in progress", shipped: "Shipped, 3 releases" },
+    cards: {
+      dawn: {
+        title: "Dawn",
+        kicker: "The SamurAI · in production since March 2026",
+        tagline: "An autonomous project-management agent. Nothing is written until a human approves it.",
+        bullets: [
+          "Turns recorded meetings into tasks with owner, priority and due date.",
+          "Graph memory in SurrealDB with hybrid RAG and a Redis context cache.",
+          "Human approval by email before any write to Microsoft Planner.",
+        ],
+        flow: ["Meeting", "Extraction", "Graph memory", "Human approval", "Planner"],
+        gate: 3,
+      },
+      "market-intelligence": {
+        title: "Market-intelligence system",
+        kicker: "The SamurAI · for a Middle East cybersecurity client · 2026",
+        tagline: "A multi-agent system that reads the market in English and Arabic and proposes leads to a human.",
+        bullets: [
+          "Allow-listed sources, bilingual ingestion, schema-enforced LLM extraction.",
+          "One knowledge graph: every claim traces back to its source document.",
+          "One AI gateway for every model call; human review before any CRM write.",
+        ],
+        flow: ["Sources", "Ingest", "Extract", "Knowledge graph", "Human review", "CRM"],
+        gate: 4,
+      },
+      collaboris: {
+        title: "Collaboris",
+        kicker: "CED Tunisia · graduation internship · Feb to Aug 2026",
+        tagline: "A real-time presence library for enterprise web apps, shipped as npm and NuGet packages.",
+        bullets: [
+          "Angular 19 library and ASP.NET Core 8 SDK over SignalR and Redis.",
+          "Presence down to the open dialog, tab or wizard step, across all browser tabs.",
+          "PresenceAI: a GDPR-by-design journal queried by a governed AI assistant over MCP.",
+        ],
+        flow: ["Browser tabs", "SharedWorker", "SignalR + Redis", "CDC journal", "Governed AI"],
+        gate: 4,
+      },
+    },
+  },
+  journey: {
+    eyebrow: "Journey",
+    heading: "From business intelligence to shipping governed AI",
+    intro: "Click a point to read it.",
+    steps: {
+      essect: {
+        title: "Bachelor's degree, Business Intelligence",
+        org: "ESSECT, Tunis · 2020 to 2023",
+        text: "Where I learned to read data before writing code: modeling, SQL, reporting, and how a business actually asks questions.",
+      },
+      esprit: {
+        title: "Engineering degree, Software Engineering",
+        org: "ESPRIT, Tunis · 2023 to 2026",
+        text: "Full-stack JavaScript first, then .NET, Python and cloud. The academic projects below come from these three years.",
+      },
+      certs: {
+        title: "Cisco CCNA, AWS Cloud Practitioner, NVIDIA DLI",
+        org: "2024 to 2025",
+        text: "Networks, cloud fundamentals, and four NVIDIA courses including Building RAG Agents with LLMs and Adversarial ML.",
+      },
+      pm: {
+        title: "Product Manager, Dojo",
+        org: "The SamurAI · 2025",
+        text: "Managed the roadmap and backlog of Dojo, an AI-powered platform that generates on-demand test labs, turning stakeholder needs into specifications and sprint priorities.",
+      },
+      ced: {
+        title: "Software Engineering Intern, Collaboris",
+        org: "CED Tunisia · Feb to Aug 2026",
+        text: "Built Collaboris end to end in three releases under department-head review, and presented the architecture, governance and business case to CED executives.",
+      },
+      dawn: {
+        title: "Dawn goes live",
+        org: "The SamurAI · March 2026",
+        text: "The project-management agent I designed and built enters production, with human approval before every write.",
+      },
+      architect: {
+        title: "Software Architect & AI Solution Integrator",
+        org: "The SamurAI · 2026 to present",
+        text: "Designing the market-intelligence system and its governance: one graph, one gateway, one human.",
+      },
+    },
+  },
+  earlier: {
+    eyebrow: "Earlier work",
+    heading: "Academic projects, 2023 to 2025",
+    intro: "Built at ESPRIT, usually in teams and in sprints. Smaller in scope, but this is where the habits came from.",
+    code: "Code",
+    demo: "Live demo",
+    items: {
+      sentinelhub: "DevSecOps platform that runs several security scanners (Trivy, Semgrep, Gitleaks, SonarQube, OWASP ZAP) and shows the results in real time with Grafana.",
+      taskify: "MERN task and project management app with Gemini-assisted prioritisation, Socket.io collaboration and a Docker plus GitHub Actions pipeline, built over five sprints.",
+      pentaart: "Generative art platform combining two AI providers with algorithmic art (fractals, flow fields), async jobs with Celery and Redis, and tagged galleries.",
+      brando: "3D t-shirt customisation with Three.js, a survey module with analytics, and Gemini-driven Instagram automation.",
+      ecolink: "Eco-impact tracking and waste categorisation using semantic search, on a Django and FastAPI backend with a Next.js front end.",
+      waste2product: "Laravel platform where people declare waste materials, find DIY recycling tutorials and join environmental events.",
+    },
+  },
+  about: {
+    eyebrow: "About",
+    heading: "Engineer first, translator second",
+    paragraphs: [
+      "I like systems where the AI part is small and the engineering around it is careful: a model that proposes, a person who decides, a database that remembers why. That is the shape of everything I have shipped so far.",
+      "I came to software through data. A business-intelligence degree taught me to ask what a number means before computing it, and an engineering degree taught me to build the thing that computes it. Today I spend most of my time between the two: designing the architecture, writing the code, and explaining both to people who do not write code.",
+      "I present in English, French and Arabic, which matters when the client is in the Gulf, the team is in Tunis and the company is in the United States.",
+    ],
+    facts: {
+      location: ["Based in", "Tunis, Tunisia · open to relocation"],
+      languages: ["Languages", "Arabic (native) · English (C1) · French (B2)"],
+      education: ["Education", "Engineering degree in Software Engineering, ESPRIT · Bachelor's in Business Intelligence, ESSECT"],
+      certs: ["Certifications", "Cisco CCNA (2024) · AWS Certified Cloud Practitioner (2025) · NVIDIA DLI, 4 courses (2025)"],
+    },
+  },
+  contact: {
+    eyebrow: "Contact",
+    heading: "Let's talk about what you are building",
+    text: "Solutions engineering, AI governance, AI engineering or software engineering roles. Europe, the Middle East and the Americas.",
+    copy: "Copy email",
+    copied: "Copied",
+  },
+  footer: {
+    rights: "Sarah Henia",
+    built: "Built with Next.js, deployed on Vercel. No tracking.",
+    source: "Site source",
+  },
+  // Case-study pages. Each section has the same labels so the pages read as a series.
+  caseLabels: {
+    back: "All work",
+    role: "My role",
+    period: "Period",
+    status: "Status",
+    stack: "Stack",
+    problem: "The problem",
+    built: "What I built",
+    architecture: "How it works",
+    architectureHint: "Click a step.",
+    decisions: "Decisions and trade-offs",
+    governance: "Governance",
+    learned: "What I learned",
+    next: "Next case study",
+    confidential: "Built inside a private company repository. Names, credentials and internal identifiers are left out on purpose.",
+  },
+  cases: {
+    dawn: {
+      title: "Dawn",
+      subtitle: "An autonomous project-management agent where nothing is written until a human approves it.",
+      role: "Designed and built the whole system",
+      period: "2026, in production since March",
+      status: "live",
+      problem: [
+        "A small consulting team records a lot of meetings. The commitments made in them were not reliably turning into tracked work: someone had to read the transcript, decide who owns what, and type it into Microsoft Planner. Follow-up depended on memory.",
+        "The brief was not \"automate project management\". It was narrower and harder: get the right tasks into Planner, with the right owner and date, without ever letting an AI write something nobody checked.",
+      ],
+      built: [
+        "Dawn reads meeting transcripts, pulls in the team context it needs, extracts proposed tasks with an owner, a priority, a due date and a confidence score, and sends them to two oversight leads by email. They reply APPROVE or REJECT. Only then does Dawn create the tasks in Planner, store what happened in its graph memory, and start nudging assignees when work stalls.",
+        "Microsoft blocked app-only direct messages in Teams, so email became the approval channel. It shipped weeks earlier than waiting for admin access would have, and the leads liked it.",
+      ],
+      steps: [
+        { id: "transcript", label: "Transcript", detail: "Recorded meetings are fetched from the recorder API on a schedule, or dropped as files into a watched folder. Each one becomes a raw meeting record." },
+        { id: "guard", label: "Guard", detail: "Prompt-injection and sensitivity checks run before any model sees the text. Regulated or client-sensitive content is routed to a local Llama model and never leaves the box." },
+        { id: "context", label: "Context (CAG)", detail: "Roster, workloads and learned rules are pre-assembled in Redis with TTLs. Small, stable facts are cached rather than retrieved, so every call starts from the same context block." },
+        { id: "memory", label: "Graph memory (RAG)", detail: "Past meetings and decisions live in SurrealDB with a vector index. Results are re-ranked on similarity plus recency with a hard threshold, so old or noisy meetings never reach the prompt." },
+        { id: "extract", label: "Extraction", detail: "One LLM call proposes tasks: title, owner, bucket, due date, priority, reasoning and confidence. Models are aliases resolved by a router through OpenRouter with automatic fallback." },
+        { id: "gate", label: "Confidence gate", detail: "High-confidence proposals are queued for review, mid-confidence ones are queued and flagged, low-confidence ones are held and never proposed." },
+        { id: "human", label: "Human approval", detail: "The oversight leads receive one review email and reply APPROVE ALL, APPROVE n or REJECT n. Replies are parsed by regex first, an LLM second, a human third. Nothing is written before this step.", gate: true },
+        { id: "planner", label: "Planner", detail: "Approved tasks are created in Microsoft Planner through the Graph API. Rejected ones are marked resolved. A confirmation email closes the loop." },
+        { id: "writeback", label: "Write-back", detail: "Each created task becomes nodes and edges in the graph (task, assigned to, extracted from), plus the meeting summary embedding. The memory grows with every approved decision." },
+        { id: "nudge", label: "Nudges", detail: "Scheduled runs remind assignees of overdue tasks, post a channel digest and summarise for oversight. Assignees can reply \"done\" by email. Silent when everything is healthy." },
+      ],
+      decisions: [
+        ["Human approval before any write, instead of auto-create above a confidence level", "Trust had to come first, and the blast radius of a bad task had to be zero. The early design auto-created high-confidence tasks; the shipped rule is that nothing reaches Planner without a reply."],
+        ["CAG and RAG, not one or the other", "Small stable facts (who is on the team, who is overloaded) are cached in Redis. Large history (what we decided in past meetings) is retrieved. They solve different problems."],
+        ["Hybrid re-ranking instead of naive top-k retrieval", "Similarity alone let old meetings outrank recent ones. Re-ranking on similarity and recency, with a hard threshold, keeps noise out of the prompt."],
+        ["SurrealDB instead of a separate graph database plus a vector store", "Documents, graph edges and vectors in one engine: one schema, one client, one backup. Edges are first-class, so \"task extracted from meeting\" is a relationship, not a field."],
+        ["Direct API calls instead of an agent framework", "Explicit control flow, grep-able AI calls, and state that is visible in Redis and SurrealDB rather than hidden in a chain."],
+        ["Models as aliases behind a router", "Swapping a provider is a one-line change. Sensitive content is forced to a local model. No model name is hardcoded in business logic."],
+        ["Archive at 90 days instead of delete", "History has pattern value and storage is cheap. Archived meetings leave the active context but stay queryable."],
+      ],
+      governance: [
+        ["Identity gate", "Only senders from the company domain can trigger actions. External senders get a redirect and no data. Sender trust levels decide what the agent will do."],
+        ["Signed inbound messages", "Every inbound Teams webhook request is verified with HMAC-SHA256. Invalid signatures are rejected before parsing."],
+        ["Sensitive-data routing", "Keywords tied to regulated or client-sensitive content force a local model and flag the item for review."],
+        ["Audit trail", "Every proposal keeps its reasoning, its confidence, who resolved it and when. Assignees never see confidence scores, model names or record identifiers."],
+        ["Hardened host", "Non-root service user, secrets outside the repository, encrypted volume, least-privilege IAM, SSH key only, automatic patching, no exposed bot port. Deployed by GitHub Actions; traced in Logfire and Langfuse."],
+      ],
+      learned: [
+        "Every production bug was a distributed-systems classic: duplicates, a self-loop, lost updates. The fix was idempotency: stable identifiers, status flags and exactly-once writes, not a smarter prompt.",
+        "Human-in-the-loop is a state machine (pending, approved, rejected, duplicate, stalled), and it deserves the same design care as the model call.",
+        "A webhook that must answer in five seconds and a job that takes longer are two different programs. Separating them removed a whole class of silent crashes.",
+        "The best interface for approval was the one the leads already lived in. Email beat a custom UI.",
+      ],
+    },
+    "market-intelligence": {
+      title: "Market-intelligence system",
+      subtitle: "A multi-agent system that reads the market in English and Arabic and proposes leads to a human. One graph, one door, one human.",
+      role: "Architecture, governance design and implementation",
+      period: "2026, pilot in progress",
+      status: "pilot",
+      problem: [
+        "The client sells cybersecurity and AI assurance services in the Gulf. Every day regulators act, companies get breached, tenders open, laws get deadlines. Nobody can read all of it, and the question is narrow: which companies in our territory just did something that means they need us, and why?",
+        "A scraper fails because it produces pages, not decisions. A chatbot fails because it can invent, cannot be audited, and would push unverified claims into the CRM. Three failure modes shaped the design: a model that invents, one company that exists twice in the data, and controls that live only in a prompt.",
+      ],
+      built: [
+        "The first agent is a fixed pipeline, not a reasoning loop. Allow-listed sources are fetched and normalised in English and Arabic. One LLM call per article returns either \"not relevant\" or a typed card: company as named, event type and pillar from closed lists, event date, a verbatim quote, the reason to call, a confidence. Code then verifies the quote exists in the article; if it does not, the card is quarantined whatever the model said.",
+        "Verified cards are resolved against the account graph and land in a review queue where one named reviewer approves, edits or rejects with a reason. Only an approval triggers the CRM write, through a small tool that holds the one integration credential. The agent never holds it.",
+        "Status in October 2026: ingestion and normalisation run on real sources; extraction and verification are built and under review; company resolution, the review queue and the CRM write are the next steps; a labelled evaluation set is being assembled from reviewer decisions.",
+      ],
+      steps: [
+        { id: "sources", label: "Sources", detail: "An allow-list table owned by the business, not a line in a prompt. Marketing approves every source before it is enabled. A prompt can be ignored or injected; a table the fetcher reads cannot.", gate: true },
+        { id: "ingest", label: "Ingest", detail: "Feeds first, listing pages second, same-site links only. Each item is stored verbatim with its URL, fetch time and a content hash as identifier, so one text is one item whatever URL it came under. Failures are quarantined with a reason, never dropped." },
+        { id: "normalize", label: "Normalise", detail: "Language is decided deterministically by counting Arabic and Latin letters, because off-the-shelf detection was random on short text. Cleaned text and sections are derived from the raw item alone, so the step can be re-run." },
+        { id: "extract", label: "Classify + extract", detail: "One LLM call through the gateway returns the schema or nothing: company as named, event type and pillar from closed lists, event date, verbatim quote, reason to call, confidence. Article text goes last in the prompt and is treated as untrusted data." },
+        { id: "verify", label: "Verify in code", detail: "A card whose quote or company name cannot be found in the article text is thrown away by code. Hallucination is stopped by a check, not a prompt." },
+        { id: "graph", label: "Knowledge graph", detail: "SurrealDB holds organisations, people, sources, items, signals, pillars and decisions. Every relationship is an edge, never a field, so \"unresolved\" is simply the absence of an edge and every claim traces back to its document." },
+        { id: "resolve", label: "Resolve company", detail: "Normalised name and aliases are matched against known accounts. No match creates a candidate, never a canonical node. Code never merges two organisations; a human does, because a wrong merge is worse than no match." },
+        { id: "review", label: "Human review", detail: "One named reviewer approves, edits or rejects each card with a mandatory reason. Every click becomes a decision record in the graph and, later, a labelled example for the evaluation set.", gate: true },
+        { id: "crm", label: "CRM write", detail: "A small tool holding the only CRM credential creates the lead, and only on approval. Nothing reaches the CRM without a click." },
+      ],
+      decisions: [
+        ["One store for documents, graph and vectors", "Instead of a vector database plus a graph database plus a document store: one schema, one client, one backup, and a loop that needs graph hops a vector store cannot express. The cost is a young engine, so load-testing comes before calling it production."],
+        ["Every relationship is an edge, never a field", "A fact stored twice eventually disagrees. Match metadata (exact, alias, similarity, human) lives on the edge itself."],
+        ["An LLM classifies and extracts for the pilot", "Training a small classifier first would have needed labelled data we did not have. The pilot produces the first real card weeks earlier, and reviewer decisions become the labelled set. The cost: higher per item, and LLM confidence is not calibrated."],
+        ["One scheduled command instead of a workflow engine", "About twenty sources, a straight line, every step a testable function. The human wait sits outside the pipeline. An engine comes back if branches or several human waits appear."],
+        ["Code asks for a model nickname, never a provider", "The gateway maps the nickname to a model with a fallback route. The model is chosen by how it scores on labelled cards, not by brand."],
+        ["Exactly one thin UI", "The review queue is the only screen built for the pilot. Everything else reuses existing tools."],
+      ],
+      governance: [
+        ["One door: the AI gateway", "The application holds one gateway key; provider keys live only in the gateway. It maps nicknames to models with fallback, retries once, times out, counts tokens against a per-run budget, caps answer length and records the real model behind every call. A boundary test enforces that only one file in the codebase may call a model."],
+        ["NIST AI RMF", "Govern: an owner per agent and one decision record per choice, with controls enforced at the gateway rather than in prompts. Map: fetched text treated as untrusted data, closed lists for event types and pillars, a risk register. Measure: the evaluation set and its metrics. Manage: human gates on input and output, quarantine, and stop conditions on steps and tokens."],
+        ["ISO/IEC 42001", "Policy as data (the source table, the pillar table). An audit trail in the graph from card to item to source, with prompt version, model version, source-list fingerprint, reviewer and reason. Version fields on every node."],
+        ["Regional data rules", "Regional AI and data-protection guidance mapped to human oversight, an in-country data zone and gated enrichment of personal data."],
+        ["Evaluation on every change", "A versioned set of labelled cards is re-run whenever the prompt, the model or the source list changes. Metrics: precision, match accuracy, cost per run, with recall and faithfulness (is the quote really in the text?) proposed as additions."],
+      ],
+      learned: [
+        "AI sits in two boxes, a human sits in one, and ordinary code and a database do everything else. Most of the reliability came from the ordinary code.",
+        "Schema enforcement has to live at three levels: database asserts, typed models that mirror them with a drift test, and extraction that returns the schema or nothing.",
+        "Real sources misbehave: bot protection, JavaScript shells with no links, PDFs, unreliable page dates. Quarantine with a reason beats silently skipping.",
+        "A database client that does not raise on a failed statement inside a transaction will teach you to read every statement's status. Once.",
+      ],
+    },
+    collaboris: {
+      title: "Collaboris",
+      subtitle: "A real-time presence library for enterprise web apps, with a GDPR-by-design journal and a governed AI assistant on top.",
+      role: "End to end: architecture, implementation, packaging, deployment, executive presentation",
+      period: "February to August 2026, three releases",
+      status: "shipped",
+      problem: [
+        "Two claims handlers open the same record in an internal app at the same time. Neither knows the other is there. The first saves. The second, working from what they saw a moment ago, saves too, and silently overwrites the first. No warning, no conflict. The last save wins, and nobody notices until a client does.",
+        "Enterprise web apps are blind to their own users. The question was how to make any internal application aware of who is in it and what is changing, without rebuilding it, and without the presence data becoming a surveillance tool.",
+      ],
+      built: [
+        "Collaboris is a drop-in library: a host Angular application installs an npm package, its backend adds a NuGet package, and one configuration block wires everything. Users see who else is present, down to the open dialog, tab or wizard step, and are told when the data under their eyes changes. Identity comes from the host's existing session; nobody signs in twice.",
+        "Release 3 added PresenceAI: the ephemeral presence stream is captured into a durable, retention-bounded journal in Cosmos DB, and allow-listed managers can ask it questions in natural language through a governed Azure OpenAI assistant, also exposed over MCP. Redis holds what is happening; Cosmos holds what happened.",
+        "Everything shipped as real packages, installed by the host the way a customer would install them, and deployed to Azure through Azure DevOps pipelines.",
+      ],
+      steps: [
+        { id: "tabs", label: "Browser tabs", detail: "Inside the host app, the library resolves identity through a five-layer cascade (configured hint, storage scan, IndexedDB, server probe, guest prompt) and derives the user's location as an ordered view chain: route, modal, tab, mode. Two users are \"together\" only when their chains are strictly equal. The URL lies in a single-page app." },
+        { id: "worker", label: "SharedWorker", detail: "One WebSocket per browser. Tabs attach through message ports, each with its own record, so ten tabs cost one socket, closing one tab means exactly one thing, and peers still see one person." },
+        { id: "hub", label: "SignalR hub", detail: "The ASP.NET Core SDK authenticates with the host's own token and broadcasts first, persists after. A change is announced before anything is saved; real time never waits on storage." },
+        { id: "redis", label: "Redis", detail: "A per-tab record with a TTL renewed by the heartbeat, and four layers against ghost users: explicit unregister, disconnect handling, per-user staleness timers, TTL backstop. Silence removes a user; expiry is the cleanup." },
+        { id: "activity", label: "Activity detection", detail: "fetch and XMLHttpRequest are wrapped for write methods only, with an exclusion list and a deduplication window. The verb is a claim, not a truth, so a success response is required before anyone is notified. Fairness rules cap notifications per user and collapse bursts into one collective notice." },
+        { id: "cdc", label: "Change-data capture", detail: "Redis keyspace events are consumed by an independent Python service. The operational path never waits on the analytical one." },
+        { id: "journal", label: "Journal (OLTP to OLAP)", detail: "A session is only written when a mutation happened, so pure reading leaves no trace. URLs are normalised into business vocabulary, aggregates are computed at write time, and every record carries a 30-day TTL. Retention is a property of the data, not a job." },
+        { id: "ai", label: "Governed AI", detail: "A fail-closed allowlist, then a three-tier classifier: activity questions are answered, questions about a named person are reframed to team level, and judgment, prediction or HR questions are refused unconditionally. No setting unlocks it. Every interaction, refusals included, is audited. The same surface is exposed over MCP.", gate: true },
+      ],
+      decisions: [
+        ["Two stores instead of one", "Real time wants microsecond reads and ephemeral state; analytics wants history and aggregates. Redis and Cosmos DB, bridged by a pipeline the live path never waits on."],
+        ["A deterministic pipeline instead of an LLM-built journal", "Cost, reproducibility and trust. The same history always produces the same journal. The model lives only at the edges: classifying questions and phrasing answers."],
+        ["Session synthesis at write time", "Instead of mirroring every snapshot and deleting later, the pipeline decides at ingest what deserves to exist. Storage is bounded by construction, which is also what the GDPR asks for."],
+        ["An allowlist instead of host role claims for AI access", "Role semantics do not travel across countries and applications. Each application's owner declares who may ask, and the default is no."],
+        ["Host authenticates, library reads", "The SDK's own JWT scheme was removed on integration review once it was clear a library cannot own its host's security policy. Removal is a design act."],
+        ["Cache-augmented generation instead of retrieval", "The journal is small by construction, so recent summaries fit in the context window. No vector infrastructure to run."],
+        ["Python and FastAPI for the AI layer in a .NET shop", "Async stream consumption, typed validation, native streaming and the AI ecosystem, as an independently deployable service next to the .NET SDK."],
+      ],
+      governance: [
+        ["Data minimisation", "Coordinates of work only: identity, location, status, change events. Never content, form values or keystrokes."],
+        ["Consent", "Explicit, informed and revocable, gathered before any tracking; an identity confirmation overlay shows what will be shared."],
+        ["Retention by schema", "A 30-day TTL on fine-grained records, enforced by the database itself. What was never written can never leak."],
+        ["Surveillance impossible by construction", "The journal stores counts, not person-level assessments. Judgment and prediction questions about individuals are refused by design, not by policy."],
+        ["Fail-closed access and cost caps", "No allowlist entry, no access. Per-question and monthly cost ceilings on the AI layer."],
+        ["Records of processing", "Every question, classification, answer and refusal is journaled. The AI layer is covered by unit tests."],
+      ],
+      learned: [
+        "Never trust a component's self-reported health. The hardest bug was a connection that reported healthy while its receive side was dead; the fix was tracking the age of the last received message.",
+        "A library author controls nothing: not the host's framework habits, storage layout or deployment pipeline. Designing for that is a different discipline from building an application.",
+        "Benchmark first. Every component began with how the industry already solves the problem, and the day the survey ran out was the day I knew which part of the project was mine.",
+        "Removal is a design act. A heuristic view engine, a severity ranker, a graph storage path and the SDK's own auth layer were all built, evaluated and deleted, each argued in writing first.",
+      ],
+    },
+  },
+}
+
+export type Dictionary = typeof en
