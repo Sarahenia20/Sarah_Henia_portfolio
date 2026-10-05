@@ -63,7 +63,7 @@ export default function Journey({ t }: { t: Dictionary }) {
               style={{ width: `${(index / (journeyMarks.length - 1)) * 86}%` }}
               aria-hidden
             />
-            <ol className="relative grid grid-cols-7" role="tablist" aria-label={t.journey.eyebrow}>
+            <ol className="relative grid grid-cols-6" role="tablist" aria-label={t.journey.eyebrow}>
               {journeyMarks.map((m, i) => {
                 const selected = i === index
                 const passed = i <= index
@@ -133,7 +133,6 @@ function shortTitle(t: Dictionary, key: JourneyKey) {
     certs: "CCNA · AWS · NVIDIA",
     pm: t.journey.steps.pm.title.split(",")[0],
     ced: "CED · Collaboris",
-    dawn: "Dawn",
     architect: t.journey.steps.architect.title.split(" & ")[0],
   }
   return map[key]
