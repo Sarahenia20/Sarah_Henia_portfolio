@@ -111,7 +111,6 @@ export const journeyMarks = [
   { key: "certs", year: "2024", logo: null, kind: "cert" },
   { key: "pm", year: "2025", logo: "/logos/samurai-white.svg", kind: "work" },
   { key: "ced", year: "2026", logo: "/logos/ced-white.svg", kind: "work" },
-  { key: "dawn", year: "2026", logo: "/logos/samurai-white.svg", kind: "work" },
   { key: "architect", year: "2026", logo: "/logos/samurai-white.svg", kind: "work" },
 ] as const
 
