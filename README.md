@@ -1,30 +1,47 @@
-# IbraAutomate
+# saraheniaportfolio.vercel.app
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+Personal portfolio of Sarah Henia, AI Solutions & Software Engineer. Live at
+[saraheniaportfolio.vercel.app](https://saraheniaportfolio.vercel.app).
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/sarah-henias-projects/v0-ibra-automate)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/DnDJJp1jpww)
+The site tells the story of three production systems (Dawn, a market-intelligence system, Collaboris)
+through case studies rather than code, because the code lives in private company repositories.
 
-## Overview
+## Stack
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+- Next.js 14 (App Router), React 18, TypeScript
+- Tailwind CSS with a small token set (`app/globals.css`), dark theme by default, light theme via `next-themes`
+- Fonts through `next/font`: Bricolage Grotesque, IBM Plex Sans, IBM Plex Sans Arabic, IBM Plex Mono, Instrument Serif
+- No analytics, no tracking, no runtime requests to third parties
 
-## Deployment
+## Languages
 
-Your project is live at:
+English, French and Arabic, routed as `/en`, `/fr` and `/ar`. `middleware.ts` picks the language from
+a cookie or the browser's `Accept-Language` header. Arabic renders right to left (`dir="rtl"`).
 
-**[https://vercel.com/sarah-henias-projects/v0-ibra-automate](https://vercel.com/sarah-henias-projects/v0-ibra-automate)**
+All copy lives in `lib/content/{en,fr,ar}.ts`, typed against the English file so the three stay in sync.
+Facts that do not change with the language (links, dates, stacks) live in `lib/content/shared.ts`.
 
-## Build your app
+## Structure
 
-Continue building your app on:
+```
+app/[locale]/              layout (fonts, metadata, JSON-LD), home page, not-found
+app/[locale]/work/[slug]/  case-study pages: dawn, market-intelligence, collaboris
+app/sitemap.ts, robots.ts  generated SEO files
+components/                hero (with the "lens" switcher), work cards, journey timeline,
+                           architecture-flow (clickable SVG diagram), earlier work, about, contact
+lib/content/               copy and shared facts
+lib/i18n/                  locale list and helpers
+public/resume/             resume PDFs (three angles x EN/FR, with and without photo)
+```
 
-**[https://v0.app/chat/projects/DnDJJp1jpww](https://v0.app/chat/projects/DnDJJp1jpww)**
+## Run locally
 
-## How It Works
+```bash
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm build      # production build, also type-checks
+```
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Deploy
+
+Vercel deploys `main`. Work happens on branches and reaches `main` through pull requests.
