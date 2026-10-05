@@ -72,6 +72,80 @@ export const en = {
     read: "Read the case study",
     status: { live: "In production", pilot: "Pilot, in progress", shipped: "Shipped, 3 releases" },
     cards: {
+      dawn: {
+        title: "Dawn",
+        kicker: "The SamurAI · in production since March 2026",
+        tagline: "An autonomous project-management agent. Nothing is written until a human approves it.",
+        bullets: [
+          "Turns recorded meetings into tasks with owner, priority and due date.",
+          "Graph memory in SurrealDB with hybrid RAG and a Redis context cache.",
+          "Human approval by email before any write to Microsoft Planner.",
+        ],
+        flow: [["Meetings", "recorded transcripts"], ["Graph memory", "RAG + Redis CAG"], ["LLM extraction", "owner · priority · due"], ["Human approval", "every task"], ["Microsoft Planner", "via Graph API"]],
+        gate: 3,
+      },
+      "market-intelligence": {
+        title: "Market-intelligence system",
+        kicker: "The SamurAI · for a Middle East cybersecurity client · 2026",
+        tagline: "A multi-agent system that reads the market in English and Arabic and proposes leads to a human.",
+        bullets: [
+          "Allow-listed sources, bilingual ingestion, schema-enforced LLM extraction.",
+          "One knowledge graph: every claim traces back to its source document.",
+          "One AI gateway for every model call; human review before any CRM write.",
+        ],
+        flow: [["Sources", "allow-listed, EN / AR"], ["Ingest", "fetch · clean · store"], ["Classify + extract", "schema-enforced LLM"], ["Knowledge graph", "one company, one node"], ["Human review", "before any CRM write"]],
+        gate: 4,
+      },
+      collaboris: {
+        title: "Collaboris",
+        kicker: "CED Tunisia · graduation internship · Feb to Aug 2026",
+        tagline: "A real-time presence library for enterprise web apps, shipped as npm and NuGet packages.",
+        bullets: [
+          "Angular 19 library and ASP.NET Core 8 SDK over SignalR and Redis.",
+          "Presence down to the open dialog, tab or wizard step, across all browser tabs.",
+          "PresenceAI: a GDPR-by-design journal queried by a governed AI assistant over MCP.",
+        ],
+        flow: [["Browser tabs", "MutationObserver view"], ["SharedWorker", "one socket per browser"], ["SignalR + Redis", "live presence"], ["CDC journal", "OLTP to OLAP · Cosmos"], ["Governed AI", "Azure OpenAI over MCP"]],
+        gate: 4,
+      },
+    },
+  },
+  stack: {
+    eyebrow: "Stack",
+    heading: "What I build with",
+    intro: "The same wall as on my GitHub profile. Each system page lists its own.",
+    groups: { ai: "AI", build: "Build", front: "Front", data: "Data", cloud: "Cloud" },
+  },
+  journey: {
+    eyebrow: "Journey",
+    heading: "From business intelligence to shipping governed AI",
+    intro: "It walks on its own. Click a point to stop and read.",
+    steps: {
+      essect: {
+        title: "Bachelor's degree, Business Intelligence",
+        org: "ESSECT, Tunis · 2020 to 2023",
+        text: "Where I learned to read data before writing code: modeling, SQL, reporting, and how a business actually asks questions.",
+      },
+      esprit: {
+        title: "Engineering degree, Software Engineering",
+        org: "ESPRIT, Tunis · 2023 to 2026",
+        text: "Full-stack JavaScript first, then .NET, Python and cloud. The academic projects below come from these three years.",
+      },
+      certs: {
+        title: "Cisco CCNA, AWS Cloud Practitioner, NVIDIA DLI",
+        org: "2024 to 2025",
+        text: "Cisco CCNA for networks, AWS Cloud Practitioner for the cloud, and four NVIDIA Deep Learning Institute courses: Adversarial Machine Learning, Building RAG Agents with LLMs, Fundamentals of Deep Learning, and Applications of AI for Predictive Maintenance.",
+      },
+      pm: {
+        title: "Product Manager, Dojo",
+        org: "The SamurAI · 2025",
+        text: "Managed the roadmap and backlog of Dojo, an AI-powered platform that generates on-demand test labs, turning stakeholder needs into specifications and sprint priorities.",
+      },
+      ced: {
+        title: "Software Engineering Intern, Collaboris",
+        org: "CED Tunisia · Feb to Aug 2026",
+        text: "Built Collaboris end to end in three releases under department-head review, and presented the architecture, governance and business case to CED executives.",
+      },
       architect: {
         title: "Software Architect & AI Solution Integrator",
         org: "The SamurAI · 2026 to present",

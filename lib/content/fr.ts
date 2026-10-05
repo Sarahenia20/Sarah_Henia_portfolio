@@ -71,6 +71,80 @@ export const fr: Dictionary = {
     read: "Lire l'étude de cas",
     status: { live: "En production", pilot: "Pilote, en cours", shipped: "Livré, 3 releases" },
     cards: {
+      dawn: {
+        title: "Dawn",
+        kicker: "The SamurAI · en production depuis mars 2026",
+        tagline: "Un agent autonome de gestion de projet. Rien n'est écrit avant qu'un humain ne l'approuve.",
+        bullets: [
+          "Transforme les réunions enregistrées en tâches avec responsable, priorité et échéance.",
+          "Mémoire en graphe SurrealDB avec RAG hybride et cache de contexte Redis.",
+          "Validation humaine par e-mail avant toute écriture dans Microsoft Planner.",
+        ],
+        flow: [["Réunions", "transcriptions enregistrées"], ["Mémoire graphe", "RAG + CAG Redis"], ["Extraction LLM", "responsable · priorité · échéance"], ["Validation humaine", "chaque tâche"], ["Microsoft Planner", "via l'API Graph"]],
+        gate: 3,
+      },
+      "market-intelligence": {
+        title: "Système de veille marché",
+        kicker: "The SamurAI · pour un client cybersécurité au Moyen-Orient · 2026",
+        tagline: "Un système multi-agents qui lit le marché en anglais et en arabe et propose des pistes à un humain.",
+        bullets: [
+          "Sources en liste blanche, ingestion bilingue, extraction LLM à schéma imposé.",
+          "Un seul graphe de connaissances : chaque affirmation remonte à son document source.",
+          "Une passerelle IA pour chaque appel de modèle ; revue humaine avant toute écriture CRM.",
+        ],
+        flow: [["Sources", "liste blanche, EN / AR"], ["Ingestion", "collecte · nettoyage · stockage"], ["Classification + extraction", "LLM à schéma imposé"], ["Graphe de connaissances", "une entreprise, un nœud"], ["Revue humaine", "avant toute écriture CRM"]],
+        gate: 4,
+      },
+      collaboris: {
+        title: "Collaboris",
+        kicker: "CED Tunisia · stage de fin d'études · févr. à août 2026",
+        tagline: "Une bibliothèque de présence temps réel pour applications web d'entreprise, livrée en paquets npm et NuGet.",
+        bullets: [
+          "Bibliothèque Angular 19 et SDK ASP.NET Core 8 sur SignalR et Redis.",
+          "Présence jusqu'au dialogue, onglet ou étape ouverts, sur tous les onglets du navigateur.",
+          "PresenceAI : un journal conforme RGPD dès la conception, interrogé par un assistant IA gouverné via MCP.",
+        ],
+        flow: [["Onglets", "vue par MutationObserver"], ["SharedWorker", "un socket par navigateur"], ["SignalR + Redis", "présence en direct"], ["Journal CDC", "OLTP vers OLAP · Cosmos"], ["IA gouvernée", "Azure OpenAI via MCP"]],
+        gate: 4,
+      },
+    },
+  },
+  stack: {
+    eyebrow: "Technologies",
+    heading: "Ce avec quoi je construis",
+    intro: "Le même mur que sur mon profil GitHub. Chaque page système liste le sien.",
+    groups: { ai: "IA", build: "Build", front: "Front", data: "Données", cloud: "Cloud" },
+  },
+  journey: {
+    eyebrow: "Parcours",
+    heading: "De la business intelligence à l'IA gouvernée en production",
+    intro: "Il avance tout seul. Cliquez sur un point pour vous arrêter.",
+    steps: {
+      essect: {
+        title: "Licence en Business Intelligence",
+        org: "ESSECT, Tunis · 2020 à 2023",
+        text: "Où j'ai appris à lire les données avant d'écrire du code : modélisation, SQL, reporting, et la façon dont une entreprise pose vraiment ses questions.",
+      },
+      esprit: {
+        title: "Diplôme National d'Ingénieur, Génie Logiciel",
+        org: "ESPRIT, Tunis · 2023 à 2026",
+        text: "Full-stack JavaScript d'abord, puis .NET, Python et cloud. Les projets académiques ci-dessous viennent de ces trois années.",
+      },
+      certs: {
+        title: "Cisco CCNA, AWS Cloud Practitioner, NVIDIA DLI",
+        org: "2024 à 2025",
+        text: "Cisco CCNA pour les réseaux, AWS Cloud Practitioner pour le cloud, et quatre formations du NVIDIA Deep Learning Institute : Adversarial Machine Learning, Building RAG Agents with LLMs, Fundamentals of Deep Learning et Applications of AI for Predictive Maintenance.",
+      },
+      pm: {
+        title: "Product Manager, Dojo",
+        org: "The SamurAI · 2025",
+        text: "Piloté la roadmap et le backlog de Dojo, une plateforme pilotée par l'IA qui génère des laboratoires de test à la demande, en traduisant les besoins métier en spécifications et priorités de sprint.",
+      },
+      ced: {
+        title: "Stagiaire ingénieure logiciel, Collaboris",
+        org: "CED Tunisia · févr. à août 2026",
+        text: "Construit Collaboris de bout en bout en trois releases sous revue du chef de département, et présenté l'architecture, la gouvernance et l'intérêt métier aux dirigeants de CED.",
+      },
       architect: {
         title: "Architecte Logiciel & Intégratrice de Solutions IA",
         org: "The SamurAI · 2026 à aujourd'hui",
