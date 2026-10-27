@@ -122,13 +122,13 @@ export const en = {
     intro: "It walks on its own. Click a point to stop and read.",
     steps: {
       essect: {
-        title: "Bachelor's degree, Business Intelligence",
-        org: "ESSECT, Tunis · 2020 to 2023",
+        title: "Bachelor's degree, Business Computing (E-Business)",
+        org: "ESSECT, Tunis · Sep 2020 to Jun 2023",
         text: "Where I learned to read data before writing code: modeling, SQL, reporting, and how a business actually asks questions.",
       },
       esprit: {
-        title: "Engineering degree, Software Engineering",
-        org: "ESPRIT, Tunis · 2023 to 2026",
+        title: "National Diploma of Engineer, Computer Science",
+        org: "ESPRIT, Tunis · Sep 2023 to Sep 2026",
         text: "Full-stack JavaScript first, then .NET, Python and cloud. The academic projects below come from these three years.",
       },
       certs: {
@@ -138,7 +138,7 @@ export const en = {
       },
       pm: {
         title: "Product Manager, Dojo",
-        org: "The SamurAI · 2025",
+        org: "The SamurAI · Aug to Dec 2025",
         text: "Managed the roadmap and backlog of Dojo, an AI-powered platform that generates on-demand test labs, turning stakeholder needs into specifications and sprint priorities.",
       },
       ced: {
@@ -173,13 +173,13 @@ export const en = {
     heading: "Software engineer. AI solution integrator.",
     paragraphs: [
       "I design and build systems where a model proposes, a person decides and a database remembers why. Right now that is Dawn, in production since March 2026, and the market-intelligence system in pilot. Before that it was Collaboris, delivered in three releases at CED Tunisia.",
-      "I came to software through data: a business-intelligence degree first, then software engineering at ESPRIT. It shows in how I work. I care about what a number means as much as about the code that produces it, and I write the architecture document before the first commit.",
+      "I came to software through data: a business computing degree with business intelligence coursework first, then a computer science engineering degree at ESPRIT. It shows in how I work. I care about what a number means as much as about the code that produces it, and I write the architecture document before the first commit.",
       "I work across the stack: Python and FastAPI, C# and .NET, Angular and TypeScript, SurrealDB, Redis and SQL Server, deployed on AWS and Azure. I present in Arabic, English and French, to engineers and to executives.",
     ],
     facts: {
       location: ["Based in", "Tunis, Tunisia · open to relocation"],
       languages: ["Languages", "Arabic (native) · English (C1) · French (B2)"],
-      education: ["Education", "Engineering degree in Software Engineering, ESPRIT (2026) · Bachelor's in Business Intelligence, ESSECT (2023)"],
+      education: ["Education", "National Diploma of Engineer in Computer Science, ESPRIT (2026) · Bachelor's in Business Computing (E-Business), ESSECT (2023)"],
       certs: ["Certifications", "Cisco CCNA (2024) · AWS Certified Cloud Practitioner (2025)"],
       nvidia: ["NVIDIA Deep Learning Institute (2025)", "Adversarial Machine Learning · Building RAG Agents with LLMs · Fundamentals of Deep Learning · Applications of AI for Predictive Maintenance"],
     },
