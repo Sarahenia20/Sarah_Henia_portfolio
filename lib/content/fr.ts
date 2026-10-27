@@ -121,13 +121,13 @@ export const fr: Dictionary = {
     intro: "Il avance tout seul. Cliquez sur un point pour vous arrêter.",
     steps: {
       essect: {
-        title: "Licence en Business Intelligence",
-        org: "ESSECT, Tunis · 2020 à 2023",
+        title: "Licence en Informatique de Gestion (E-Business)",
+        org: "ESSECT, Tunis · sept. 2020 à juin 2023",
         text: "Où j'ai appris à lire les données avant d'écrire du code : modélisation, SQL, reporting, et la façon dont une entreprise pose vraiment ses questions.",
       },
       esprit: {
-        title: "Diplôme National d'Ingénieur, Génie Logiciel",
-        org: "ESPRIT, Tunis · 2023 à 2026",
+        title: "Diplôme National d'Ingénieur, Informatique",
+        org: "ESPRIT, Tunis · sept. 2023 à sept. 2026",
         text: "Full-stack JavaScript d'abord, puis .NET, Python et cloud. Les projets académiques ci-dessous viennent de ces trois années.",
       },
       certs: {
@@ -137,7 +137,7 @@ export const fr: Dictionary = {
       },
       pm: {
         title: "Product Manager, Dojo",
-        org: "The SamurAI · 2025",
+        org: "The SamurAI · août à déc. 2025",
         text: "Piloté la roadmap et le backlog de Dojo, une plateforme pilotée par l'IA qui génère des laboratoires de test à la demande, en traduisant les besoins métier en spécifications et priorités de sprint.",
       },
       ced: {
@@ -172,13 +172,13 @@ export const fr: Dictionary = {
     heading: "Ingénieure logiciel. Intégratrice de solutions IA.",
     paragraphs: [
       "Je conçois et construis des systèmes où un modèle propose, une personne décide et une base de données se souvient pourquoi. Aujourd'hui, c'est Dawn, en production depuis mars 2026, et le système de veille marché en pilote. Avant, c'était Collaboris, livré en trois releases chez CED Tunisia.",
-      "Je suis venue au logiciel par les données : une licence en business intelligence d'abord, puis le génie logiciel à ESPRIT. Ça se voit dans ma façon de travailler. Ce qu'un chiffre veut dire compte autant pour moi que le code qui le produit, et j'écris le document d'architecture avant le premier commit.",
+      "Je suis venue au logiciel par les données : une licence en informatique de gestion, avec des cours de business intelligence, d'abord, puis un diplôme d'ingénieur en informatique à ESPRIT. Ça se voit dans ma façon de travailler. Ce qu'un chiffre veut dire compte autant pour moi que le code qui le produit, et j'écris le document d'architecture avant le premier commit.",
       "Je travaille sur toute la pile : Python et FastAPI, C# et .NET, Angular et TypeScript, SurrealDB, Redis et SQL Server, déployés sur AWS et Azure. Je présente en arabe, en anglais et en français, aux ingénieurs comme aux dirigeants.",
     ],
     facts: {
       location: ["Basée à", "Tunis, Tunisie · mobilité internationale"],
       languages: ["Langues", "Arabe (langue maternelle) · Anglais (C1) · Français (B2)"],
-      education: ["Formation", "Diplôme d'ingénieur en génie logiciel, ESPRIT (2026) · Licence en business intelligence, ESSECT (2023)"],
+      education: ["Formation", "Diplôme National d'Ingénieur en informatique, ESPRIT (2026) · Licence en informatique de gestion (E-Business), ESSECT (2023)"],
       certs: ["Certifications", "Cisco CCNA (2024) · AWS Certified Cloud Practitioner (2025)"],
       nvidia: ["NVIDIA Deep Learning Institute (2025)", "Adversarial Machine Learning · Building RAG Agents with LLMs · Fundamentals of Deep Learning · Applications of AI for Predictive Maintenance"],
     },
