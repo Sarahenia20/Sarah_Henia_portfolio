@@ -35,7 +35,7 @@ export const systemFacts: Record<
   },
   "market-intelligence": {
     org: "The SamurAI",
-    stack: ["Python", "Pydantic", "SurrealDB", "LLM gateway", "OpenAI", "Claude", "MCP", "Docker", "GitHub Actions", "Evals", "NIST AI RMF", "ISO 42001"],
+    stack: ["Python", "FastAPI", "Pydantic", "SurrealDB", "Kong", "LiteLLM", "OpenRouter", "Claude", "OpenAI", "Gemini", "scikit-learn", "OpenTelemetry", "Arize Phoenix", "Docker", "Caddy", "Odoo"],
     logo: "/logos/samurai-white.svg",
     accent: "violet",
   },
