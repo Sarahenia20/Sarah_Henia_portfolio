@@ -8,6 +8,7 @@ import { getDictionary } from "@/lib/content"
 import { systemFacts, systems, type SystemSlug } from "@/lib/content/shared"
 import ArchitectureFlow from "@/components/architecture-flow"
 import { StackItem } from "@/components/stack-icon"
+import { kashafExtras, kashafPoster, kashafShots } from "@/lib/content/kashaf"
 
 type Params = { locale: string; slug: string }
 
@@ -49,6 +50,8 @@ export default function CaseStudyPage({ params }: { params: Params }) {
   const nextSlug = systems[(systems.indexOf(slug) + 1) % systems.length]
   const Back = locale === "ar" ? ArrowRight : ArrowLeft
   const Fwd = locale === "ar" ? ArrowLeft : ArrowRight
+  // Kashaf (slug kept as market-intelligence so old links still work) has extra sections.
+  const k = slug === "market-intelligence" ? kashafExtras(locale) : null
 
   return (
     <article className="container relative overflow-x-clip py-12 md:py-16">
@@ -103,6 +106,35 @@ export default function CaseStudyPage({ params }: { params: Params }) {
         <Prose paragraphs={c.built} />
       </Section>
 
+      {k && (
+        <Section title={k.ideasTitle}>
+          <dl className="grid gap-5 md:grid-cols-3">
+            {k.ideas.map(([head, body]) => (
+              <div key={head} className="glass rounded-xl p-5">
+                <dt className="text-lg font-semibold">{head}</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted">{body}</dd>
+              </div>
+            ))}
+          </dl>
+        </Section>
+      )}
+
+      {k && (
+        <Section title={k.posterTitle}>
+          <p className="max-w-[70ch] text-sm leading-relaxed text-muted">{k.posterHint}</p>
+          {/* The poster is a self-contained page from the project itself, so it is embedded as is. */}
+          <iframe
+            src={kashafPoster}
+            title={k.posterTitle}
+            loading="lazy"
+            className="glass mt-5 h-[min(78vh,760px)] min-h-[520px] w-full rounded-2xl"
+          />
+          <a href={kashafPoster} target="_blank" rel="noopener" className="mt-3 inline-block text-sm text-blue hover:underline">
+            {k.posterOpen}
+          </a>
+        </Section>
+      )}
+
       <section className="mt-16">
         <h2 className="text-2xl font-bold tracking-tight md:text-3xl">{L.architecture}</h2>
         <div className="mt-6">
@@ -131,6 +163,59 @@ export default function CaseStudyPage({ params }: { params: Params }) {
           ))}
         </dl>
       </Section>
+
+      {k && (
+        <Section title={k.evalTitle}>
+          <p className="max-w-[70ch] text-base leading-relaxed text-fg/90 md:text-lg">{k.evalIntro}</p>
+          <ol className="mt-6 grid gap-4 md:grid-cols-4">
+            {k.evalSteps.map(([head, body], i) => (
+              <li key={head} className="glass rounded-xl p-5">
+                <p className="font-mono text-xs text-violet">{String(i + 1).padStart(2, "0")}</p>
+                <p className="mt-2 font-semibold leading-snug">{head}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{body}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 max-w-[70ch] text-sm leading-relaxed text-muted">{k.evalNote}</p>
+        </Section>
+      )}
+
+      {k && (
+        <Section title={k.statusTitle}>
+          <p className="eyebrow">{k.numbersCaption}</p>
+          <dl className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3">
+            {k.numbers.map(([value, label]) => (
+              <div key={label} className="glass rounded-xl p-5">
+                <dt className="text-2xl font-extrabold tracking-tight md:text-3xl">{value}</dt>
+                <dd className="mt-1 text-sm text-muted">{label}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
+            <StatusList title={k.doneLabel} items={k.done} tone="border-green/60" />
+            <StatusList title={k.notYetLabel} items={k.notYet} tone="border-line" />
+          </div>
+        </Section>
+      )}
+
+      {k && (
+        <Section title={k.roleTitle}>
+          <Prose paragraphs={k.role} />
+        </Section>
+      )}
+
+      {k && kashafShots.length > 0 && (
+        <Section title={k.shotsTitle}>
+          <div className="grid gap-6 md:grid-cols-2">
+            {kashafShots.map((s) => (
+              <figure key={s.src} className="glass overflow-hidden rounded-2xl">
+                <Image src={s.src} alt={s.caption} width={s.width} height={s.height} className="h-auto w-full" />
+                <figcaption className="p-4 text-sm text-muted">{s.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </Section>
+      )}
 
       <Section title={L.learned}>
         <ul className="grid max-w-[70ch] gap-5">
@@ -171,6 +256,17 @@ function Prose({ paragraphs }: { paragraphs: string[] }) {
   return (
     <div className="grid max-w-[70ch] gap-4 text-base leading-relaxed text-fg/90 md:text-lg">
       {paragraphs.map((p) => <p key={p.slice(0, 30)}>{p}</p>)}
+    </div>
+  )
+}
+
+function StatusList({ title, items, tone }: { title: string; items: string[]; tone: string }) {
+  return (
+    <div className={`border-s-2 ${tone} ps-4`}>
+      <p className="font-semibold">{title}</p>
+      <ul className="mt-3 grid gap-2 text-sm leading-relaxed text-muted">
+        {items.map((item) => <li key={item.slice(0, 30)}>{item}</li>)}
+      </ul>
     </div>
   )
 }
