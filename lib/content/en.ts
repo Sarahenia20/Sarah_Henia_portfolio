@@ -280,7 +280,7 @@ export const en = {
         "Owned the product and architecture of Kashaf, a three-agent B2B sales-lead system for a Middle East cybersecurity client: it reads approved news sources every morning, proves each buying signal with a verbatim quote, and writes person-approved leads to an Odoo CRM with their proof and score.",
         "Designed one SurrealDB knowledge graph for documents, graph, decision history and traces (GraphRAG), and one governed gateway for every model call: Kong (a key, rate limit and request id per agent) in front of LiteLLM (routing, fallback, exact cost).",
         "Built quality on evaluation: blind labelling, precision, recall and a confusion matrix, an AI judge audited against people, an in-house TF-IDF and logistic regression classifier retrained daily, and an experiment log compared article by article.",
-        "Added observability and security: OpenTelemetry traces in Arize Phoenix, cost per model call, red-team tests against prompt injection, dependency scanning and an SBOM, and 40 architecture decision records.",
+        "Added observability and security: OpenTelemetry traces in Arize Phoenix, cost per model call, red-team tests against prompt injection, dependency scanning and an SBOM, and a written decision record for every design choice.",
       ],
       problem: [
         "A B2B company that sells cybersecurity services needs to know which companies just did something that makes them likely buyers: a breach, a regulator setting a deadline, a tender. That news is public, but nobody has time to read all of it every morning, and a list of headlines is not a lead.",
@@ -313,14 +313,14 @@ export const en = {
       governance: [
         ["One person, enforced in code", "Nothing reaches the CRM, the writer or the ranker unless a person approved it, one by one, on a confirmed company. Decisions made in bulk, or by an AI on someone's behalf, are held back and counted."],
         ["Grounding", "A lead exists only if its quote is in the article word for word. A draft's citations are checked against the retrieved evidence. A chart's numbers in an \"Ask\" answer are checked by code, or the answer is refused."],
-        ["Untrusted web content is data", "Rules come first and the article last, inside tags, and the prompt says the article is data, not instructions. Eight prompt-injection attacks were run through the real pipeline: 8 of 8 held."],
+        ["Untrusted web content is data", "Rules come first and the article last, inside tags, and the prompt says the article is data, not instructions. Prompt-injection attacks were run through the real pipeline, and all of them held."],
         ["The door", "A key per agent, rate limits, a size limit and a request id at Kong. Model keys live only behind it, and only one file in the code may talk to a model."],
         ["Traces and cost", "Every model call is recorded with its real model, tokens, time and exact cost, and drawn as a trace tree in Arize Phoenix with OpenTelemetry."],
-        ["Supply chain and decisions", "A dependency scan and a software bill of materials in one command. Every design choice is written down as one of 40 decision records."],
+        ["Supply chain and decisions", "A dependency scan and a software bill of materials in one command. Every design choice is written down as a decision record."],
       ],
       learned: [
-        "Precision 21% with recall 100% taught me more than any demo. A finder that misses nothing but cries wolf would burn a sales team's trust in a week, so the next step is quality, not more features.",
-        "An average hides what broke. Comparing every change article by article, and refusing any change that loses a real lead, is what makes improvement believable.",
+        "My first experiment taught me more than any demo. A rule that looked like a cleanup on average would have dropped real leads, one of them already approved by a person. Only the article-by-article comparison showed it.",
+        "A finder that misses nothing but cries wolf burns a sales team's trust. The next step is quality, measured against the client's own salespeople, not more features.",
         "Directing AI coding agents is architecture work: the decision records, the tests and the review are what keep the code honest. I applied the same rule to them as to the product: an AI proposes, a person decides.",
         "Keeping a person in control has to live in the code, not in a policy. If a bulk click or an AI can approve a lead, the promise is gone.",
       ],

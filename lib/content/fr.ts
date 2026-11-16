@@ -278,7 +278,7 @@ export const fr: Dictionary = {
         "Responsable du produit et de l'architecture de Kashaf, un système de pistes commerciales B2B à trois agents pour un client cybersécurité au Moyen-Orient : il lit chaque matin des sources d'actualité approuvées, prouve chaque signal d'achat par une citation exacte, et écrit les pistes validées par une personne dans un CRM Odoo, avec leur preuve et leur score.",
         "Conçu un seul graphe de connaissances SurrealDB pour les documents, le graphe, l'historique des décisions et les traces (GraphRAG), et une seule passerelle gouvernée pour chaque appel de modèle : Kong (une clé, une limite de débit et un identifiant de requête par agent) devant LiteLLM (routage, repli, coût exact).",
         "Fondé la qualité sur l'évaluation : étiquetage à l'aveugle, précision, rappel et matrice de confusion, un juge IA audité face aux personnes, un classifieur interne TF-IDF et régression logistique réentraîné chaque jour, et un journal d'expériences comparé article par article.",
-        "Ajouté l'observabilité et la sécurité : traces OpenTelemetry dans Arize Phoenix, coût par appel de modèle, tests red team contre l'injection de prompt, analyse des dépendances et SBOM, et 40 registres de décisions d'architecture.",
+        "Ajouté l'observabilité et la sécurité : traces OpenTelemetry dans Arize Phoenix, coût par appel de modèle, tests red team contre l'injection de prompt, analyse des dépendances et SBOM, et un registre de décision écrit pour chaque choix de conception.",
       ],
       problem: [
         "Une entreprise B2B qui vend des services de cybersécurité doit savoir quelles entreprises viennent de faire quelque chose qui en fait des acheteurs probables : une fuite de données, un régulateur qui fixe une échéance, un appel d'offres. Ces informations sont publiques, mais personne n'a le temps de tout lire chaque matin, et une liste de titres n'est pas une piste.",
@@ -311,14 +311,14 @@ export const fr: Dictionary = {
       governance: [
         ["Une personne, imposée dans le code", "Rien n'atteint le CRM, le rédacteur ou le classement sans la validation d'une personne, une par une, sur une entreprise confirmée. Les décisions en masse, ou prises par une IA au nom de quelqu'un, sont retenues et comptées."],
         ["Ancrage", "Une piste n'existe que si sa citation est mot pour mot dans l'article. Les citations d'un brouillon sont vérifiées face aux preuves récupérées. Les chiffres d'un graphique dans une réponse « Ask » sont vérifiés par du code, sinon la réponse est refusée."],
-        ["Le contenu web est une donnée, pas une instruction", "Les règles d'abord, l'article en dernier, entre balises, et le prompt précise que l'article est une donnée. Huit attaques par injection de prompt ont traversé le vrai pipeline : 8 sur 8 ont tenu."],
+        ["Le contenu web est une donnée, pas une instruction", "Les règles d'abord, l'article en dernier, entre balises, et le prompt précise que l'article est une donnée. Des attaques par injection de prompt ont traversé le vrai pipeline, et toutes ont tenu."],
         ["La porte", "Une clé par agent, des limites de débit, une limite de taille et un identifiant de requête dans Kong. Les clés des modèles restent derrière, et un seul fichier du code peut parler à un modèle."],
         ["Traces et coût", "Chaque appel de modèle est enregistré avec le vrai modèle, les tokens, la durée et le coût exact, et affiché en arbre de traces dans Arize Phoenix avec OpenTelemetry."],
-        ["Chaîne d'approvisionnement et décisions", "Une analyse des dépendances et une nomenclature logicielle (SBOM) en une commande. Chaque choix de conception est écrit dans l'un des 40 registres de décisions."],
+        ["Chaîne d'approvisionnement et décisions", "Une analyse des dépendances et une nomenclature logicielle (SBOM) en une commande. Chaque choix de conception est écrit dans un registre de décision."],
       ],
       learned: [
-        "Une précision de 21 % avec un rappel de 100 % m'a appris plus que n'importe quelle démo. Un chercheur qui ne rate rien mais crie au loup épuiserait la confiance d'une équipe commerciale en une semaine : l'étape suivante est la qualité, pas plus de fonctionnalités.",
-        "Une moyenne cache ce qui a cassé. Comparer chaque changement article par article, et refuser tout changement qui perd une vraie piste, c'est ce qui rend l'amélioration crédible.",
+        "Ma première expérience m'a appris plus que n'importe quelle démo. Une règle qui ressemblait en moyenne à un nettoyage aurait fait perdre de vraies pistes, dont une déjà validée par une personne. Seule la comparaison article par article l'a montré.",
+        "Un chercheur qui ne rate rien mais crie au loup épuise la confiance d'une équipe commerciale. L'étape suivante est la qualité, mesurée face aux commerciaux du client, pas plus de fonctionnalités.",
         "Diriger des agents de code IA, c'est un travail d'architecture : les registres de décisions, les tests et la revue gardent le code honnête. Je leur ai appliqué la même règle qu'au produit : une IA propose, une personne décide.",
         "Garder une personne aux commandes doit vivre dans le code, pas dans une politique. Si un clic en masse ou une IA peut valider une piste, la promesse disparaît.",
       ],

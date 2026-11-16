@@ -18,15 +18,15 @@ const en = {
   ] as [string, string][],
   evalTitle: "How it gets better, and how I know",
   evalIntro:
-    "Quality is a loop where the agent never grades its own work. One model finds, a stronger one judges, a model from a different family checks the drafts, and people label blind and audit the judge.",
+    "No change ships on a hunch: every change is measured against the last, article by article, and a stronger model and a person check the agent's work. The agent never grades itself: code checks the exact rules, a stronger model judges the fuzzy quality, and a person audits the judge.",
   evalSteps: [
-    ["Measure", "The finder against the AI judge on 51 real articles: recall 100%, precision 21%. It misses nothing, but it is far too eager."],
+    ["Measure", "The finder is measured against a stronger AI judge on the same real articles. It missed nothing, but it raised too many false alarms."],
     ["Read the failures", "The false alarms had a pattern: regulator announcements and vendor news read as a buyer's need."],
     ["Change one thing", "One rule in the finder's prompt: a regulator's or a vendor's announcement is a lead only if a named buyer has a need."],
-    ["Compare, article by article", "The new version runs on the same articles. The experiment log shows what got fixed and what broke. A change that loses a real lead is not promoted, whatever its average."],
+    ["Compare, article by article", "The rule removed some false alarms, but it also dropped real leads, one of them already approved by a person. On average it looked like a cleanup; article by article, it would have cost real deals. Not promoted: the loop stopped it before it shipped."],
   ] as [string, string][],
   evalNote:
-    "Next to the loop: a quality page with precision, recall and a confusion matrix, an AI judge audited against people, and a small in-house classifier (TF-IDF and logistic regression) retrained each morning on the system's own data, measured before it is trusted.",
+    "Promoting a change is a builder's decision, recorded in a decision file, not a click in the sales console. There are two levels of advice, and people decide both: \"Help me decide\" gives a stronger model's view on one lead, and the experiment log says whether to change how the agent thinks. Next to the loop: a quality page with precision, recall and a confusion matrix, and a small in-house classifier (TF-IDF and logistic regression) retrained each morning, measured before it is trusted.",
   roleTitle: "How it was built",
   role: [
     "I owned the product and the architecture. I defined the problem, chose every major design (one knowledge graph, one governed gateway, a person deciding every action, quality driven by evaluation), wrote each technical decision down as a decision record, reviewed the work at every step and ran it on real data.",
@@ -34,14 +34,7 @@ const en = {
   ],
   statusTitle: "Where it stands",
   numbersCaption: "As of 16 Nov 2026",
-  numbers: [
-    ["3", "agents"],
-    ["927", "articles read and stored"],
-    ["14", "leads, each with its proof"],
-    ["40", "decision records"],
-    ["8 of 8", "red-team attacks held"],
-    ["about $2.25", "total model spend"],
-  ] as [string, string][],
+  numbers: [] as [string, string][],
   done: [
     "Runs every morning on one machine, end to end, and writes approved leads to an Odoo CRM with their proof and score.",
     "English and Arabic (right to left) console, with translation on demand.",
@@ -72,15 +65,15 @@ const fr: KashafExtras = {
   ],
   evalTitle: "Comment il s'améliore, et comment je le sais",
   evalIntro:
-    "La qualité est une boucle où l'agent ne s'évalue jamais lui-même. Un modèle trouve, un plus puissant juge, un modèle d'une autre famille vérifie les brouillons, et les personnes étiquettent à l'aveugle et auditent le juge.",
+    "Aucun changement n'est livré sur une intuition : chaque changement est mesuré face au précédent, article par article, et un modèle plus puissant et une personne vérifient le travail de l'agent. L'agent ne s'évalue jamais lui-même : le code vérifie les règles exactes, un modèle plus puissant juge la qualité floue, et une personne audite le juge.",
   evalSteps: [
-    ["Mesurer", "Le chercheur face au juge IA sur 51 vrais articles : rappel 100 %, précision 21 %. Il ne rate rien, mais il est bien trop enthousiaste."],
+    ["Mesurer", "Le chercheur est mesuré face à un juge IA plus puissant, sur les mêmes vrais articles. Il ne ratait rien, mais levait trop de fausses alertes."],
     ["Lire les échecs", "Les fausses alertes suivaient un motif : des annonces de régulateurs et des actualités de fournisseurs lues comme un besoin d'acheteur."],
     ["Changer une seule chose", "Une règle dans le prompt du chercheur : l'annonce d'un régulateur ou d'un fournisseur n'est une piste que si un acheteur nommé a un besoin."],
-    ["Comparer, article par article", "La nouvelle version tourne sur les mêmes articles. Le journal d'expériences montre ce qui a été corrigé et ce qui a cassé. Un changement qui perd une vraie piste n'est pas retenu, quelle que soit sa moyenne."],
+    ["Comparer, article par article", "La règle a supprimé des fausses alertes, mais elle a aussi fait perdre de vraies pistes, dont une déjà validée par une personne. En moyenne, elle ressemblait à un nettoyage ; article par article, elle aurait coûté de vraies affaires. Non retenue : la boucle l'a arrêtée avant sa mise en service."],
   ],
   evalNote:
-    "À côté de la boucle : une page qualité avec précision, rappel et matrice de confusion, un juge IA audité face aux personnes, et un petit classifieur interne (TF-IDF et régression logistique) réentraîné chaque matin sur les données du système, mesuré avant d'être utilisé.",
+    "Retenir un changement est une décision de l'architecte, consignée dans un registre de décision, pas un clic dans la console commerciale. Il y a deux niveaux de conseil, et les personnes décident des deux : « Help me decide » donne l'avis d'un modèle plus puissant sur une piste, et le journal d'expériences dit s'il faut changer la façon dont l'agent raisonne. À côté de la boucle : une page qualité avec précision, rappel et matrice de confusion, et un petit classifieur interne (TF-IDF et régression logistique) réentraîné chaque matin, mesuré avant d'être utilisé.",
   roleTitle: "Comment il a été construit",
   role: [
     "J'étais responsable du produit et de l'architecture. J'ai défini le problème, choisi chaque grande orientation (un graphe de connaissances, une passerelle gouvernée, une personne qui décide de chaque action, une qualité pilotée par l'évaluation), consigné chaque décision technique dans un registre de décisions, revu le travail à chaque étape et fait tourner le système sur des données réelles.",
@@ -88,14 +81,7 @@ const fr: KashafExtras = {
   ],
   statusTitle: "Où il en est",
   numbersCaption: "Au 16 nov. 2026",
-  numbers: [
-    ["3", "agents"],
-    ["927", "articles lus et stockés"],
-    ["14", "pistes, chacune avec sa preuve"],
-    ["40", "registres de décisions"],
-    ["8 sur 8", "attaques red team tenues"],
-    ["environ 2,25 $", "dépense totale en modèles"],
-  ],
+  numbers: [],
   done: [
     "Tourne chaque matin sur une machine, de bout en bout, et écrit les pistes validées dans un CRM Odoo avec leur preuve et leur score.",
     "Console en anglais et en arabe (de droite à gauche), avec traduction à la demande.",
@@ -124,15 +110,15 @@ const ar: KashafExtras = {
   ],
   evalTitle: "كيف يتحسن، وكيف أعرف ذلك",
   evalIntro:
-    "الجودة حلقة لا يقيّم فيها الوكيل عمله بنفسه أبداً. نموذج يجد، وأقوى منه يحكم، ونموذج من عائلة مختلفة يدقق المسودات، والبشر يصنّفون دون معرفة الإجابة ويراجعون الحكم.",
+    "لا يُعتمد أي تغيير بناءً على حدس: كل تغيير يُقاس مقابل سابقه، مقالاً بمقال، ونموذج أقوى وإنسان يدققان عمل الوكيل. الوكيل لا يقيّم نفسه أبداً: الكود يفحص القواعد الدقيقة، ونموذج أقوى يحكم على الجودة غير المحددة، وإنسان يراجع الحكم.",
   evalSteps: [
-    ["القياس", "الباحث مقابل حكم الذكاء الاصطناعي على 51 مقالاً حقيقياً: استرجاع 100%، دقة 21%. لا يفوّته شيء، لكنه متحمس أكثر من اللازم."],
+    ["القياس", "يُقاس الباحث مقابل حكم ذكاء اصطناعي أقوى على المقالات الحقيقية نفسها. لم يفوّته شيء، لكنه أطلق إنذارات كاذبة كثيرة."],
     ["قراءة الأخطاء", "الإنذارات الكاذبة كان لها نمط: إعلانات جهات تنظيمية وأخبار موردين قُرئت كحاجة لدى مشترٍ."],
     ["تغيير شيء واحد", "قاعدة واحدة في أمر الباحث: إعلان جهة تنظيمية أو مورد لا يكون فرصة إلا إذا كانت لدى مشترٍ مسمّى حاجة."],
-    ["المقارنة مقالاً بمقال", "تعمل النسخة الجديدة على المقالات نفسها. يُظهر سجل التجارب ما تم إصلاحه وما انكسر. التغيير الذي يُضيع فرصة حقيقية لا يُعتمد، مهما كان متوسطه."],
+    ["المقارنة مقالاً بمقال", "أزالت القاعدة بعض الإنذارات الكاذبة، لكنها أسقطت أيضاً فرصاً حقيقية، إحداها وافق عليها إنسان بالفعل. في المتوسط بدت كتنظيف؛ ومقالاً بمقال كانت ستكلّف صفقات حقيقية. لم تُعتمد: أوقفتها الحلقة قبل إطلاقها."],
   ],
   evalNote:
-    "إلى جانب الحلقة: صفحة جودة فيها الدقة والاسترجاع ومصفوفة الالتباس، وحكم ذكاء اصطناعي يُراجَع مقابل البشر، ومصنِّف داخلي صغير (TF-IDF وانحدار لوجستي) يُعاد تدريبه كل صباح على بيانات النظام، ويُقاس قبل الاعتماد عليه.",
+    "اعتماد تغيير قرار يتخذه من يبني النظام، ويُسجَّل في ملف قرار، وليس نقرة في واجهة المبيعات. هناك مستويان من النصح، والبشر يقررون في كليهما: \"Help me decide\" يعطي رأي نموذج أقوى في فرصة واحدة، وسجل التجارب يقول هل يجب تغيير طريقة تفكير الوكيل. إلى جانب الحلقة: صفحة جودة فيها الدقة والاسترجاع ومصفوفة الالتباس، ومصنِّف داخلي صغير (TF-IDF وانحدار لوجستي) يُعاد تدريبه كل صباح، ويُقاس قبل الاعتماد عليه.",
   roleTitle: "كيف بُني",
   role: [
     "امتلكت المنتج والمعمارية. حددت المشكلة، واخترت كل تصميم رئيسي (رسم معرفي واحد، بوابة محكومة واحدة، إنسان يقرر كل إجراء، جودة يقودها التقييم)، ودوّنت كل قرار تقني في سجل قرار، وراجعت العمل في كل خطوة، وشغّلته على بيانات حقيقية.",
@@ -140,14 +126,7 @@ const ar: KashafExtras = {
   ],
   statusTitle: "أين وصل",
   numbersCaption: "حتى 16 نوفمبر 2026",
-  numbers: [
-    ["3", "وكلاء"],
-    ["927", "مقالاً مقروءاً ومخزَّناً"],
-    ["14", "فرصة، لكل منها دليلها"],
-    ["40", "سجل قرار"],
-    ["8 من 8", "هجمات red team صمد أمامها"],
-    ["نحو 2.25 دولار", "إجمالي إنفاق النماذج"],
-  ],
+  numbers: [],
   done: [
     "يعمل كل صباح على جهاز واحد من البداية إلى النهاية، ويكتب الفرص الموافَق عليها في Odoo CRM مع دليلها ودرجتها.",
     "واجهة بالإنجليزية والعربية (من اليمين إلى اليسار) مع ترجمة عند الطلب.",
