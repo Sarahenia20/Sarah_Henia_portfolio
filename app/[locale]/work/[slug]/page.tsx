@@ -9,6 +9,7 @@ import { systemFacts, systems, type SystemSlug } from "@/lib/content/shared"
 import ArchitectureFlow from "@/components/architecture-flow"
 import { StackItem } from "@/components/stack-icon"
 import { kashafExtras, kashafPoster, kashafShots } from "@/lib/content/kashaf"
+import PosterFrame from "@/components/poster-frame"
 
 type Params = { locale: string; slug: string }
 
@@ -123,12 +124,7 @@ export default function CaseStudyPage({ params }: { params: Params }) {
         <Section title={k.posterTitle}>
           <p className="max-w-[70ch] text-sm leading-relaxed text-muted">{k.posterHint}</p>
           {/* The poster is a self-contained page from the project itself, so it is embedded as is. */}
-          <iframe
-            src={kashafPoster}
-            title={k.posterTitle}
-            loading="lazy"
-            className="glass mt-5 h-[min(78vh,760px)] min-h-[520px] w-full rounded-2xl"
-          />
+          <PosterFrame src={kashafPoster} title={k.posterTitle} />
           <a href={kashafPoster} target="_blank" rel="noopener" className="mt-3 inline-block text-sm text-blue hover:underline">
             {k.posterOpen}
           </a>
