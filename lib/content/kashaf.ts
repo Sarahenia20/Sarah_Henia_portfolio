@@ -1,6 +1,6 @@
 // Extra sections that only the campaign case study (slug market-intelligence) has: the poster, the three ideas,
 // the finder's eval loop, how it was built, the honest status. English, French and Arabic; Sarah reviews FR and AR.
-// Facts (EN): the project's campaign design, decisions and changelog, Nov 2026. FR and AR still describe the lead-by-lead version until translated.
+// Facts: the project's campaign design, decisions and changelog, Nov 2026. FR and AR translate the English.
 // House rules: no em dashes, no client name, no repository name, no test counts.
 import type { Locale } from "@/lib/i18n/config"
 
@@ -57,43 +57,45 @@ export type KashafExtras = typeof en
 
 const fr: KashafExtras = {
   posterTitle: "La pile d'agents IA",
-  posterHint: "Survolez ou touchez une tuile pour voir ce que c'est et pourquoi elle est là. « Play the life of a lead » fait traverser tout le système à une piste.",
+  posterHint: "Le corps qui est resté quand le flux est devenu des campagnes : les agents, un graphe, une porte, une personne. Survolez ou touchez une tuile pour voir ce que c'est et pourquoi elle est là. « Play the life of a campaign » fait suivre à une campagne tout son parcours, de l'actualité au CRM.",
   posterOpen: "Ouvrir en plein écran",
   ideasTitle: "Trois idées tiennent le tout",
   ideas: [
-    ["Une mémoire", "Tout ce que savent les agents vit dans un seul graphe de connaissances SurrealDB : articles, pistes, entreprises, décisions des personnes, appels de modèle. Une entreprise est un nœud, chaque piste pointe vers son article et chaque article vers sa source. Les agents récupèrent des faits reliés et prouvés (GraphRAG), jamais un texte qui ne fait que se ressembler."],
-    ["Une porte", "Aucun agent n'appelle un modèle directement ni ne détient de clé. Chaque appel passe par Kong, avec la clé, la limite de débit et l'identifiant de requête de l'agent, puis par LiteLLM, qui choisit le vrai modèle, bascule si un fournisseur échoue et donne le coût exact."],
-    ["Une personne", "L'agent propose, une personne décide, le système enregistre. Rien n'atteint le CRM ni ne quitte le système sans la validation et le motif d'une personne. Une décision en masse, ou prise par une IA au nom de quelqu'un, est retenue par le code. Le juge IA peut recommander ; il ne décide jamais."],
+    ["Une seule décision, là où l'argent et le contact entrent en jeu", "La première version demandait à une personne de valider chaque piste. Désormais, tout ce qui précède le lancement est préparé automatiquement et ne dépense rien, et une personne prend une seule décision par campagne : la lancer ou l'abandonner, avec un motif. Qui peut lancer dépend du coût et du rôle, dans le code, et c'est revérifié à chaque appui. Un marché soumis à des règles de confidentialité supplémentaires revient toujours au validateur senior, et au-delà d'un plafond le système refuse de construire la campagne."],
+    ["Les règles dans la base de données, pas dans les prompts", "Une règle qui ne vit que dans un prompt ou dans le code applicatif peut être contournée par le prochain appelant. « Rien n'est envoyé avant le lancement » et l'interdiction de contact définitive sont des événements de schéma SurrealDB : la base refuse l'écriture et nomme la règle. Autour d'elles, le moindre privilège : le CRM est atteint via des listes blanches par tâche, et les outils de contacts et de prospection sont derrière la même passerelle que les modèles, chacun avec ses propres identifiants et sa limite de débit."],
+    ["L'économie, et une boucle qui la mesure", "Chaque campagne est chiffrée avant toute dépense : les contacts à acheter (les personnes déjà détenues et encore récentes sont réutilisées), le temps des personnes, et les appels de modèle lus dans les propres registres de la passerelle. Mizan en tire un coût par réponse attendue. Les taux de réponse commencent comme des estimations signalées ; le taux mesuré de chaque campagne terminée, par produit et par canal, remplace l'hypothèse dans l'estimation suivante."],
   ],
-  evalTitle: "Comment il s'améliore, et comment je le sais",
+  evalTitle: "Comment le chercheur s'est amélioré, et comment je le sais",
   evalIntro:
-    "Aucun changement n'est livré sur une intuition : chaque changement est mesuré face au précédent, article par article, et un modèle plus puissant et une personne vérifient le travail de l'agent. L'agent ne s'évalue jamais lui-même : le code vérifie les règles exactes, un modèle plus puissant juge la qualité floue, et une personne audite le juge.",
+    "Avant la refonte, Kashaf trouvait des pistes, et sa qualité reposait sur l'évaluation. Cette boucle vaut toujours pour le chercheur : chaque changement est mesuré face au précédent, article par article. L'agent ne s'évalue jamais lui-même : le code vérifie les règles exactes, un modèle plus puissant juge la qualité floue, et une personne audite le juge.",
   evalSteps: [
-    ["Mesurer", "Le chercheur est mesuré face à un juge IA plus puissant, sur les mêmes vrais articles. Il ne ratait rien, mais levait trop de fausses alertes."],
+    ["Mesurer", "Le chercheur a été mesuré face à un juge IA plus puissant, sur les mêmes vrais articles, avec les étiquettes à l'aveugle des personnes comme mesure finale. Il ne ratait rien, mais levait trop de fausses alertes."],
     ["Lire les échecs", "Les fausses alertes suivaient un motif : des annonces de régulateurs et des actualités de fournisseurs lues comme un besoin d'acheteur."],
     ["Changer une seule chose", "Une règle dans le prompt du chercheur : l'annonce d'un régulateur ou d'un fournisseur n'est une piste que si un acheteur nommé a un besoin."],
     ["Comparer, article par article", "La règle a supprimé des fausses alertes, mais elle a aussi fait perdre de vraies pistes, dont une déjà validée par une personne. En moyenne, elle ressemblait à un nettoyage ; article par article, elle aurait coûté de vraies affaires. Non retenue : la boucle l'a arrêtée avant sa mise en service."],
   ],
   evalNote:
-    "Retenir un changement est une décision de l'architecte, consignée dans un registre de décision, pas un clic dans la console commerciale. Il y a deux niveaux de conseil, et les personnes décident des deux : « Help me decide » donne l'avis d'un modèle plus puissant sur une piste, et le journal d'expériences dit s'il faut changer la façon dont l'agent raisonne. À côté de la boucle : une page qualité avec précision, rappel et matrice de confusion, et un petit classifieur interne (TF-IDF et régression logistique) réentraîné chaque matin, mesuré avant d'être utilisé.",
+    "Retenir un changement est une décision de celle qui construit, consignée dans un registre de décision, pas un clic dans la console. Les campagnes ajoutent une deuxième boucle, côté métier : quand de vraies campagnes se terminent, leurs taux de réponse mesurés remplacent les estimations de départ. L'idée suivante, l'A/B testing des messages, demande assez de personnes par version pour distinguer une vraie différence du bruit, elle attend donc de vraies campagnes. Construit pour apprendre, en attente de vraies campagnes dont apprendre.",
   roleTitle: "Comment il a été construit",
   role: [
-    "J'étais responsable du produit et de l'architecture. J'ai défini le problème, choisi chaque grande orientation (un graphe de connaissances, une passerelle gouvernée, une personne qui décide de chaque action, une qualité pilotée par l'évaluation), consigné chaque décision technique dans un registre de décisions, revu le travail à chaque étape et fait tourner le système sur des données réelles.",
-    "Le code a été écrit en étroite collaboration avec des agents de code IA (Claude Code), que j'ai dirigés et relus, et les commits sont co-signés. Construire ainsi fait partie du propos : mes propres outils suivent les mêmes règles. Claude Code n'a jamais le droit d'enregistrer une décision sur une piste au nom d'une personne.",
+    "J'étais l'architecte et la responsable. J'ai défini le problème, et quand la première démo aux parties prenantes a montré que le système répondait à la mauvaise question, je l'ai repensé autour des campagnes : le flux, le modèle de données, les règles et l'ordre des étapes de construction. J'ai consigné chaque décision avec sa raison, comblé les manques laissés par le client avec des valeurs par défaut signalées comme telles, et relu chaque étape avant sa fusion.",
+    "Le code a été écrit par des agents de code IA (Claude Code) que j'ai dirigés, et je le dis clairement parce que cela fait partie du savoir-faire. Les étapes de construction ont tourné comme des agents distincts dans des worktrees git isolés, en parallèle, puis ont été fusionnées et testées ensemble. Ce qui a rendu cela possible, c'est l'architecture : un modèle de données partagé d'abord, un registre de décision et ses tests par étape, et des règles que les agents ne pouvaient pas contourner. Mes outils suivent la même règle que le produit : une IA propose, une personne décide.",
   ],
   statusTitle: "Où il en est",
-  numbersCaption: "Au 16 nov. 2026",
+  numbersCaption: "En novembre 2026",
   numbers: [],
   done: [
-    "Tourne chaque matin sur une machine, de bout en bout, et écrit les pistes validées dans un CRM Odoo avec leur preuve et leur score.",
-    "Console en anglais et en arabe (de droite à gauche), avec traduction à la demande.",
-    "Un kit serveur est prêt : Docker, Caddy, sauvegardes et restauration.",
+    "Chaque étape du flux de campagne est construite, fusionnée et testée : événements associés à un produit, contacts, messages, coût et score, lot classé deux fois par semaine, prospection, réponses et résultats.",
+    "Un écran de lancement en anglais et en arabe (de droite à gauche), avec une validation par coût et par rôle vérifiée côté serveur, et des pages pour les appels et les réponses.",
+    "Les deux règles les plus strictes imposées par la base de données : rien n'est envoyé avant le lancement, et l'interdiction de contact est définitive.",
+    "Le CRM ne reçoit que les campagnes lancées et les personnes qui ont répondu, via une liste blanche limitée à la création.",
+    "Le document sur les données et la confidentialité mis à jour avant le stockage du moindre contact.",
   ],
   notYet: [
+    "Pas encore exécuté en conditions réelles : il lui faut les clés des outils du client et un premier lancement par une personne.",
+    "Pas de vrais chiffres de réponse : les taux de réponse sont des estimations de départ signalées, jusqu'à ce que de vraies campagnes les remplacent.",
+    "L'A/B testing des messages est l'idée suivante, pas encore construite : il faut de vraies campagnes avec assez de personnes par version.",
     "Pas encore déployé sur un serveur.",
-    "Pas encore mesuré face aux commerciaux du client : les étiquettes viennent pour l'instant du juge IA.",
-    "Pas encore de modèle sur mesure : le classifieur interne est petit. Affiner un modèle ouvert est une direction, pas un résultat.",
-    "Pas encore d'alertes : une personne lit le rapport du matin.",
   ],
   doneLabel: "Construit",
   notYetLabel: "Pas encore",
@@ -102,43 +104,45 @@ const fr: KashafExtras = {
 
 const ar: KashafExtras = {
   posterTitle: "حزمة وكلاء الذكاء الاصطناعي",
-  posterHint: "مرّر المؤشر أو المس أي مربع لترى ما هو ولماذا هو هناك. زر \"Play the life of a lead\" يمرّ بفرصة واحدة عبر النظام كله.",
+  posterHint: "الجسم الذي بقي حين صار المسار حملات: الوكلاء، ورسم واحد، وباب واحد، وإنسان واحد. مرّر المؤشر أو المس أي مربع لترى ما هو ولماذا هو هناك. زر \"Play the life of a campaign\" يأخذ حملة واحدة في رحلتها من الأخبار إلى CRM.",
   posterOpen: "فتح بملء الشاشة",
   ideasTitle: "ثلاث أفكار تجمع النظام",
   ideas: [
-    ["ذاكرة واحدة", "كل ما يعرفه الوكلاء يعيش في رسم معرفي واحد في SurrealDB: المقالات والفرص والشركات وقرارات البشر واستدعاءات النماذج. الشركة الواحدة عقدة واحدة، وكل فرصة تشير إلى مقالها وكل مقال إلى مصدره. يسترجع الوكلاء حقائق مترابطة ومثبتة (GraphRAG)، لا نصاً يشبهها فقط."],
-    ["باب واحد", "لا يستدعي أي وكيل نموذجاً مباشرة ولا يحمل مفتاح مزوّد. كل استدعاء يمر عبر Kong بمفتاح الوكيل وحد طلباته ومعرّف طلبه، ثم عبر LiteLLM الذي يختار النموذج الحقيقي ويبدّل عند فشل مزوّد ويعطي التكلفة الدقيقة."],
-    ["إنسان واحد", "الوكيل يقترح، والإنسان يقرر، والنظام يسجّل. لا يصل شيء إلى CRM ولا يخرج من النظام دون موافقة إنسان وسببه. القرار الجماعي، أو الذي يتخذه ذكاء اصطناعي نيابة عن أحد، يحجزه الكود. حكم الذكاء الاصطناعي يوصي ولا يقرر أبداً."],
+    ["قرار واحد، حيث يحدث الإنفاق والتواصل", "كانت النسخة الأولى تطلب من إنسان الموافقة على كل فرصة. الآن يُعَدّ كل ما قبل الإطلاق آلياً دون إنفاق أي شيء، ويتخذ إنسان واحد قراراً واحداً لكل حملة: إطلاقها أو إلغاؤها، مع سبب. من يحق له الإطلاق يُحدَّد حسب التكلفة والدور، في الكود، ويُفحص من جديد عند كل ضغطة. السوق ذو قواعد الخصوصية الإضافية يذهب دائماً إلى الموافِق الأعلى، وفوق سقف معيّن يرفض النظام بناء الحملة."],
+    ["القواعد في قاعدة البيانات، لا في الأوامر", "القاعدة التي تعيش في أمر للنموذج أو في كود التطبيق وحده يمكن أن يتجاوزها المستدعي التالي. \"لا يُرسَل شيء قبل الإطلاق\" و\"منع التواصل الدائم\" أحداث مخطط في SurrealDB: ترفض قاعدة البيانات الكتابة وتسمّي القاعدة. وحولهما أقل الصلاحيات: يُوصَل إلى CRM عبر قوائم مسموح بها لكل مهمة، وأدوات جهات الاتصال والتواصل تقف خلف البوابة نفسها التي تقف أمام النماذج، لكل منها معرّف اعتماد خاص وحد طلبات خاص."],
+    ["الجانب الاقتصادي، وحلقة تقيسه", "تُحسب تكلفة كل حملة قبل إنفاق أي شيء: جهات الاتصال التي ستُشترى (يُعاد استخدام الأشخاص الموجودين أصلاً وما زالت بياناتهم حديثة)، ووقت الناس، واستدعاءات النماذج المقروءة من سجلات البوابة نفسها. يحوّل Mizan ذلك إلى تكلفة لكل رد متوقع. تبدأ معدلات الرد كتقديرات موسومة، ومعدل الرد المقاس لكل حملة منتهية، لكل منتج وقناة، يحل محل التخمين في التقدير التالي."],
   ],
-  evalTitle: "كيف يتحسن، وكيف أعرف ذلك",
+  evalTitle: "كيف تحسّن الباحث، وكيف أعرف ذلك",
   evalIntro:
-    "لا يُعتمد أي تغيير بناءً على حدس: كل تغيير يُقاس مقابل سابقه، مقالاً بمقال، ونموذج أقوى وإنسان يدققان عمل الوكيل. الوكيل لا يقيّم نفسه أبداً: الكود يفحص القواعد الدقيقة، ونموذج أقوى يحكم على الجودة غير المحددة، وإنسان يراجع الحكم.",
+    "قبل إعادة التصميم، كان Kashaf يجد الفرص، وكانت جودته مبنية على التقييم. وما زالت هذه الحلقة قائمة بالنسبة للباحث: كل تغيير يُقاس مقابل سابقه، مقالاً بمقال. الوكيل لا يقيّم نفسه أبداً: الكود يفحص القواعد الدقيقة، ونموذج أقوى يحكم على الجودة غير المحددة، وإنسان يراجع الحكم.",
   evalSteps: [
-    ["القياس", "يُقاس الباحث مقابل حكم ذكاء اصطناعي أقوى على المقالات الحقيقية نفسها. لم يفوّته شيء، لكنه أطلق إنذارات كاذبة كثيرة."],
+    ["القياس", "قيس الباحث مقابل حكم ذكاء اصطناعي أقوى على المقالات الحقيقية نفسها، مع تصنيفات البشر العمياء كمقياس نهائي. لم يفوّته شيء، لكنه أطلق إنذارات كاذبة كثيرة."],
     ["قراءة الأخطاء", "الإنذارات الكاذبة كان لها نمط: إعلانات جهات تنظيمية وأخبار موردين قُرئت كحاجة لدى مشترٍ."],
     ["تغيير شيء واحد", "قاعدة واحدة في أمر الباحث: إعلان جهة تنظيمية أو مورد لا يكون فرصة إلا إذا كانت لدى مشترٍ مسمّى حاجة."],
     ["المقارنة مقالاً بمقال", "أزالت القاعدة بعض الإنذارات الكاذبة، لكنها أسقطت أيضاً فرصاً حقيقية، إحداها وافق عليها إنسان بالفعل. في المتوسط بدت كتنظيف؛ ومقالاً بمقال كانت ستكلّف صفقات حقيقية. لم تُعتمد: أوقفتها الحلقة قبل إطلاقها."],
   ],
   evalNote:
-    "اعتماد تغيير قرار يتخذه من يبني النظام، ويُسجَّل في ملف قرار، وليس نقرة في واجهة المبيعات. هناك مستويان من النصح، والبشر يقررون في كليهما: \"Help me decide\" يعطي رأي نموذج أقوى في فرصة واحدة، وسجل التجارب يقول هل يجب تغيير طريقة تفكير الوكيل. إلى جانب الحلقة: صفحة جودة فيها الدقة والاسترجاع ومصفوفة الالتباس، ومصنِّف داخلي صغير (TF-IDF وانحدار لوجستي) يُعاد تدريبه كل صباح، ويُقاس قبل الاعتماد عليه.",
+    "اعتماد تغيير قرار يتخذه من يبني النظام، ويُسجَّل في ملف قرار، وليس نقرة في الواجهة. وتضيف الحملات حلقة ثانية في الجانب التجاري: حين تنتهي حملات حقيقية، تحل معدلات الرد المقاسة محل التقديرات الأولية. الفكرة التالية، اختبار A/B للرسائل، تحتاج إلى عدد كافٍ من الأشخاص لكل نسخة للتمييز بين فرق حقيقي وضجيج، لذا تنتظر حملات حقيقية. مبني ليتعلّم، وينتظر حملات حقيقية يتعلّم منها.",
   roleTitle: "كيف بُني",
   role: [
-    "امتلكت المنتج والمعمارية. حددت المشكلة، واخترت كل تصميم رئيسي (رسم معرفي واحد، بوابة محكومة واحدة، إنسان يقرر كل إجراء، جودة يقودها التقييم)، ودوّنت كل قرار تقني في سجل قرار، وراجعت العمل في كل خطوة، وشغّلته على بيانات حقيقية.",
-    "كُتب الكود بتعاون وثيق مع وكلاء برمجة بالذكاء الاصطناعي (Claude Code) وجّهتهم وراجعت عملهم، والـ commits مشتركة التأليف. البناء بهذه الطريقة جزء من الفكرة: أدواتي تخضع للقواعد نفسها. لا يُسمح لـ Claude Code أبداً بتسجيل قرار على فرصة نيابة عن إنسان.",
+    "كنت مهندسة المعمارية والمالكة. حددت المشكلة، وحين أظهر أول عرض لأصحاب المصلحة أن النظام يجيب عن السؤال الخطأ، أعدت تصميمه حول الحملات: المسار، ونموذج البيانات، والقواعد، وترتيب خطوات البناء. دوّنت كل قرار مع سببه، وسددت الفجوات التي تركها العميل بقيم افتراضية معلنة بوصفها كذلك، وراجعت كل خطوة قبل دمجها.",
+    "كتب الكود وكلاء برمجة بالذكاء الاصطناعي (Claude Code) وجّهتهم، وأقول ذلك بوضوح لأنه جزء من المهارة. عملت خطوات البناء كوكلاء منفصلين في git worktrees معزولة، بالتوازي، ثم دُمجت واختُبرت معاً. وما جعل ذلك ممكناً هو المعمارية: نموذج بيانات مشترك أولاً، وسجل قرار واختباراته لكل خطوة، وقواعد لا يستطيع الوكلاء ليّها. وتخضع أدواتي للقاعدة نفسها التي يخضع لها المنتج: الذكاء الاصطناعي يقترح، والإنسان يقرر.",
   ],
   statusTitle: "أين وصل",
-  numbersCaption: "حتى 16 نوفمبر 2026",
+  numbersCaption: "حتى نوفمبر 2026",
   numbers: [],
   done: [
-    "يعمل كل صباح على جهاز واحد من البداية إلى النهاية، ويكتب الفرص الموافَق عليها في Odoo CRM مع دليلها ودرجتها.",
-    "واجهة بالإنجليزية والعربية (من اليمين إلى اليسار) مع ترجمة عند الطلب.",
-    "حزمة خادم جاهزة: Docker وCaddy ونسخ احتياطي واستعادة.",
+    "كل خطوة في مسار الحملة مبنية ومدموجة ومُختبَرة: ربط الأحداث بمنتج، وجهات الاتصال، والرسائل، والتكلفة والدرجة، والدفعة المرتبة مرتين أسبوعياً، والتواصل، والردود والنتائج.",
+    "شاشة إطلاق بالإنجليزية والعربية (من اليمين إلى اليسار)، مع موافقة حسب التكلفة والدور تُفحص على الخادم، وصفحات للمكالمات والردود.",
+    "أصعب قاعدتين تفرضهما قاعدة البيانات: لا يُرسَل شيء قبل الإطلاق، ومنع التواصل دائم.",
+    "لا يتلقى CRM إلا الحملات المُطلَقة والأشخاص الذين ردّوا، عبر قائمة مسموح بها للإنشاء فقط.",
+    "حُدّثت وثيقة البيانات والخصوصية قبل تخزين أي جهة اتصال.",
   ],
   notYet: [
+    "لم يُشغَّل فعلياً بعد: يحتاج إلى مفاتيح أدوات العميل وأول ضغطة إطلاق من إنسان.",
+    "لا أرقام ردود حقيقية: معدلات الرد تقديرات أولية موسومة حتى تحل محلها حملات حقيقية.",
+    "اختبار A/B للرسائل هو الفكرة التالية، ولم يُبنَ: يحتاج إلى حملات حقيقية بعدد كافٍ من الأشخاص لكل نسخة.",
     "لم يُنشر على خادم بعد.",
-    "لم يُقس بعد مقابل مندوبي مبيعات العميل: التصنيفات حتى الآن من حكم الذكاء الاصطناعي.",
-    "لا نموذج مخصص بعد: المصنِّف الداخلي صغير. ضبط نموذج مفتوح اتجاه مستقبلي، لا نتيجة.",
-    "لا تنبيهات بعد: إنسان يقرأ تقرير الصباح.",
   ],
   doneLabel: "تم بناؤه",
   notYetLabel: "ليس بعد",
