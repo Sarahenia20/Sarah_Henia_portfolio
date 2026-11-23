@@ -50,7 +50,7 @@ export default function CaseStudyPage({ params }: { params: Params }) {
   const nextSlug = systems[(systems.indexOf(slug) + 1) % systems.length]
   const Back = locale === "ar" ? ArrowRight : ArrowLeft
   const Fwd = locale === "ar" ? ArrowLeft : ArrowRight
-  // Kashaf (slug kept as market-intelligence so old links still work) has extra sections.
+  // The Agentic Campaign System (slug kept as market-intelligence so old links still work) has extra sections.
   const k = slug === "market-intelligence" ? kashafExtras(locale) : null
 
   return (

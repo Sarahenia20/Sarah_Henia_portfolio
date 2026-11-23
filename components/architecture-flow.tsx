@@ -17,6 +17,8 @@ const icons: Record<string, ComponentType<LucideProps>> = {
   sources: Rss, ingest: Download, normalize: Languages, verify: CheckCircle2, graph: Network, resolve: Building2,
   review: UserCheck, crm: Send,
   tabs: LayoutGrid, worker: Share2, hub: Radio, redis: Database, activity: Activity, cdc: Repeat, journal: BookOpen, ai: Bot,
+  event: Sparkles, audience: Building2, message: Languages, score: Gauge, batch: ListChecks, launch: UserCheck,
+  outreach: Send, replies: Repeat,
 }
 
 const W = 1000

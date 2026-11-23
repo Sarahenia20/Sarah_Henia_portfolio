@@ -1,6 +1,6 @@
-// Extra sections that only the Kashaf case study has (the poster, the three ideas, the eval loop,
-// how it was built, the honest status), in English, French and Arabic. Sarah reviews FR and AR.
-// Facts: the Kashaf repository docs (overview, architecture-and-operations, eval-loop), dated 16 Nov 2026.
+// Extra sections that only the campaign case study (slug market-intelligence) has: the poster, the three ideas,
+// the finder's eval loop, how it was built, the honest status. English, French and Arabic; Sarah reviews FR and AR.
+// Facts (EN): the project's campaign design, decisions and changelog, Nov 2026. FR and AR still describe the lead-by-lead version until translated.
 // House rules: no em dashes, no client name, no repository name, no test counts.
 import type { Locale } from "@/lib/i18n/config"
 
@@ -8,43 +8,45 @@ export const kashafPoster = "/work/kashaf-architecture.html"
 
 const en = {
   posterTitle: "The AI agent stack",
-  posterHint: "Hover or tap a tile to see what it is and why it is there. \"Play the life of a lead\" walks one lead through the whole system.",
+  posterHint: "The body that stayed when the flow became campaigns: the agents, one graph, one door, one person. Hover or tap a tile to see what it is and why it is there. \"Play the life of a campaign\" walks one campaign from the news to the CRM.",
   posterOpen: "Open full screen",
   ideasTitle: "Three ideas hold it together",
   ideas: [
-    ["One memory", "Everything the agents know lives in one SurrealDB knowledge graph: articles, leads, companies, people's decisions, model calls. One company is one node, every lead points to its article and every article to its source. Agents retrieve connected, proven facts from the graph (GraphRAG), never text that only sounds similar."],
-    ["One door", "No agent calls a model directly or holds a provider key. Every call goes through Kong, with the agent's own key, rate limit and request id, then LiteLLM, which picks the real model, falls back when a provider fails and reports the exact cost."],
-    ["One person", "The agent proposes, a person decides, the system records. Nothing reaches the CRM or leaves the system without a person's approval and reason. A decision made in bulk, or by an AI on someone's behalf, is held back by code. The AI judge can recommend; it never decides."],
+    ["One decision, where money and contact happen", "The first version asked a person to approve every lead. Now everything before Launch is prepared automatically and spends nothing, and one person makes one decision per campaign: launch it or drop it, with a reason. Who may launch is routed by cost and role, in code, checked again on every press. A market with extra privacy rules always goes to the senior approver, and above a ceiling the system refuses to build the campaign."],
+    ["Rules in the database, not in prompts", "A rule that lives only in a prompt or in application code can be skipped by the next caller. Nothing sent before Launch and permanent do-not-contact are SurrealDB schema events: the database refuses the write and names the rule. Around them, least privilege: the CRM is reached through per-job allow-lists, and the contact and outreach tools sit behind the same gateway as the models, each with its own credential and rate limit."],
+    ["Economics, and a loop that measures them", "Every campaign is costed before anything is spent: contacts to buy (people already held and still fresh are reused), people's time, and model calls read from the gateway's own records. Mizan turns that into a cost per expected reply. Reply rates start as labelled estimates; each finished campaign's measured rate, per product and channel, replaces the guess in the next estimate."],
   ] as [string, string][],
-  evalTitle: "How it gets better, and how I know",
+  evalTitle: "How the finder got better, and how I know",
   evalIntro:
-    "No change ships on a hunch: every change is measured against the last, article by article, and a stronger model and a person check the agent's work. The agent never grades itself: code checks the exact rules, a stronger model judges the fuzzy quality, and a person audits the judge.",
+    "Before the rewiring, Kashaf found leads, and its quality was built on evaluation. That loop still holds for the finder: every change is measured against the last, article by article. The agent never grades itself: code checks the exact rules, a stronger model judges the fuzzy quality, and a person audits the judge.",
   evalSteps: [
-    ["Measure", "The finder is measured against a stronger AI judge on the same real articles. It missed nothing, but it raised too many false alarms."],
+    ["Measure", "The finder was measured against a stronger AI judge on the same real articles, with people's blind labels as the final measure. It missed nothing, but it raised too many false alarms."],
     ["Read the failures", "The false alarms had a pattern: regulator announcements and vendor news read as a buyer's need."],
     ["Change one thing", "One rule in the finder's prompt: a regulator's or a vendor's announcement is a lead only if a named buyer has a need."],
     ["Compare, article by article", "The rule removed some false alarms, but it also dropped real leads, one of them already approved by a person. On average it looked like a cleanup; article by article, it would have cost real deals. Not promoted: the loop stopped it before it shipped."],
   ] as [string, string][],
   evalNote:
-    "Promoting a change is a builder's decision, recorded in a decision file, not a click in the sales console. There are two levels of advice, and people decide both: \"Help me decide\" gives a stronger model's view on one lead, and the experiment log says whether to change how the agent thinks. Next to the loop: a quality page with precision, recall and a confusion matrix, and a small in-house classifier (TF-IDF and logistic regression) retrained each morning, measured before it is trusted.",
+    "Promoting a change is a builder's decision, recorded in a decision file, not a click in the console. The campaigns add a second loop on the business side: once real campaigns finish, their measured reply rates replace the starting estimates. The next idea, A/B testing messages, needs enough people per version to tell a real difference from noise, so it waits for real campaigns. Built to learn, waiting for real campaigns to learn from.",
   roleTitle: "How it was built",
   role: [
-    "I owned the product and the architecture. I defined the problem, chose every major design (one knowledge graph, one governed gateway, a person deciding every action, quality driven by evaluation), wrote each technical decision down as a decision record, reviewed the work at every step and ran it on real data.",
-    "The code was written in close collaboration with AI coding agents (Claude Code), which I directed and reviewed, and the commits are co-authored. Building this way is part of the point: the same rules apply to my own tools. Claude Code is never allowed to record a lead decision on a person's behalf.",
+    "I was the architect and owner. I defined the problem, and when the first stakeholder demo showed the system answered the wrong question, I redesigned it around campaigns: the flow, the data model, the rules, and the order of the build steps. I wrote every decision down with its reason, filled the gaps the client left with defaults marked as such, and reviewed every step before it was merged.",
+    "The code was written by AI coding agents (Claude Code) that I directed, and I say that plainly because it is part of the skill. The build steps ran as separate agents in isolated git worktrees, in parallel, and were then merged and tested together. What made that work was the architecture: a shared data model first, one decision record and its tests per step, and rules the agents could not bend. The same rule applies to my tools as to the product: an AI proposes, a person decides.",
   ],
   statusTitle: "Where it stands",
-  numbersCaption: "As of 16 Nov 2026",
+  numbersCaption: "As of November 2026",
   numbers: [] as [string, string][],
   done: [
-    "Runs every morning on one machine, end to end, and writes approved leads to an Odoo CRM with their proof and score.",
-    "English and Arabic (right to left) console, with translation on demand.",
-    "A server kit is ready: Docker, Caddy, backups and restore.",
+    "Every step of the campaign flow is built, merged and tested: events matched to a product, contacts, messages, cost and score, the twice-weekly ranked batch, outreach, replies and results.",
+    "A launch screen in English and Arabic (right to left), with approval by cost and role checked on the server, and pages for calls and replies.",
+    "The two hardest rules enforced by the database: nothing sent before Launch, and do-not-contact is permanent.",
+    "The CRM receives only launched campaigns and the people who answered, through a create-only allow-list.",
+    "The data and privacy document updated before any contact is stored.",
   ],
   notYet: [
+    "Not run live yet: it needs the client's tool keys and a person's first Launch.",
+    "No real reply numbers: reply rates are labelled starting estimates until real campaigns replace them.",
+    "A/B testing messages is the next idea, not built: it needs real campaigns with enough people per version.",
     "Not deployed to a server yet.",
-    "Not yet measured against the client's own salespeople: the labels so far come from the AI judge.",
-    "No custom model yet: the in-house classifier is small. Fine-tuning an open model is a direction, not a result.",
-    "No alerting yet: a person reads the morning report.",
   ],
   doneLabel: "Built",
   notYetLabel: "Not yet",
