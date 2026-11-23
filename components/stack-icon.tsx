@@ -29,13 +29,20 @@ const monograms: Record<string, string> = {
   MySQL: "SQL",
 }
 
-// One logo tile: the brand mark on a dark rounded square, exactly like the GitHub stack wall.
+// Products that share their family's mark (Azure OpenAI is OpenAI on Azure, Cosmos DB is an Azure service).
+const aliases: Record<string, string> = {
+  "Azure OpenAI": "OpenAI",
+  "Cosmos DB": "Azure",
+}
+
+// One logo tile: the brand mark on a rounded square, like the GitHub stack wall.
+// Marks that were white on the profile use currentColor, so they turn dark on the light theme.
 export function StackTile({ name, size = 56, className }: { name: string; size?: number; className?: string }) {
-  const spec = stackIcons[name]
+  const spec = stackIcons[name] ?? stackIcons[aliases[name] ?? ""]
   const glyph = size * 0.5
   return (
     <span
-      className={cn("inline-flex flex-none items-center justify-center rounded-[34%] border border-line bg-card", className)}
+      className={cn("inline-flex flex-none items-center justify-center rounded-[34%] border border-line bg-card text-fg", className)}
       style={{ width: size, height: size }}
       aria-hidden
     >
