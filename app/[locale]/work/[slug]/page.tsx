@@ -50,7 +50,7 @@ export default function CaseStudyPage({ params }: { params: Params }) {
   const nextSlug = systems[(systems.indexOf(slug) + 1) % systems.length]
   const Back = locale === "ar" ? ArrowRight : ArrowLeft
   const Fwd = locale === "ar" ? ArrowLeft : ArrowRight
-  // Kashaf (slug kept as market-intelligence so old links still work) has extra sections.
+  // The Agentic Campaign System (slug kept as market-intelligence so old links still work) has extra sections.
   const k = slug === "market-intelligence" ? kashafExtras(locale) : null
 
   return (
@@ -182,16 +182,20 @@ export default function CaseStudyPage({ params }: { params: Params }) {
 
       {k && (
         <Section title={k.statusTitle}>
-          <p className="eyebrow">{k.numbersCaption}</p>
-          <dl className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3">
-            {k.numbers.map(([value, label]) => (
-              <div key={label} className="glass rounded-xl p-5">
-                <dt className="text-2xl font-extrabold tracking-tight md:text-3xl">{value}</dt>
-                <dd className="mt-1 text-sm text-muted">{label}</dd>
-              </div>
-            ))}
-          </dl>
-          <div className="mt-8 grid gap-8 md:grid-cols-2">
+          {k.numbers.length > 0 && (
+            <>
+              <p className="eyebrow">{k.numbersCaption}</p>
+              <dl className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3">
+                {k.numbers.map(([value, label]) => (
+                  <div key={label} className="glass rounded-xl p-5">
+                    <dt className="text-2xl font-extrabold tracking-tight md:text-3xl">{value}</dt>
+                    <dd className="mt-1 text-sm text-muted">{label}</dd>
+                  </div>
+                ))}
+              </dl>
+            </>
+          )}
+          <div className={`${k.numbers.length > 0 ? "mt-8" : ""} grid gap-8 md:grid-cols-2`}>
             <StatusList title={k.doneLabel} items={k.done} tone="border-green/60" />
             <StatusList title={k.notYetLabel} items={k.notYet} tone="border-line" />
           </div>
